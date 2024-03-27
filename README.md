@@ -20,3 +20,5 @@
 [Метрики 2.0](https://docs.google.com/document/d/1fK1YRyhjA9Jk65wHtvGzJ6kzYsaAdmHQfCPCYVNV5KI/edit)
 
 [Описание архитектуры](https://docs.google.com/document/d/12UsrKIvRo4tvwa5YWXt0ZjV7coVRl17Oxk8NFT5CLh4/edit)
+
+[Фронтенд приложения](https://github.com/Barsegyan-Arevik/log-analyzer-frontend)
