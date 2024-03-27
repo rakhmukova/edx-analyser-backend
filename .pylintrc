@@ -1,0 +1,2 @@
+[MESSAGES CONTROL]
+disable=missing-function-docstring,missing-module-docstring,line-too-long,broad-except,trailing-whitespace
