@@ -40,7 +40,7 @@ def insert_logs(connection, logs_file):
     print('Количество загруженных записей: ', count)
 
 
-def upload_logs_postgres(database=os.getenv("POSTGRES_DATABASE"), logs_dir=LOGS_DIR):
+def upload_logs_postgres(database=os.environ.get("POSTGRES_DATABASE"), logs_dir=LOGS_DIR):
     print('Загрузка лог-файлов в базу данных')
     connection = open_db_connection(database=database)
     create_logs_table(connection)

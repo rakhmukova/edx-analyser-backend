@@ -9,11 +9,11 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 load_dotenv()
 
 
-def open_db_connection(database=os.getenv("POSTGRES_DATABASE")):
+def open_db_connection(database=os.environ.get("POSTGRES_DATABASE")):
     try:
         connection = psycopg2.connect(
-            user=os.getenv("POSTGRES_USER"),
-            password=os.getenv("POSTGRES_PASSWORD"),
+            user=os.environ.get("POSTGRES_USER"),
+            password=os.environ.get("POSTGRES_PASSWORD"),
             host="127.0.0.1",
             port="5432",
             database=database

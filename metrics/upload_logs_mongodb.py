@@ -7,11 +7,11 @@ from metrics.decompress_zst import LOGS_DIR, LOGS_FILES_DIR
 
 if __name__ == '__main__':
     client = pymongo.MongoClient("mongodb://localhost:27017/")
-    db = client[os.getenv("MONGODB_DATABASE")]
+    db = client[os.environ.get("MONGODB_DATABASE")]
 
     folder_path = LOGS_DIR + LOGS_FILES_DIR
     file_names = os.listdir(folder_path)
-    common_collection = db[os.getenv("MONGODB_COLLECTION")]
+    common_collection = db[os.environ.get("MONGODB_COLLECTION")]
 
     for file_name in file_names:
         with open(os.path.join(folder_path, file_name), "r", encoding="utf-8") as file:
