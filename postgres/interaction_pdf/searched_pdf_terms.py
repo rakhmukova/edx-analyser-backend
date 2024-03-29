@@ -1,7 +1,7 @@
-from metrics.sql_queries import SQL_QUERY_SEARCHED_PDF_TERMS
-from metrics.utils.db_operations import execute_query_with_result
-from metrics.utils.file_operations import generate_bar_figure
-from metrics.utils.metric_operations import calc_course_metric
+from postgres.sql_queries import SQL_QUERY_SEARCHED_PDF_TERMS
+from postgres.utils.db_operations import execute_query_with_result
+from postgres.utils.file_operations import generate_bar_figure
+from postgres.utils.metric_operations import calc_course_metric
 
 
 def unique_views_of_available_pdf(connection):

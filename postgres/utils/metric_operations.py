@@ -1,5 +1,5 @@
-from metrics.utils.db_operations import close_db_connection, open_db_connection
-from metrics.utils.file_operations import save_output_to_file
+from postgres.utils.db_operations import close_db_connection, open_db_connection
+from postgres.utils.file_operations import save_output_to_file
 
 
 def calc_course_metric(metric, result_file, fields):

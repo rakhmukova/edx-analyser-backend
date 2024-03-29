@@ -1,9 +1,9 @@
 import plotly.graph_objects as go
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from metrics.sql_queries import SQL_QUERY_USER_TIME_ON_COURSE_PER_DAY
-from metrics.utils.db_operations import execute_user_query_with_result
-from metrics.utils.metric_operations import calc_user_metric
+from postgres.sql_queries import SQL_QUERY_USER_TIME_ON_COURSE_PER_DAY
+from postgres.utils.db_operations import execute_user_query_with_result
+from postgres.utils.metric_operations import calc_user_metric
 
 
 def calculate_user_session_activity_per_day_on_course(connection, user_id):

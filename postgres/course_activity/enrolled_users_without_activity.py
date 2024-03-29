@@ -1,8 +1,8 @@
 import plotly.graph_objects as go
 
-from metrics.sql_queries import SQL_QUERY_ENROLLED_USERS_WITHOUT_ACTIVITY
-from metrics.utils.db_operations import execute_query_with_result
-from metrics.utils.metric_operations import calc_course_metric
+from postgres.sql_queries import SQL_QUERY_ENROLLED_USERS_WITHOUT_ACTIVITY
+from postgres.utils.db_operations import execute_query_with_result
+from postgres.utils.metric_operations import calc_course_metric
 
 
 def calculate_users_who_enrolled_but_not_started(connection):

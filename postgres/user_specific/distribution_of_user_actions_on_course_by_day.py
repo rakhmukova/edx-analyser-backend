@@ -4,9 +4,9 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from metrics.sql_queries import SQL_QUERY_EVENTS_DISTRIBUTION
-from metrics.utils.db_operations import close_db_connection, open_db_connection
-from metrics.utils.file_operations import save_output_to_file
+from postgres.sql_queries import SQL_QUERY_EVENTS_DISTRIBUTION
+from postgres.utils.db_operations import close_db_connection, open_db_connection
+from postgres.utils.file_operations import save_output_to_file
 
 
 def calculate_events_distribution_per_day(connection, user_id):

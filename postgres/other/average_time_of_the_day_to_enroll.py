@@ -1,6 +1,6 @@
-from metrics.utils.db_operations import execute_query_with_result
-from metrics.utils.metric_operations import calc_course_metric
-from metrics.sql_queries import SQL_QUERY_AVERAGE_TIME_OF_THE_DAY_TO_ENROLL
+from postgres.utils.db_operations import execute_query_with_result
+from postgres.utils.metric_operations import calc_course_metric
+from postgres.sql_queries import SQL_QUERY_AVERAGE_TIME_OF_THE_DAY_TO_ENROLL
 
 
 def get_enrollment_distribution(connection):

@@ -1,10 +1,10 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from metrics.sql_queries import SQL_QUERY_PAGE_ACTIVITY_PER_DAY, SQL_QUERY_URLS_AND_NAMES_MAPPING
-from metrics.utils.db_operations import close_db_connection, open_db_connection, execute_query_with_result
-from metrics.utils.file_operations import find_alias, save_output_to_file
-from metrics.utils.url_operations import remove_parameters_from_url
+from postgres.sql_queries import SQL_QUERY_PAGE_ACTIVITY_PER_DAY, SQL_QUERY_URLS_AND_NAMES_MAPPING
+from postgres.utils.db_operations import close_db_connection, open_db_connection, execute_query_with_result
+from postgres.utils.file_operations import find_alias, save_output_to_file
+from postgres.utils.url_operations import remove_parameters_from_url
 
 
 def calculate_page_activity_per_day(connection):

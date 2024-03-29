@@ -1,7 +1,7 @@
 import os
 
-from metrics.decompress_zst import LOGS_DIR, LOGS_FILES_DIR
-from metrics.utils.db_operations import close_db_connection, open_db_connection, execute_query
+from postgres.decompress_zst import LOGS_DIR, LOGS_FILES_DIR
+from postgres.utils.db_operations import close_db_connection, open_db_connection, execute_query
 
 
 def create_logs_table(connection):

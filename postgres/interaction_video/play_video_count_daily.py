@@ -1,7 +1,7 @@
-from metrics.sql_queries import SQL_QUERY_PLAY_VIDEO_TIMES
-from metrics.utils.db_operations import execute_query_with_result
-from metrics.utils.file_operations import RESULT_PATH, generate_line_figure
-from metrics.utils.metric_operations import calc_course_metric
+from postgres.sql_queries import SQL_QUERY_PLAY_VIDEO_TIMES
+from postgres.utils.db_operations import execute_query_with_result
+from postgres.utils.file_operations import RESULT_PATH, generate_line_figure
+from postgres.utils.metric_operations import calc_course_metric
 
 
 def calculate_video_start_times(connection):

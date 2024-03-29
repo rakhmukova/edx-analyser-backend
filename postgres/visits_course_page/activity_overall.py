@@ -1,9 +1,9 @@
 import plotly.graph_objects as go
 
-from metrics.sql_queries import GET_UNIQUE_PAGES_URLS, SQL_QUERY_URLS_AND_NAMES_MAPPING
-from metrics.utils.db_operations import execute_query_with_result, open_db_connection, close_db_connection
-from metrics.utils.file_operations import find_alias, save_output_to_file
-from metrics.utils.url_operations import remove_parameters_from_url
+from postgres.sql_queries import GET_UNIQUE_PAGES_URLS, SQL_QUERY_URLS_AND_NAMES_MAPPING
+from postgres.utils.db_operations import execute_query_with_result, open_db_connection, close_db_connection
+from postgres.utils.file_operations import find_alias, save_output_to_file
+from postgres.utils.url_operations import remove_parameters_from_url
 
 
 def calculate_pages(connection):
