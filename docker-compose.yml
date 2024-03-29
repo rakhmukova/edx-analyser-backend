@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+
+  postgres_db:
+    image: postgres:14.4
+    container_name: "postgres_db"
+    networks:
+      - db_network
+    volumes:
+      - postgres_db_volume:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  backend:
+    build: ./backend
+    container_name: "django_backend"
+    command: >
+      bash -c "
+      sleep 5 &&
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python3 manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - postgres_db
+    volumes:
+      - ./backend:/src
+    networks:
+      - db_network
+    ports:
+      - "8000:8000"
+    tty: true
+    env_file:
+      - .env
+
+networks:
+  db_network:
+    driver: bridge
+
+volumes:
+  postgres_db_volume:
