@@ -5,8 +5,8 @@ from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_course_metric
 
 
-def calculate_total_user_time_on_course(connection):
-    return execute_query_with_result(connection, SQL_QUERY_TOTAL_USER_TIME_ON_COURSE)
+def calculate_total_user_time_on_course(connection, course_id):
+    return execute_query_with_result(connection, SQL_QUERY_TOTAL_USER_TIME_ON_COURSE, course_id)
 
 
 def generate_total_time_distribution_figure(user_time_on_course):

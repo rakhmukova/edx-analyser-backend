@@ -7,12 +7,12 @@ from metrics.utils.file_operations import find_alias, save_output_to_file
 from metrics.utils.url_operations import remove_parameters_from_url
 
 
-def calculate_user_way_of_moving(connection, user_id):
-    return execute_user_query_with_result(connection, USER_PAGES_VISITED_AT_TIMEDATE, user_id)
+def calculate_user_way_of_moving(connection, course_id, user_id):
+    return execute_user_query_with_result(connection, USER_PAGES_VISITED_AT_TIMEDATE, course_id, user_id)
 
 
-def calculate_urls_and_names_mapping(connection):
-    return execute_query_with_result(connection, SQL_QUERY_USER_ROUTE)
+def calculate_urls_and_names_mapping(connection, course_id):
+    return execute_query_with_result(connection, course_id, SQL_QUERY_USER_ROUTE)
 
 
 def generate_figure(user_way_on_course, urls_and_names_mapping, user_id):

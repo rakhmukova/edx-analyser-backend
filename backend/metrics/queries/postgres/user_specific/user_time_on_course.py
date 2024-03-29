@@ -6,10 +6,11 @@ from metrics.utils.db_operations import execute_user_query_with_result
 from metrics.utils.metric_operations import calc_user_metric
 
 
-def calculate_user_session_activity_per_day_on_course(connection, user_id):
+def calculate_user_session_activity_per_day_on_course(connection, user_id, course_id):
     return execute_user_query_with_result(
         connection,
         SQL_QUERY_USER_TIME_ON_COURSE_PER_DAY,
+        course_id,
         user_id,
         ISOLATION_LEVEL_AUTOCOMMIT
     )
