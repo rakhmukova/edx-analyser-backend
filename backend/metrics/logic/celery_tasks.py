@@ -1,9 +1,11 @@
+import time
 from typing import Any
 
 from app.celery import app
 from metrics.models.report import SectionReport
 from metrics.models.report_state import ReportState
 from metrics.models.section_type import SectionType
+from metrics.utils.exceptions import throw_exception_with_probability
 
 
 @app.task(name="generate_report")
@@ -40,4 +42,6 @@ def generate_report(course_id: str, section_type: SectionType):
 
 
 def get_report_data(course_id: str, section_type: SectionType) -> Any:
+    time.sleep(20)
+    throw_exception_with_probability(0.2)
     return {}
