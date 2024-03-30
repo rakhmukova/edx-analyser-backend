@@ -10,4 +10,3 @@ class ReportState:
         (CREATED, "Created"),
         (FAILED, "Failed")
     ]
-    DEFAULT = NOT_STARTED

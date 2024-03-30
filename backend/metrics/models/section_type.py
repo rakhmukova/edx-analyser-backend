@@ -1,10 +1,16 @@
-from enum import Enum
+class SectionType:
+    COMMON = "common"
+    VIDEO = "video"
+    PDF = "pdf"
+    FORUM = "forum"
+    PAGES = "pages"
+    TASKS = "tasks"
 
-
-class SectionType(Enum):
-    COMMON = 1
-    VIDEO = 2
-    PDF = 3
-    FORUM = 4
-    PAGES = 5
-    TASKS = 6
+    CHOICES = [
+        (COMMON, "common"),
+        (VIDEO, "video"),
+        (PDF, "pdf"),
+        (FORUM, "forum"),
+        (PAGES, "pages"),
+        (TASKS, "tasks")
+    ]

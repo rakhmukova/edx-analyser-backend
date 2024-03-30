@@ -1,8 +1,8 @@
 import csv
+from typing import Any, Union
 
 import pandas as pd
 import plotly.express as px
-
 
 RESULT_PATH = '../../metric_results/'
 
@@ -36,3 +36,14 @@ def generate_line_figure(result_file, fields):
     data = pd.read_csv(result_file)
     fig = px.line(data, x=fields[0], y=fields[1])
     fig.show()
+
+
+def csv_to_json(csv_file_path: str) -> list[dict[Union[str, Any], Any]]:
+    json_data = []
+    with open(csv_file_path, 'r') as file:
+        csv_reader = csv.DictReader(file)
+        headers = csv_reader.fieldnames
+        for row in csv_reader:
+            json_row = {header: row[header] for header in headers}
+            json_data.append(json_row)
+    return json_data

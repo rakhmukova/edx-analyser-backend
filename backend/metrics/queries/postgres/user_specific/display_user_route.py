@@ -4,6 +4,7 @@ from metrics.queries.postgres.sql_queries import SQL_QUERY_USER_ROUTE, USER_PAGE
 from metrics.utils.db_operations import open_db_connection, close_db_connection, execute_user_query_with_result, \
     execute_query_with_result
 from metrics.utils.file_operations import find_alias, save_output_to_file
+from metrics.utils.metric_operations import DEFAULT_COURSE_ID
 from metrics.utils.url_operations import remove_parameters_from_url
 
 
@@ -74,8 +75,8 @@ def generate_figure(user_way_on_course, urls_and_names_mapping, user_id):
 def main():
     user_id = input("User id: ")
     connection = open_db_connection()
-    user_way_on_course = calculate_user_way_of_moving(connection, user_id)
-    urls_and_names_mapping = calculate_urls_and_names_mapping(connection)
+    user_way_on_course = calculate_user_way_of_moving(connection, course_id=DEFAULT_COURSE_ID, user_id=user_id)
+    urls_and_names_mapping = calculate_urls_and_names_mapping(connection, course_id=DEFAULT_COURSE_ID)
     result_file = f"{user_id}_display_user_route.csv"
     save_output_to_file(result_file, user_way_on_course, ['time_access', 'page_url'])
     generate_figure(user_way_on_course, urls_and_names_mapping, user_id)

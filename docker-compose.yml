@@ -12,6 +12,17 @@ services:
     env_file:
       - .env
 
+  redis:
+    image: "redis:alpine"
+    container_name: "redis"
+    command:
+      redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - redis_volume:/data
+      - ./backend/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - redis_network
+
   backend:
     build: ./backend
     container_name: "django_backend"
@@ -23,19 +34,39 @@ services:
       python3 manage.py runserver 0.0.0.0:8000"
     depends_on:
       - postgres_db
+      - redis
     volumes:
       - ./backend:/src
     networks:
       - db_network
+      - redis_network
     ports:
       - "8000:8000"
     tty: true
     env_file:
       - .env
 
+  celery:
+    build: ./backend
+    container_name: "celery"
+    command: celery -A app.celery worker -l info --concurrency=6 -Q celery,sections
+    volumes:
+      - ./backend:/src
+    env_file:
+      - .env
+    depends_on:
+      - backend
+      - redis
+    networks:
+      - redis_network
+      - db_network
+
 networks:
   db_network:
+    driver: bridge
+  redis_network:
     driver: bridge
 
 volumes:
   postgres_db_volume:
+  redis_volume:

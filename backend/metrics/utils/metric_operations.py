@@ -7,13 +7,13 @@ from metrics.utils.file_operations import save_output_to_file
 
 DEFAULT_COURSE_ID = "course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1"
 
+
 MetricFuncType = Callable[[psycopg2.extensions.connection, str], Any]
 UserMetricFuncType = Callable[[psycopg2.extensions.connection, str, str], Any]
 
 
 def calc_course_metric(metric: MetricFuncType, result_file: str, fields: list[str],
                        course_id: str = DEFAULT_COURSE_ID):
-    # TODO: pass course_id
     connection = open_db_connection()
     metric_result = metric(connection, course_id)
     close_db_connection(connection)

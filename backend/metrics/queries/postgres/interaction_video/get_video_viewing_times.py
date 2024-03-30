@@ -43,9 +43,9 @@ def main():
     calc_course_metric(
         calc_play_time,
         result_file,
-        ['username', 'time(sec)']
+        ['username', 'time']
     )
-    generate_bar_figure(RESULT_PATH + result_file, ['username', 'time(sec)'])
+    generate_bar_figure(RESULT_PATH + result_file, ['username', 'time'])
 
 
 if __name__ == '__main__':
