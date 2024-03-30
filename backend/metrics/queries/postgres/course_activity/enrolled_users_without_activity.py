@@ -5,8 +5,8 @@ from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_course_metric
 
 
-def calculate_users_who_enrolled_but_not_started(connection):
-    return execute_query_with_result(connection, SQL_QUERY_ENROLLED_USERS_WITHOUT_ACTIVITY)
+def calculate_users_who_enrolled_but_not_started(connection, course_id):
+    return execute_query_with_result(connection, SQL_QUERY_ENROLLED_USERS_WITHOUT_ACTIVITY, course_id)
 
 
 def generate_figure(users):

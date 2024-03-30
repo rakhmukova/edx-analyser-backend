@@ -33,8 +33,8 @@ def calculate_times_for_users(play_pause_events):
     return map(lambda x: (x[0], x[1].seconds), list(user_times.items()))
 
 
-def calc_play_time(connection):
-    play_pause_events = execute_query_with_result(connection, SQL_QUERY_PLAY_PAUSE_EVENTS)
+def calc_play_time(connection, course_id):
+    play_pause_events = execute_query_with_result(connection, SQL_QUERY_PLAY_PAUSE_EVENTS, course_id)
     return calculate_times_for_users(play_pause_events)
 
 
@@ -43,9 +43,9 @@ def main():
     calc_course_metric(
         calc_play_time,
         result_file,
-        ['username', 'time(sec)']
+        ['username', 'time']
     )
-    generate_bar_figure(RESULT_PATH + result_file, ['username', 'time(sec)'])
+    generate_bar_figure(RESULT_PATH + result_file, ['username', 'time'])
 
 
 if __name__ == '__main__':

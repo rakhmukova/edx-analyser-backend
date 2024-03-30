@@ -1,5 +1,6 @@
 import csv
 import os
+from dataclasses import dataclass
 
 from dotenv import load_dotenv
 
@@ -16,11 +17,26 @@ from metrics.queries.postgres.upload_logs_postgresql import upload_logs_postgres
 from metrics.queries.postgres.user_specific.user_time_on_course import calculate_user_session_activity_per_day_on_course
 from metrics.utils.db_operations import open_db_connection, close_db_connection, create_database_if_not_exists
 from metrics.utils.file_operations import save_output_to_file
+from metrics.utils.metric_operations import MetricFuncType, DEFAULT_COURSE_ID, UserMetricFuncType
 
 EXPECTED_PATH = "result_files/expected/"
 ACTUAL_PATH = "result_files/actual/"
 
 load_dotenv()
+
+
+@dataclass
+class MetricData:
+    metric_func: MetricFuncType
+    result_file: str
+    fields: list[str]
+
+
+@dataclass
+class UserMetricData:
+    metric_func: UserMetricFuncType
+    result_file: str
+    fields: list[str]
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -35,12 +51,12 @@ def setup_complete():
 @pytest.fixture
 def course_metrics():
     return [
-        (calculate_users_who_finished_the_course, "completed_course_users.csv", ['user_id', 'username']),
-        (calculate_users_who_enrolled_but_not_started, "enrolled_users_without_activity.csv",
+        MetricData(calculate_users_who_finished_the_course, "completed_course_users.csv", ['user_id', 'username']),
+        MetricData(calculate_users_who_enrolled_but_not_started, "enrolled_users_without_activity.csv",
          ['user_id', 'username', 'enrollment_date']),
-        (calculate_users_who_started_but_not_completed, "started_but_not_completed_course.csv",
+        MetricData(calculate_users_who_started_but_not_completed, "started_but_not_completed_course.csv",
          ['user_id', 'username']),
-        (calculate_total_user_time_on_course, "distinct_user_time_on_course.csv", ['user_id', 'time_on_course']),
+        MetricData(calculate_total_user_time_on_course, "distinct_user_time_on_course.csv", ['user_id', 'time_on_course']),
     ]
 
 
@@ -71,17 +87,17 @@ def assert_csv_equality(expected, actual):
             assert row1 == row2, f"Rows not equal: {row1}, {row2}"
 
 
-def test_metrics(course_metrics, specific_student_metrics, specific_student_id):
+def test_metrics(course_metrics: list[MetricData], specific_student_metrics: list[UserMetricData], specific_student_id):
     connection = open_db_connection(database=os.environ.get("POSTGRES_TESTING_DATABASE"))
+    course_id = DEFAULT_COURSE_ID
     for metric in course_metrics:
-        metric_func, result_file, fields = metric
-        metric_result = metric_func(connection)
-        save_output_to_file(result_file, metric_result, fields, result_path=ACTUAL_PATH)
+        metric_result = metric.metric_func(connection, course_id)
+        save_output_to_file(metric.result_file, metric_result, metric.fields, result_path=ACTUAL_PATH)
 
     for metric in specific_student_metrics:
-        metric_func, result_file, fields = metric
-        metric_result = metric_func(connection, specific_student_id)
-        save_output_to_file(f"{specific_student_id}_{result_file}", metric_result, fields, result_path=ACTUAL_PATH)
+        metric_result = metric.metric_func(connection, specific_student_id, course_id)
+        save_output_to_file(f"{specific_student_id}_{metric.result_file}", metric_result, metric.fields,
+                            result_path=ACTUAL_PATH)
 
     close_db_connection(connection)
 

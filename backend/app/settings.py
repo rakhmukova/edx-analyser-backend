@@ -67,6 +67,18 @@ DATABASES = {
     }
 }
 
+# celery
+CELERY_BROKER_URL = os.environ.get("REDIS_URL", "localhost")
+
+CELERY_TASK_ROUTES = {
+    "metrics.logic.celery_tasks.generate_report": {
+        "queue": "sections"
+    },
+}
+
+# Redis
+DEFAULT_REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',

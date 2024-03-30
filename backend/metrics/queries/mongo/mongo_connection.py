@@ -9,8 +9,8 @@ class MongoConnection:
 
         super().__init__()
 
-        user = kwargs.get('user', os.environ.get("MONGODB_USER"))
-        password = kwargs.get('password', os.environ.get("MONGODB_PASSWORD"))
+        user = kwargs.get('user', os.environ.get("MONGODB_USER", ""))
+        password = kwargs.get('password', os.environ.get("MONGODB_PASSWORD", ""))
 
         db_name = kwargs.get('database', os.environ.get("MONGODB_DATABASE"))
         collection_name = kwargs.get('collection', os.environ.get("MONGODB_COLLECTION"))

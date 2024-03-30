@@ -4,8 +4,8 @@ from metrics.utils.file_operations import generate_bar_figure
 from metrics.utils.metric_operations import calc_course_metric
 
 
-def unique_views_of_available_pdf(connection):
-    return execute_query_with_result(connection, SQL_QUERY_DISTINCT_SCROLLING)
+def unique_views_of_available_pdf(connection, course_id):
+    return execute_query_with_result(connection, SQL_QUERY_DISTINCT_SCROLLING, course_id)
 
 
 def main():
