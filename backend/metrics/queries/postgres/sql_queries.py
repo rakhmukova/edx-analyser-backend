@@ -268,15 +268,6 @@ SQL_QUERY_EVENTS_DISTRIBUTION = '''select
         from logs
         where log_line ->> 'name' != \'\''''
 
-SQL_QUERY_AVERAGE_TIME_OF_THE_DAY_TO_ENROLL = ''' 
-    SELECT uniqueCourseIds.identifier as course_identifier, AVG(uniqueCourseIds.target_time) as course_time from (
-        SELECT (log_line ->> 'context')::json ->> 'course_id' AS identifier,
-        to_timestamp(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIME AS target_time
-        FROM logs 
-        WHERE log_line ->> 'event_type' LIKE '%enrollment.activated' 
-    ) uniqueCourseIds GROUP BY course_identifier
-    '''
-
 SQL_QUERY_TOTAL_USER_TIME_ON_COURSE = '''select total_time_per_day.user_id, SUM(total_time_per_day.time_at_session_per_day) as duration from (
             select durationTable.session_user_id as user_id, durationTable.session_date, SUM(durationTable.session_duration) as time_at_session_per_day from (
                     select

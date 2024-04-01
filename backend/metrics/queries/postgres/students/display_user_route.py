@@ -13,7 +13,7 @@ def calculate_user_way_of_moving(connection, course_id, user_id):
 
 
 def calculate_urls_and_names_mapping(connection, course_id):
-    return execute_query_with_result(connection, course_id, SQL_QUERY_USER_ROUTE)
+    return execute_query_with_result(connection, SQL_QUERY_USER_ROUTE, course_id)
 
 
 def generate_figure(user_way_on_course, urls_and_names_mapping, user_id):

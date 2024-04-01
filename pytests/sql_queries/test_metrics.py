@@ -6,15 +6,15 @@ from dotenv import load_dotenv
 
 import pytest as pytest
 
-from metrics.queries.postgres.course_activity.completed_course_users import calculate_users_who_finished_the_course
-from metrics.queries.postgres.course_activity.enrolled_users_without_activity import \
+from metrics.queries.postgres.common.completed_course_users import calculate_users_who_finished_the_course
+from metrics.queries.postgres.common.enrolled_users_without_activity import \
     calculate_users_who_enrolled_but_not_started
-from metrics.queries.postgres.course_activity.started_but_not_completed_users import \
+from metrics.queries.postgres.common.started_but_not_completed_users import \
     calculate_users_who_started_but_not_completed
-from metrics.queries.postgres.course_activity.time_on_course import calculate_total_user_time_on_course
+from metrics.queries.postgres.common.time_on_course import calculate_total_user_time_on_course
 # from backend.postgres.decompress_zst import decompress_log_archives
 from metrics.queries.postgres.upload_logs_postgresql import upload_logs_postgres
-from metrics.queries.postgres.user_specific.user_time_on_course import calculate_user_session_activity_per_day_on_course
+from metrics.queries.postgres.students.user_time_on_course import calculate_user_session_activity_per_day_on_course
 from metrics.utils.db_operations import open_db_connection, close_db_connection, create_database_if_not_exists
 from metrics.utils.file_operations import save_output_to_file
 from metrics.utils.metric_operations import MetricFuncType, DEFAULT_COURSE_ID, UserMetricFuncType

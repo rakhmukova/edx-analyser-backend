@@ -1,7 +1,8 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from metrics.queries.postgres.sql_queries import SQL_QUERY_PAGE_ACTIVITY_PER_DAY, SQL_QUERY_URLS_AND_NAMES_MAPPING
+from metrics.queries.postgres.sql_queries import SQL_QUERY_PAGE_ACTIVITY_PER_DAY
+from metrics.queries.postgres.util.urls_and_names_mapping import calculate_urls_and_names_mapping
 from metrics.utils.db_operations import close_db_connection, open_db_connection, execute_query_with_result
 from metrics.utils.file_operations import find_alias, save_output_to_file
 from metrics.utils.metric_operations import DEFAULT_COURSE_ID
@@ -10,10 +11,6 @@ from metrics.utils.url_operations import remove_parameters_from_url
 
 def calculate_page_activity_per_day(connection, course_id):
     return execute_query_with_result(connection, SQL_QUERY_PAGE_ACTIVITY_PER_DAY, course_id)
-
-
-def calculate_urls_and_names_mapping(connection, course_id):
-    return execute_query_with_result(connection, SQL_QUERY_URLS_AND_NAMES_MAPPING, course_id)
 
 
 def process_urls(result):
