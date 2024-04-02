@@ -13,6 +13,13 @@ class VideoInteractionSerializer(serializers.ModelSerializer):
         model = VideoInteraction
         fields = ['video_link', 'students_visits_count', 'viewing_percent_median']
 
+    # more effective way of passing data
+    # def to_representation(self, instance):
+    #     data = super().to_representation(instance)
+    #     print(data)
+    #     values_list = [data[field] for field in self.Meta.fields]
+    #     return values_list
+
 
 class VideoPlayCountChartSerializer(serializers.ModelSerializer):
     items = VideoPlayCountSerializer(many=True)

@@ -41,12 +41,7 @@ class SessionTimeChart(models.Model):
 
 class SessionTime(models.Model):
     session_type = models.CharField(max_length=10, choices=SessionType.CHOICES, default=SessionType.ALL)
-    average_time = models.IntegerField(
-        validators=[
-            MinValueValidator(0),
-            MaxValueValidator(100)
-        ]
-    )
+    average_time = models.IntegerField()
     chart = models.ForeignKey(SessionTimeChart, on_delete=models.CASCADE, related_name='items')
 
 
