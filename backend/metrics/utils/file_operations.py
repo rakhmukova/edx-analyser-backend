@@ -1,5 +1,6 @@
 import csv
 from typing import Any, Union
+from venv import logger
 
 import pandas as pd
 import plotly.express as px
@@ -14,7 +15,7 @@ def save_output_to_file(result_file, result, field_names, result_path=RESULT_PAT
         result_file_writer.writerow(field_names)
         for res in result:
             result_file_writer.writerow(res)
-    print('Result is in the file ', result_path + result_file)
+    logger.info('Result is in the file ', result_path + result_file)
 
 
 def find_alias(url, urls_and_names_mapping):

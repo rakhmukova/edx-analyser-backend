@@ -2,15 +2,15 @@ version: '3'
 
 services:
 
-  postgres_db:
+  reports_db:
     image: postgres:14.4
-    container_name: "postgres_db"
+    container_name: "reports_db"
     networks:
       - db_network
     volumes:
-      - postgres_db_volume:/var/lib/postgresql/data
+      - reports_db_volume:/var/lib/postgresql/data
     env_file:
-      - .env
+      - .env.reports_db
 
   redis:
     image: "redis:alpine"
@@ -30,10 +30,10 @@ services:
       bash -c "
       sleep 5 &&
       python manage.py makemigrations &&
-      python manage.py migrate &&
+      python manage.py migrate --run-syncdb &&
       python3 manage.py runserver 0.0.0.0:8000"
     depends_on:
-      - postgres_db
+      - reports_db
       - redis
     volumes:
       - ./backend:/src
@@ -68,5 +68,5 @@ networks:
     driver: bridge
 
 volumes:
-  postgres_db_volume:
+  reports_db_volume:
   redis_volume:
