@@ -1,5 +1,7 @@
 import csv
-from typing import Any, Union
+from datetime import datetime
+from typing import Any, Union, Type
+from venv import logger
 
 import pandas as pd
 import plotly.express as px
@@ -14,7 +16,7 @@ def save_output_to_file(result_file, result, field_names, result_path=RESULT_PAT
         result_file_writer.writerow(field_names)
         for res in result:
             result_file_writer.writerow(res)
-    print('Result is in the file ', result_path + result_file)
+    logger.info('Result is in the file ', result_path + result_file)
 
 
 def find_alias(url, urls_and_names_mapping):
@@ -38,12 +40,32 @@ def generate_line_figure(result_file, fields):
     fig.show()
 
 
-def csv_to_json(csv_file_path: str) -> list[dict[Union[str, Any], Any]]:
+ColumnType = Union[str, int, float, datetime]
+
+def convert_value(value: str, desired_type: Type[ColumnType]) -> ColumnType:
+    try:
+        if desired_type == datetime:
+            return desired_type.strptime(value, '%Y-%m-%d')
+        return desired_type(value)
+    except TypeError:
+        return None
+
+def csv_to_json(csv_file_path: str, column_types: dict[str, Type[ColumnType]]) -> list[dict[str, ColumnType]]:
+    logger.info("Parsing csv file")
     json_data = []
-    with open(csv_file_path, 'r') as file:
+    with open(csv_file_path, 'r', encoding='utf-8') as file:
         csv_reader = csv.DictReader(file)
         headers = csv_reader.fieldnames
         for row in csv_reader:
-            json_row = {header: row[header] for header in headers}
+            json_row = {header: convert_value(row[header], column_types.get(header, str)) for header in headers}
             json_data.append(json_row)
     return json_data
+
+
+if __name__ == '__main__':
+    print(csv_to_json(
+        '../../metric_results/existing/play_video_count_daily.csv',
+        {
+            'date': datetime,
+            'count': int
+        }))

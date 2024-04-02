@@ -13,9 +13,9 @@ def main():
     calc_course_metric(
         calculate_video_start_times,
         result_file,
-        ['time', 'count']
+        ['date', 'count']
     )
-    generate_line_figure(RESULT_PATH + result_file, ['time', 'count'])
+    generate_line_figure(RESULT_PATH + result_file, ['date', 'count'])
 
 
 if __name__ == '__main__':

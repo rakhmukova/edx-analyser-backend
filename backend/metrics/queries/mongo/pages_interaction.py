@@ -1,10 +1,11 @@
 import time
+from typing import Any
 
 from metrics.queries.mongo.mongo_connection import MongoConnection
 from metrics.utils.url_operations import remove_parameters_from_url
 
 
-def calc_pages_interaction(collection, course_id):
+def calc_pages_interaction(collection, course_id) -> list[Any]:
     pipeline = [
         {
             "$group": {

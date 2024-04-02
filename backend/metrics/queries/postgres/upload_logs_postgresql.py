@@ -1,4 +1,5 @@
 import os
+from venv import logger
 
 from log_files.decompress_zst import LOGS_DIR, LOGS_FILES_DIR
 from metrics.utils.db_operations import close_db_connection, open_db_connection, execute_query
@@ -10,7 +11,7 @@ def create_logs_table(connection):
         (log_line jsonb NOT NULL)'''
 
     execute_query(connection, create_table_query)
-    print("Table logs has been created")
+    logger.info("Table logs has been created")
 
 
 def insert_lines(cur, lines_array):
@@ -20,7 +21,7 @@ def insert_lines(cur, lines_array):
 
 
 def insert_logs(connection, logs_file):
-    print('Начинаем загрузку файлов ')
+    logger.info('Начинаем загрузку файлов ')
     lines_in_batch = 100
     lines_array = []
     count = 0
@@ -36,22 +37,22 @@ def insert_logs(connection, logs_file):
     if len(lines_array) > 0:
         insert_lines(cur, lines_array)
 
-    print('Лог-файлы загружены ')
-    print('Количество загруженных записей: ', count)
+    logger.info('Лог-файлы загружены ')
+    logger.info('Количество загруженных записей: ', count)
 
 
-def upload_logs_postgres(database=os.environ.get("POSTGRES_DATABASE"), logs_dir=LOGS_DIR):
-    print('Загрузка лог-файлов в базу данных')
+def upload_logs_postgres(database=os.environ.get("LOGS_DB_DATABASE"), logs_dir=LOGS_DIR):
+    logger.info('Загрузка лог-файлов в базу данных')
     connection = open_db_connection(database=database)
     create_logs_table(connection)
     folder_path = logs_dir + LOGS_FILES_DIR
     file_list = os.listdir(folder_path)
 
-    print(file_list)
+    logger.info(file_list)
     for file_path in file_list:
         insert_logs(connection, folder_path + file_path)
     close_db_connection(connection)
 
 
 if __name__ == '__main__':
-    upload_logs_postgres()
+    upload_logs_postgres(logs_dir='../../../log_files/' + LOGS_DIR)
