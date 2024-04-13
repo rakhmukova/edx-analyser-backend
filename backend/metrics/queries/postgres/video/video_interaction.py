@@ -1,4 +1,4 @@
-from metrics.queries.postgres.sql_queries import SQL_QUERY_VIDEO_INTERACTION, SQL_QUERY_VIDEO_POPULARITY
+from metrics.queries.postgres.sql_queries import SQL_QUERY_VIDEO_INTERACTION
 from metrics.utils.db_operations import execute_query_with_result, open_db_connection, close_db_connection
 from metrics.utils.file_operations import save_output_to_file
 from metrics.utils.metric_operations import DEFAULT_COURSE_ID
@@ -40,7 +40,7 @@ def main():
     connection = open_db_connection()
     pages_urls = calculate_pages(connection, course_id=DEFAULT_COURSE_ID)
     headers = ['video_id', 'page_link', 'count_of_visits']
-    save_output_to_file("video_popularity.csv", pages_urls, headers)
+    save_output_to_file("video/video_popularity.csv", pages_urls, headers)
     close_db_connection(connection)
 
 

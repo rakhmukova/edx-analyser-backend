@@ -9,7 +9,7 @@ def calculate_video_start_times(connection, course_id):
 
 
 def main():
-    result_file = "play_video_count_daily.csv"
+    result_file = "video/play_video_count_daily.csv"
     calc_course_metric(
         calculate_video_start_times,
         result_file,
