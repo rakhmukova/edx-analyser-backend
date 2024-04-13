@@ -4,18 +4,22 @@ from venv import logger
 from app.celery import app
 from metrics.logic.celery_tasks.common import create_completion_degree_chart, create_session_time_chart, \
     create_section_activity_chart
+from metrics.logic.celery_tasks.forum import create_forum_question_chart
 from metrics.logic.celery_tasks.pages import create_pages_popularity_chart
 from metrics.logic.celery_tasks.tasks import create_task_complexity_chart, create_task_summary_chart
 from metrics.logic.celery_tasks.textbook import create_word_search_chart
 from metrics.logic.celery_tasks.video import create_video_interaction_chart, create_video_play_count_chart
 from metrics.models.report import VideoSectionReport, CommonSectionReport, SectionReport, PagesSectionReport, \
-    TaskSectionReport, TextbookSectionReport
+    TaskSectionReport, TextbookSectionReport, ForumSectionReport
 from metrics.models.section_type import SectionType
 
 report_cls_by_section_type: dict[SectionType, Type[SectionReport]] = {
     SectionType.VIDEO: VideoSectionReport,
     SectionType.COMMON: CommonSectionReport,
-    SectionType.PAGES: PagesSectionReport
+    SectionType.PAGES: PagesSectionReport,
+    SectionType.TASKS: TaskSectionReport,
+    SectionType.PDF: TextbookSectionReport,
+    SectionType.FORUM: ForumSectionReport
 }
 
 
@@ -63,8 +67,12 @@ def _create_textbook_section_report(course_id: str):
 
 
 def _create_forum_section_report(course_id: str):
-    pass
-
+    forum_question_chart = create_forum_question_chart(course_id)
+    report = ForumSectionReport.objects.filter(
+        course_id=course_id,
+    ).first()
+    report.forum_question_chart = forum_question_chart
+    report.save()
 
 def _create_task_section_report(course_id: str):
     task_complexity_chart = create_task_complexity_chart(course_id)

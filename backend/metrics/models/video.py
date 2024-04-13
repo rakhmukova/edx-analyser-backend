@@ -1,6 +1,6 @@
 from django.db import models
 
-MAX_VIDEO_LINK_LENGTH = 100
+MAX_VIDEO_LINK_LENGTH = 250
 
 class VideoPlayCountChart(models.Model):
     pass

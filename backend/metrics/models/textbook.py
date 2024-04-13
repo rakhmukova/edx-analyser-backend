@@ -8,7 +8,7 @@ class TextbookViewsCount(models.Model):
     pdf_name = models.CharField(max_length=200)
     views_count = models.IntegerField()
     unique_students_count = models.IntegerField()
-    chart = models.ForeignKey(TextbookViewsChart, on_delete=models.CASCADE)
+    chart = models.ForeignKey(TextbookViewsChart, on_delete=models.CASCADE, related_name='items')
 
 
 class WordSearchChart(models.Model):
@@ -17,4 +17,4 @@ class WordSearchChart(models.Model):
 class WordSearchCount(models.Model):
     word = models.CharField(max_length=100, blank=False, null=False)
     search_count = models.IntegerField()
-    chart = models.ForeignKey(WordSearchChart, on_delete=models.CASCADE)
+    chart = models.ForeignKey(WordSearchChart, on_delete=models.CASCADE, related_name='items')

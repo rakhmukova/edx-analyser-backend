@@ -4,7 +4,7 @@ from metrics.models.tasks import TaskComplexityChart, TaskComplexity, TaskSummar
 
 def create_task_complexity_chart(course_id: str) -> TaskComplexityChart:
     return bulk_create_from_csv(
-        'metric_results/existing/problems_complexity.csv',
+        'metric_results/existing/tasks/problems_complexity.csv',
         {
             'problem_link': str,
             'all_attempts': int,
@@ -16,10 +16,10 @@ def create_task_complexity_chart(course_id: str) -> TaskComplexityChart:
 
 def create_task_summary_chart(course_id: str) -> TaskSummaryChart:
     return bulk_create_from_csv(
-        'metric_results/existing/problems_summary.csv',
+        'metric_results/existing/tasks/problems_summary.csv',
         {
-            'attempts_count': AttemptCount,
-            'percent': int,
+            'attempt_count': str,
+            'percentage': int,
         },
         TaskSummary,
         TaskSummaryChart

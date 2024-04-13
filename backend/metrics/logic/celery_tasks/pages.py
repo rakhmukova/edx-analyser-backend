@@ -9,7 +9,7 @@ def create_pages_popularity_chart(course_id: str) -> PagesPopularityChart:
     #     ['page_link', 'visits_count']
     # )
     return bulk_create_from_csv(
-        'metric_results/existing/problems_complexity.csv',
+        'metric_results/existing/pages/course_pages_popularity.csv',
         {
             'page_link': str,
             'visits_count': int,

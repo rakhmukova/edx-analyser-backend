@@ -11,7 +11,7 @@ def main():
     calc_course_metric(
         calc_top_threads,
         "forum/top_threads.csv",
-        ['author', 'title', 'body', 'comments_count', 'likes_count']
+        ['author', 'title', 'body', 'comments_count', 'likes_count', 'question_type']
     )
 
 

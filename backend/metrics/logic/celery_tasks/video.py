@@ -5,20 +5,16 @@ from metrics.models.video import VideoInteractionChart, VideoInteraction, VideoP
 
 
 def create_video_interaction_chart(course_id: str) -> VideoInteractionChart:
-    video_interaction_chart = VideoInteractionChart.objects.create()
-    VideoInteraction.objects.create(
-        video_link="some video",
-        views_count=1,
-        unique_students_count=1,
-        chart=video_interaction_chart
+    return bulk_create_from_csv(
+        'metric_results/existing/video/video_popularity.csv',
+        {
+            'video_link': str,
+            'views_count': int,
+            'unique_students_count': int
+        },
+        VideoInteraction,
+        VideoInteractionChart
     )
-    VideoInteraction.objects.create(
-        video_link="another video",
-        views_count=2,
-        unique_students_count=2,
-        chart=video_interaction_chart
-    )
-    return video_interaction_chart
 
 
 def create_video_play_count_chart(course_id: str) -> VideoPlayCountChart:
@@ -29,7 +25,7 @@ def create_video_play_count_chart(course_id: str) -> VideoPlayCountChart:
     # )
     # print(result)
     return bulk_create_from_csv(
-        'metric_results/existing/play_video_count_daily.csv',
+        'metric_results/existing/video/play_video_count_daily.csv',
         {
             'date': datetime,
             'count': int

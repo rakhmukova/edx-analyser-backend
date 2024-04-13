@@ -219,7 +219,8 @@ SQL_QUERY_TOP_THREADS = '''
             threads.title AS title,
             threads.body AS body,
             COALESCE(all_comments.total_comments, 0) AS total_comments,
-            COALESCE(all_votes.total_votes, 0) AS total_votes
+            COALESCE(all_votes.total_votes, 0) AS total_votes,
+            'thread' AS question_type
         FROM
             (
                 SELECT
@@ -267,7 +268,8 @@ SQL_QUERY_TOP_RESPONSES = '''
             responses.title AS title,
             responses.body AS body,
             COALESCE(all_comments.total_comments, 0) AS total_comments,
-            COALESCE(all_votes.total_votes, 0) AS total_votes
+            COALESCE(all_votes.total_votes, 0) AS total_votes,
+            'response' AS question_type
         FROM
             (
                 SELECT

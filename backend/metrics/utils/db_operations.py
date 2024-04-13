@@ -18,7 +18,7 @@ def open_db_connection(database=os.environ.get("LOGS_DB_DATABASE")) -> psycopg2.
         return psycopg2.connect(
             user=os.environ.get("LOGS_DB_USER"),
             password=os.environ.get("LOGS_DB_PASSWORD"),
-            host=os.environ.get("LOGS_DB_HOST", "localhost"),
+            host="localhost", #os.environ.get("LOGS_DB_HOST", "localhost"),
             port=os.environ.get("LOGS_DB_PORT"),
             database=database
         )

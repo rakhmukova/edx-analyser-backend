@@ -4,7 +4,7 @@ from metrics.models.textbook import TextbookViewsCount, WordSearchChart, WordSea
 
 def create_word_search_chart(course_id: str) -> WordSearchChart:
     return bulk_create_from_csv(
-        'metric_results/existing/searched_pdf_terms.csv',
+        'metric_results/existing/textbook/searched_pdf_terms.csv',
         {
             'word': str,
             'search_count': int,

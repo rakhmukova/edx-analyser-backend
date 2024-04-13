@@ -33,7 +33,7 @@ def main():
     calc_course_metric(
         calc_video_popularity,
         "video/video_popularity.csv",
-        ['video_link', 'page_link', 'visits_count']
+        ['video_link', 'views_count', 'unique_students_count']
     )
 
 

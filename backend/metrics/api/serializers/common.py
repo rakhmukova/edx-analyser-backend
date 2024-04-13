@@ -7,17 +7,17 @@ from metrics.models.common import CompletionDegree, SessionTime, SectionActivity
 class CompletionDegreeSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompletionDegree
-        fields = ['completion_degree', 'students_count']
+        fields = '__all__'
 
 class SessionTimeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SessionTime
-        fields = ['session_type', 'average_time']
+        fields = '__all__'
 
 class SectionActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = SectionActivity
-        fields = ['section_type', 'students_percent']
+        fields = '__all__'
 
 class CompletionDegreeChartSerializer(serializers.ModelSerializer):
     items = CompletionDegreeSerializer(many=True)
