@@ -6,14 +6,48 @@ SQL_QUERY_ALL_USERS_COUNT = '''
         WHERE log_line ->> 'username' != 'null' AND log_line ->> 'username' IS NOT NULL AND log_line ->> 'username' != ''
 '''
 
-SQL_QUERY_DAILY_ACTIVE_USERS = """
+SQL_QUERY_WEEKLY_ACTIVE_USERS = """
         SELECT
-            TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'),
+            DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')),
             COUNT(DISTINCT log_line ->> 'username')
         FROM logs
-        GROUP BY TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')    
-        ORDER BY TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')
+        GROUP BY DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))    
+        ORDER BY DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))
 """
+
+
+SQL_QUERY_ACTIVITY_IN_SECTIONS = '''
+    SELECT 
+        COUNT(DISTINCT(log_line ->> 'username')) AS username, 
+        CASE 
+            WHEN log_line ->> 'event_type' LIKE 'textbook.pdf%' THEN 'textbook'
+            WHEN log_line ->> 'event_type' LIKE 'edx.forum%' THEN 'forum'
+            WHEN log_line ->> 'event_type' LIKE '%problem%' THEN 'problem'
+            WHEN log_line ->> 'event_type' LIKE '%video%' THEN 'video'
+            ELSE log_line ->> 'event_type' 
+        END as event_type
+    FROM logs
+    WHERE   
+        log_line ->> 'event_type' LIKE 'textbook.pdf%' OR
+        
+        (log_line ->> 'event_type' LIKE 'edx.forum%') OR
+        
+        (log_line ->> 'event_type' LIKE '%video%' AND
+        log_line ->> 'event_type' NOT LIKE 'edx.video.bumper.dismissed') OR
+        
+        (log_line ->> 'event_type' LIKE 'problem_check') AND
+        
+        (log_line ->> 'event_type' NOT LIKE '%/%')
+    GROUP BY 
+        CASE 
+            WHEN log_line ->> 'event_type' LIKE 'textbook.pdf%' THEN 'textbook'
+            WHEN log_line ->> 'event_type' LIKE 'edx.forum%' THEN 'forum'
+            WHEN log_line ->> 'event_type' LIKE '%problem%' THEN 'problem'
+            WHEN log_line ->> 'event_type' LIKE '%video%' THEN 'video'
+            ELSE log_line ->> 'event_type' 
+        END;
+'''
+
 # COMMON : SECTION ENDS
 
 
@@ -34,12 +68,32 @@ SQL_QUERY_COURSE_PAGES_POPULARITY = '''select
 
 # TEXTBOOK: SECTION BEGINS
 
+SQL_QUERY_SCROLLING_TIME = '''
+    SELECT 
+        url_decode(split_part(reverse(split_part(reverse((log_line ->> 'event')::json ->> 'chapter'), '/', 1)), '/', 1)) AS textbook, 
+        log_line ->> 'username' AS username,
+        (TO_TIMESTAMP(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIMESTAMP) AS current_time
+    FROM logs
+    WHERE 
+        (log_line ->> 'event_type' = 'textbook.pdf.page.scrolled' OR 
+        log_line ->> 'event_type' = 'textbook.pdf.page.navigated' OR
+        log_line ->> 'event_type' = 'textbook.pdf.thumbnails.toggled' OR
+        log_line ->> 'event_type' = 'textbook.pdf.thumbnail.navigated') AND 
+        log_line ->> 'username' != 'null' AND 
+        log_line ->> 'username' IS NOT NULL AND 
+        log_line ->> 'username' != ''
+    ORDER BY username, current_time
+'''
+
+
 SQL_QUERY_DISTINCT_SCROLLING = """
-        SELECT url_decode(split_part(reverse(split_part(reverse((log_line ->> 'event')::json ->> 'chapter'), '/', 1)), '/', 1)) AS tutorial_book,
-        COUNT(url_decode(split_part(reverse(split_part(reverse((log_line ->> 'event')::json ->> 'chapter'), '/', 1)), '/', 1)))
+        SELECT 
+            url_decode(split_part(reverse(split_part(reverse((log_line ->> 'event')::json ->> 'chapter'), '/', 1)), '/', 1)) AS tutorial_book,
+            COUNT(url_decode(split_part(reverse(split_part(reverse((log_line ->> 'event')::json ->> 'chapter'), '/', 1)), '/', 1))) AS interaction_count,
+            COUNT(DISTINCT (log_line ->> 'username')) AS unique_users_count
         FROM logs
-        WHERE log_line ->> 'event_type'
-        LIKE  '%textbook%'
+        WHERE 
+            log_line ->> 'event_type' LIKE '%textbook%'
         GROUP BY tutorial_book;
     """
 
@@ -69,6 +123,43 @@ SQL_QUERY_PLAY_VIDEO_COUNT_DAILY = '''
         group by time_run
         order by time_run'''
 
+SQL_QUERY_VIDEO_INTERACTION = '''
+    WITH interactions AS (
+        SELECT
+            ((log_line ->> 'event')::json ->> 'id') AS video_id,
+            log_line ->> 'page' AS video_link, 
+            COUNT(log_line ->> 'page') AS interaction_count
+        FROM logs
+        WHERE 
+            log_line ->> 'event_type' LIKE '%video%' AND 
+            (log_line ->> 'page' LIKE '%/%' OR log_line ->> 'page' LIKE '%xblock%')
+        GROUP BY video_id, video_link
+    ),
+    unique_views AS (
+        SELECT
+            ((log_line ->> 'event')::json ->> 'id') AS video_id,
+            COUNT(DISTINCT(log_line ->> 'username')) AS unique_views
+        FROM logs
+        WHERE 
+            log_line ->> 'event_type' LIKE '%video%' AND 
+            (log_line ->> 'page' LIKE '%/%' OR log_line ->> 'page' LIKE '%xblock%')
+        GROUP BY video_id
+    )
+    SELECT
+        i.video_id,
+        i.video_link,
+        i.interaction_count,
+        COALESCE(u.unique_views, 0) AS unique_views
+    FROM
+        interactions i
+    LEFT JOIN
+        unique_views u
+    ON
+        i.video_id = u.video_id
+    ORDER BY
+        i.interaction_count DESC;
+'''
+
 # VIDEOS: SECTION ENDS
 
 
@@ -84,30 +175,41 @@ SQL_QUERY_PROBLEMS_SUMMARY = '''
 '''
 
 SQL_QUERY_CORRECTLY_SOLVED_PROBLEMS = '''
-        SELECT  
-                problemsTable.problem_id AS problem_id,
-                problemsTable.attempts AS all_attempts,
-                correctlySolvedProblems.correct_attempts AS correct_attempts 
-        FROM (
-            SELECT 
-                log_line #>> '{event, problem_id}' AS problem_id,
-                COUNT(log_line ->> 'event') AS attempts
-            FROM 
-                logs
-            WHERE 
-                log_line ->> 'event_type' = 'problem_check' AND log_line #>> '{event, problem_id}' != ''
-            GROUP BY problem_id    
-        ) problemsTable
-        LEFT JOIN 
-        (
-            SELECT 
-                    log_line #>> '{event, problem_id}' AS problem_id,
-                    COUNT(log_line ->> 'event') AS correct_attempts
-            FROM logs
-            WHERE log_line ->> 'event_type' = 'problem_check' and log_line #>> '{event, success}' = 'correct'
-            GROUP BY problem_id  
-        ) AS correctlySolvedProblems
-        ON correctlySolvedProblems.problem_id = problemsTable.problem_id;
+    SELECT  
+        problemsTable.problem_id AS problem_id,
+        COALESCE(pages.problem_link, '') AS page_link,
+        problemsTable.attempts AS all_attempts,
+        correctlySolvedProblems.correct_attempts AS correct_attempts
+    FROM (
+        SELECT 
+            log_line #>> '{event, problem_id}' AS problem_id,
+            COUNT(log_line ->> 'event') AS attempts
+        FROM 
+            logs
+        WHERE 
+            log_line ->> 'event_type' = 'problem_check' AND log_line #>> '{event, problem_id}' != ''
+        GROUP BY problem_id    
+    ) problemsTable
+    LEFT JOIN 
+    (
+        SELECT 
+            log_line #>> '{event, problem_id}' AS problem_id,
+            COUNT(log_line ->> 'event') AS correct_attempts
+        FROM logs
+        WHERE log_line ->> 'event_type' = 'problem_check' and log_line #>> '{event, success}' = 'correct'
+        GROUP BY problem_id  
+    ) AS correctlySolvedProblems
+    ON correctlySolvedProblems.problem_id = problemsTable.problem_id
+    LEFT JOIN
+    (
+        SELECT
+            log_line #>> '{event, problem_id}' AS problem_id,
+            log_line ->> 'referer' AS problem_link
+        FROM logs
+        WHERE log_line ->> 'event_type' = 'problem_check' AND log_line ->> 'page' != ''
+        GROUP BY problem_id, problem_link
+    ) AS pages
+    ON pages.problem_id = problemsTable.problem_id;
 '''
 
 # PROBLEMS: SECTION ENDS
@@ -160,7 +262,55 @@ SQL_QUERY_TOP_THREADS = '''
             ) AS all_votes ON threads.thread_id = all_votes.thread_id
         ORDER BY
             (COALESCE(all_comments.total_comments, 0) + COALESCE(all_votes.total_votes, 0)) DESC
-            LIMIT 3;
+        LIMIT 3;
+'''
+
+SQL_QUERY_TOP_RESPONSES = '''
+        SELECT
+            responses.author AS author,
+            responses.title AS title,
+            responses.body AS body,
+            COALESCE(all_comments.total_comments, 0) AS total_comments,
+            COALESCE(all_votes.total_votes, 0) AS total_votes
+        FROM
+            (
+                SELECT
+                    log_line ->> 'username' AS author,
+                    log_line #>> '{event, title}' AS title,
+                    log_line #>> '{event, body}' AS body,
+                    log_line #>> '{event, id}' AS response_id
+                FROM
+                    logs
+                WHERE
+                    log_line ->> 'event_type' = 'edx.forum.response.created'
+            ) responses
+        LEFT JOIN
+            (
+                SELECT
+                    log_line #>> '{event, discussion, id}' AS response_id,
+                    COUNT(*) AS total_comments
+                FROM
+                    logs
+                WHERE
+                    log_line ->> 'event_type' IN ('edx.forum.comment.created', 'edx.forum.response.created')
+                GROUP BY
+                    response_id
+            ) AS all_comments ON responses.response_id = all_comments.response_id
+        LEFT JOIN
+            (
+                SELECT
+                    log_line #>> '{event, id}' AS response_id,
+                    COUNT(*) AS total_votes
+                FROM
+                    logs
+                WHERE
+                    log_line ->> 'event_type' = 'edx.forum.response.voted'
+                GROUP BY
+                    response_id
+            ) AS all_votes ON responses.response_id = all_votes.response_id
+        ORDER BY
+            (COALESCE(all_comments.total_comments, 0) + COALESCE(all_votes.total_votes, 0)) DESC
+        LIMIT 3;
 '''
 
 # FORUM: SECTION ENDS
@@ -224,24 +374,22 @@ SQL_QUERY_SOLVED_TASKS = '''
         group by username
 '''
 
-SQL_QUERY_TOTAL_USER_TIME_ON_COURSE = '''select total_time_per_day.username, SUM(total_time_per_day.time_at_session_per_day) as duration from (
-            select durationTable.session_username as username, SUM(durationTable.session_duration) as time_at_session_per_day from (
-                    select
-                        log_line ->> 'username' as session_username,
-                        age(MAX(TO_TIMESTAMP(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIMESTAMP), MIN(TO_TIMESTAMP(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIMESTAMP)) as session_duration
-                    from logs
-                    where 
-                        log_line ->> 'session' != 'null' and 
-                        log_line ->> 'session' != '' and 
-                        log_line ->> 'username' != 'null' AND 
-                        log_line ->> 'username' IS NOT NULL AND 
-                        log_line ->> 'username' != ''
-                        group by session_username, log_line ->> 'session'
-                ) durationTable
-                group by durationTable.session_username
-        ) total_time_per_day
-        group by total_time_per_day.username
-        order by duration desc'''
+SQL_QUERY_TOTAL_USER_TIME_ON_COURSE = '''
+            select
+                log_line ->> 'username' as session_username,
+                TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::DATE as session_date,
+                log_line -> 'session' as session_name,
+                MIN(TO_TIMESTAMP(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIMESTAMP) as min_session_time,
+                MAX(TO_TIMESTAMP(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIMESTAMP) as max_session_time
+            from logs
+            where 
+                log_line ->> 'session' != 'null' and 
+                log_line ->> 'session' != '' and 
+                log_line ->> 'username' != 'null' AND 
+                log_line ->> 'username' IS NOT NULL AND 
+                log_line ->> 'username' != ''
+                group by session_username, session_name, session_date
+'''
 
 
 SQL_QUERY_TOTAL_DAYS_ON_COURSE = '''
