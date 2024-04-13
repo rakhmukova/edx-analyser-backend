@@ -25,7 +25,7 @@ def process_urls(result):
 def main():
     connection = open_db_connection()
     pages_urls = calculate_pages(connection, course_id=DEFAULT_COURSE_ID)
-    save_output_to_file("course_pages_popularity.csv", pages_urls, ['page_link, count_of_visits'])
+    save_output_to_file("pages/course_pages_popularity.csv", pages_urls, ['page_link, count_of_visits'])
     close_db_connection(connection)
 
 
