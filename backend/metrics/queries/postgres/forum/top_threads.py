@@ -10,7 +10,7 @@ def calculate_total_user_time_on_course(connection, course_id):
 def main():
     total_users_time_on_course = calc_course_metric(
         calculate_total_user_time_on_course,
-        "top_threads.csv",
+        "forum/top_threads.csv",
         ['author', 'thread_title', 'thread_body', 'total_comments', 'total_votes']
     )
 
