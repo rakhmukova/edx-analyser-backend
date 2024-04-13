@@ -5,7 +5,6 @@ from venv import logger
 
 import psycopg2
 from dotenv import load_dotenv
-from psycopg2 import sql
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 from psycopg2.sql import SQL
 
@@ -19,7 +18,7 @@ def open_db_connection(database=os.environ.get("LOGS_DB_DATABASE")) -> psycopg2.
         return psycopg2.connect(
             user=os.environ.get("LOGS_DB_USER"),
             password=os.environ.get("LOGS_DB_PASSWORD"),
-            host="127.0.0.1",
+            host=os.environ.get("LOGS_DB_HOST", "localhost"),
             port=os.environ.get("LOGS_DB_PORT"),
             database=database
         )
@@ -31,19 +30,6 @@ def close_db_connection(connection: psycopg2.extensions.connection) -> None:
     if connection:
         connection.close()
         logger.info("Соединение с PostgreSQL завершено.")
-
-
-def create_database_if_not_exists(database) -> None:
-    try:
-        connection = open_db_connection(database="postgres")
-        create_database_query = sql.SQL(
-            f"CREATE DATABASE IF NOT EXISTS {sql.Identifier(database)} WITH ENCODING 'UTF8'")
-        execute_query(connection, create_database_query)
-        connection.close()
-        logger.info("Создана база данных " + database)
-
-    except psycopg2.Error as e:
-        logger.error("Error:", e)
 
 
 def execute_query(connection: psycopg2.extensions.connection, query: QueryType) -> None:

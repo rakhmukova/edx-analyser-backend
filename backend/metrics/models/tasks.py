@@ -12,30 +12,25 @@ class AttemptCount:
         (MORE_ATTEMPTS, "Third attempt and more")
     ]
 
-#
-# class TaskComplexityChart(models.Model):
-#     pass
-#
-# class TaskComplexity(models.Model):
-#     task_id = models.CharField(max_length=250)
-#     successful_solutions_median = models.IntegerField(
-#         validators=[
-#             MinValueValidator(0),
-#             MaxValueValidator(100)
-#         ]
-#     )
-#     chart = models.ForeignKey(TaskComplexityChart, on_delete=models.CASCADE, related_name='items')
-#
-# class TasksAttemptCountChart(models.Model):
-#     pass
-#
-# class TasksAttemptCount(models.Model):
-#     attempt_count = models.CharField()
-#     percentage = models.IntegerField(
-#         validators=[
-#             MinValueValidator(0),
-#             MaxValueValidator(100)
-#         ]
-#     )
-#     chart = models.ForeignKey(TasksAttemptCountChart, on_delete=models.CASCADE, related_name='items')
 
+class TaskComplexityChart(models.Model):
+    pass
+
+class TaskComplexity(models.Model):
+    problem_link = models.CharField(max_length=250)
+    all_attempts = models.IntegerField()
+    successful_attempts = models.IntegerField()
+    chart = models.ForeignKey(TaskComplexityChart, on_delete=models.CASCADE, related_name='items')
+
+class TaskSummaryChart(models.Model):
+    pass
+
+class TaskSummary(models.Model):
+    attempt_count = models.CharField(choices=AttemptCount.CHOICES)
+    percentage = models.IntegerField(
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(100)
+        ]
+    )
+    chart = models.ForeignKey(TaskSummaryChart, on_delete=models.CASCADE, related_name='items')

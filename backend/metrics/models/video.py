@@ -16,6 +16,6 @@ class VideoInteractionChart(models.Model):
 
 class VideoInteraction(models.Model):
     video_link = models.CharField(max_length=MAX_VIDEO_LINK_LENGTH)
-    students_visits_count = models.IntegerField()
-    viewing_percent_median = models.IntegerField()
+    views_count = models.IntegerField()
+    unique_students_count = models.IntegerField()
     chart = models.ForeignKey(VideoInteractionChart, on_delete=models.CASCADE, related_name='items')

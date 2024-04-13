@@ -9,6 +9,8 @@ LOGS_FILES_DIR = "log_decompressed/"
 
 
 def decompress_zstandard_to_folder(input_file, output_path):
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
     input_file = pathlib.Path(input_file)
     with open(input_file, 'rb') as compressed:
         decompressor = zstandard.ZstdDecompressor()

@@ -4,8 +4,9 @@ from venv import logger
 from app.celery import app
 from metrics.logic.celery_tasks.common import create_completion_degree_chart, create_session_time_chart, \
     create_section_activity_chart
+from metrics.logic.celery_tasks.pages import create_pages_popularity_chart
 from metrics.logic.celery_tasks.video import create_video_interaction_chart, create_video_play_count_chart
-from metrics.models.report import VideoSectionReport, CommonSectionReport, SectionReport
+from metrics.models.report import VideoSectionReport, CommonSectionReport, SectionReport, PagesSectionReport
 from metrics.models.section_type import SectionType
 
 
@@ -32,6 +33,14 @@ def _create_video_section_report(course_id: str):
     report.video_interaction_chart = video_interaction_chart
     report.save()
 
+def _create_page_section_report(course_id: str):
+    pages_popularity_chart = create_pages_popularity_chart(course_id)
+    report = PagesSectionReport.objects.filter(
+        course_id=course_id,
+    ).first()
+    report.pages_popularity_chart = pages_popularity_chart
+    report.save()
+
 create_func_by_section_type = {
     SectionType.COMMON: _create_common_section_report,
     SectionType.VIDEO: _create_video_section_report
@@ -39,7 +48,8 @@ create_func_by_section_type = {
 
 report_cls_by_section_type: dict[SectionType, Type[SectionReport]] = {
     SectionType.VIDEO: VideoSectionReport,
-    SectionType.COMMON: CommonSectionReport
+    SectionType.COMMON: CommonSectionReport,
+    SectionType.PAGES: PagesSectionReport
 }
 
 # potentially long operation - need to calc metrics and save them
@@ -58,5 +68,6 @@ def generate_report(course_id: str, section_type: SectionType):
             course_id = course_id
         ).first()
         # handle error
+        # value too long for type character varying(100)
         report.error_reason = str(e)
         report.save()

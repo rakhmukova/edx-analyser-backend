@@ -4,6 +4,10 @@ from typing import Any
 from django.db import models
 
 from metrics.models.common import CompletionDegreeChart, SessionTimeChart, SectionActivityChart
+from metrics.models.forum import ForumQuestionChart
+from metrics.models.pages import PagesPopularityChart
+from metrics.models.tasks import TaskComplexityChart, TaskSummaryChart
+from metrics.models.textbook import WordSearchChart, TextbookViewsChart
 from metrics.models.video import VideoInteractionChart, VideoPlayCountChart
 
 MAX_COURSE_ID_LENGTH = 150
@@ -69,17 +73,30 @@ class CommonSectionReport(SectionReport):
         super().save(*args, **kwargs)
 
 
-# class DocumentSectionReport(SectionReport):
-#     pdf_views_chart = models.OneToOneField(DocumentViewsChart, on_delete=models.CASCADE)
-#     word_search_chart = models.OneToOneField(WordSearchChart, on_delete=models.CASCADE)
+class TextbookSectionReport(SectionReport):
+    textbook_views_chart = models.OneToOneField(TextbookViewsChart, on_delete=models.CASCADE, null=True, default=None)
+    word_search_chart = models.OneToOneField(WordSearchChart, on_delete=models.CASCADE, null=True, default=None)
+    def save(self, *args, **kwargs):
+        self.report_state = self.calc_report_state(['textbook_views_chart', 'word_search_chart'])
+        super().save(*args, **kwargs)
 
 
-# class TaskSectionReport(SectionReport):
-#     pass
-#
-#
-# class ForumSectionReport(SectionReport):
-#     pass
-#
-# class PageSectionReport(SectionReport):
-#     pass
+class TaskSectionReport(SectionReport):
+    task_complexity_chart = models.OneToOneField(TaskComplexityChart, on_delete=models.CASCADE, null=True, default=None)
+    task_summary_chart = models.OneToOneField(TaskSummaryChart, on_delete=models.CASCADE, null=True, default=None)
+    def save(self, *args, **kwargs):
+        self.report_state = self.calc_report_state(['task_complexity_chart', 'task_summary_chart'])
+        super().save(*args, **kwargs)
+
+class PagesSectionReport(SectionReport):
+    pages_popularity_chart = models.OneToOneField(PagesPopularityChart, on_delete=models.CASCADE, null=True, default=None)
+    def save(self, *args, **kwargs):
+        self.report_state = self.calc_report_state(['pages_popularity_chart'])
+        super().save(*args, **kwargs)
+
+
+class ForumSectionReport(SectionReport):
+    forum_question_chart = models.OneToOneField(ForumQuestionChart, on_delete=models.CASCADE, null=True, default=None)
+    def save(self, *args, **kwargs):
+        self.report_state = self.calc_report_state(['forum_question_chart'])
+        super().save(*args, **kwargs)

@@ -6,12 +6,12 @@ from venv import logger
 import pandas as pd
 import plotly.express as px
 
-RESULT_PATH = '../../metric_results/'
-
+RESULT_PATH = '../../../../metric_results/existing/'
+# RESULT_PATH = './metric_results/existing/'
 
 def save_output_to_file(result_file, result, field_names, result_path=RESULT_PATH):
-    print('Save result to file')
-    with open(result_path + result_file, mode='w', encoding='utf-8') as res_file:
+    print(f'Save result to file {result_file}')
+    with open(result_path + result_file, mode='w', encoding='utf-8', newline='') as res_file:
         result_file_writer = csv.writer(res_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         result_file_writer.writerow(field_names)
         for res in result:
@@ -64,7 +64,7 @@ def csv_to_json(csv_file_path: str, column_types: dict[str, Type[ColumnType]]) -
 
 if __name__ == '__main__':
     print(csv_to_json(
-        '../../metric_results/existing/play_video_count_daily.csv',
+        '../../metric_results/existing/video/play_video_count_daily.csv',
         {
             'date': datetime,
             'count': int

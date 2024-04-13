@@ -6,16 +6,7 @@ from dotenv import load_dotenv
 
 import pytest as pytest
 
-from metrics.queries.postgres.common.completed_course_users import calculate_users_who_finished_the_course
-from metrics.queries.postgres.common.enrolled_users_without_activity import \
-    calculate_users_who_enrolled_but_not_started
-from metrics.queries.postgres.common.started_but_not_completed_users import \
-    calculate_users_who_started_but_not_completed
-from metrics.queries.postgres.common.time_on_course import calculate_total_user_time_on_course
-# from backend.postgres.decompress_zst import decompress_log_archives
-from metrics.queries.postgres.upload_logs_postgresql import upload_logs_postgres
-from metrics.queries.postgres.students.user_time_on_course import calculate_user_session_activity_per_day_on_course
-from metrics.utils.db_operations import open_db_connection, close_db_connection, create_database_if_not_exists
+from metrics.utils.db_operations import open_db_connection, close_db_connection
 from metrics.utils.file_operations import save_output_to_file
 from metrics.utils.metric_operations import MetricFuncType, DEFAULT_COURSE_ID, UserMetricFuncType
 
@@ -47,24 +38,16 @@ def setup_complete():
     # upload_logs_postgres(database=os.getenv("POSTGRES_TESTING_DATABASE"), logs_dir='../backend/log_files/DATANTECH2035/')
     yield
 
-
+# TODO: ADD METRICS HERE
 @pytest.fixture
 def course_metrics():
     return [
-        MetricData(calculate_users_who_finished_the_course, "completed_course_users.csv", ['user_id', 'username']),
-        MetricData(calculate_users_who_enrolled_but_not_started, "enrolled_users_without_activity.csv",
-         ['user_id', 'username', 'enrollment_date']),
-        MetricData(calculate_users_who_started_but_not_completed, "started_but_not_completed_course.csv",
-         ['user_id', 'username']),
-        MetricData(calculate_total_user_time_on_course, "distinct_user_time_on_course.csv", ['user_id', 'time_on_course']),
     ]
 
 
 @pytest.fixture
 def specific_student_metrics():
     return [
-        (calculate_user_session_activity_per_day_on_course, "user_time_on_course.csv",
-         ['user_id', 'session_date', 'time_at_session_per_day'])
     ]
 
 
