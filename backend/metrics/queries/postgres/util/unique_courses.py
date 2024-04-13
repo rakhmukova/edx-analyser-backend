@@ -8,7 +8,7 @@ def unique_courses(connection, course_id):
 
 
 def main():
-    result_file = "unique_courses.csv"
+    result_file = "util/unique_courses.csv"
     fields = ['course_id', 'count']
     start_time = time.time()
     calc_course_metric(
