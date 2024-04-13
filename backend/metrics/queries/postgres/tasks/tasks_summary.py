@@ -73,7 +73,7 @@ def main():
         "problems_summary.csv",
         ['problem_id', 'attempt']
     )
-    file_path = "../../../../metric_results/existing/problems_summary.csv"
+    file_path = "../../../../metric_results/existing/tasks/problems_summary.csv"
 
     # Обработка данных и запись среднего числа попыток в файл
     process_attempts_data(file_path)
