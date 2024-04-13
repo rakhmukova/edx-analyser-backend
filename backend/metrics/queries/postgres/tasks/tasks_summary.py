@@ -5,7 +5,6 @@ from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_course_metric
 
 
-# TODO: CHECK AND FIX
 def calculate_total_user_time_on_course(connection, course_id):
     data = execute_query_with_result(connection, SQL_QUERY_PROBLEMS_SUMMARY, course_id)
     print(data)
