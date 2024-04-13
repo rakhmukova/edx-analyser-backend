@@ -2,15 +2,15 @@ from metrics.queries.postgres.sql_queries import SQL_QUERY_WEEKLY_ACTIVE_USERS
 from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_course_metric
 
-def unique_usernames_and_ids(connection, course_id):
+def calc_weekly_active_users(connection, course_id):
     return execute_query_with_result(connection, SQL_QUERY_WEEKLY_ACTIVE_USERS, course_id)
 
 
 def main():
-    result_file = "common/active_users.csv"
-    fields = ['date', 'count_of_users']
+    result_file = "common/weekly_active_users.csv"
+    fields = ['date', 'count']
     calc_course_metric(
-        unique_usernames_and_ids,
+        calc_weekly_active_users,
         result_file,
         fields
     )

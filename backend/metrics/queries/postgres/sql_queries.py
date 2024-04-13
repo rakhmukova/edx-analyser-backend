@@ -29,14 +29,10 @@ SQL_QUERY_ACTIVITY_IN_SECTIONS = '''
     FROM logs
     WHERE   
         log_line ->> 'event_type' LIKE 'textbook.pdf%' OR
-        
         (log_line ->> 'event_type' LIKE 'edx.forum%') OR
-        
         (log_line ->> 'event_type' LIKE '%video%' AND
         log_line ->> 'event_type' NOT LIKE 'edx.video.bumper.dismissed') OR
-        
         (log_line ->> 'event_type' LIKE 'problem_check') AND
-        
         (log_line ->> 'event_type' NOT LIKE '%/%')
     GROUP BY 
         CASE 

@@ -10,6 +10,6 @@ def calculate_urls_and_names_mapping(connection, course_id):
 if __name__ == '__main__':
     calc_course_metric(
         calculate_urls_and_names_mapping,
-        "urls_and_names_mapping.csv",
+        "util/urls_and_names_mapping.csv",
         ['target_name', 'target_url']
     )

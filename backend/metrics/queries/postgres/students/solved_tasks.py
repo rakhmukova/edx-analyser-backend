@@ -7,10 +7,10 @@ def calculate_total_user_time_on_course(connection, course_id):
     return execute_query_with_result(connection, SQL_QUERY_SOLVED_TASKS, course_id)
 
 def main():
-    total_users_time_on_course = calc_course_metric(
+     calc_course_metric(
         calculate_total_user_time_on_course,
         "students/solved_tasks.csv",
-        ['username', 'number of solved tasks']
+        ['username', 'solved_tasks']
     )
 
 

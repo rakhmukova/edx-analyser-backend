@@ -1,11 +1,10 @@
 from metrics.queries.postgres.sql_queries import SQL_QUERY_COURSE_PAGES_POPULARITY
-from metrics.utils.db_operations import execute_query_with_result, open_db_connection, close_db_connection
-from metrics.utils.file_operations import save_output_to_file
-from metrics.utils.metric_operations import DEFAULT_COURSE_ID
+from metrics.utils.db_operations import execute_query_with_result
+from metrics.utils.metric_operations import calc_course_metric
 from metrics.utils.url_operations import remove_parameters_from_url
 
 
-def calculate_pages(connection, course_id):
+def calc_course_pages_popularity(connection, course_id):
     return process_urls(execute_query_with_result(connection, SQL_QUERY_COURSE_PAGES_POPULARITY, course_id))
 
 
@@ -23,10 +22,11 @@ def process_urls(result):
 
 
 def main():
-    connection = open_db_connection()
-    pages_urls = calculate_pages(connection, course_id=DEFAULT_COURSE_ID)
-    save_output_to_file("pages/course_pages_popularity.csv", pages_urls, ['page_link, count_of_visits'])
-    close_db_connection(connection)
+    calc_course_metric(
+        calc_course_pages_popularity,
+        "pages/course_pages_popularity.csv",
+        ['page_link', 'visits_count']
+    )
 
 
 if __name__ == '__main__':

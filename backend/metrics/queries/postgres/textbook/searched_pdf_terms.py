@@ -3,15 +3,15 @@ from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_course_metric
 
 
-def unique_views_of_available_pdf(connection, course_id):
+def calc_search_pdf_terms(connection, course_id):
     return execute_query_with_result(connection, SQL_QUERY_SEARCHED_PDF_TERMS, course_id)
 
 
 def main():
     result_file = "textbook/searched_pdf_terms.csv"
-    fields = ['count_number', 'word']
+    fields = ['word', 'search_count']
     calc_course_metric(
-        unique_views_of_available_pdf,
+        calc_search_pdf_terms,
         result_file,
         fields
     )

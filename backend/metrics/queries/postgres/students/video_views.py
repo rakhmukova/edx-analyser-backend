@@ -3,14 +3,14 @@ from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_course_metric
 
 
-def calculate_total_user_time_on_course(connection, course_id):
+def calc_video_views(connection, course_id):
     return execute_query_with_result(connection, SQL_QUERY_VIDEO_VIEWS, course_id)
 
 def main():
-    total_users_time_on_course = calc_course_metric(
-        calculate_total_user_time_on_course,
+    calc_course_metric(
+        calc_video_views,
         "students/video_views.csv",
-        ['username', 'number of videos viewed']
+        ['username', 'viewed_videos']
     )
 
 

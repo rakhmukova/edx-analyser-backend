@@ -4,7 +4,7 @@ from metrics.utils.file_operations import save_output_to_file
 from metrics.utils.metric_operations import DEFAULT_COURSE_ID
 from metrics.utils.url_operations import remove_parameters_from_url
 
-def calculate_pages(connection, course_id):
+def calc_successful_problem_solving(connection, course_id):
     return process_urls(execute_query_with_result(connection, SQL_QUERY_CORRECTLY_SOLVED_PROBLEMS, course_id))
 
 
@@ -16,7 +16,6 @@ def process_urls(result):
         all_attempts = item[2]
         correct_attempts = item[3]
 
-        # Учитываем ссылки с подстрокой "xblock"
         if 'xblock' in url:
             # Ищем ссылку без параметров для той же video_id
             for key, value in urls_with_counts.items():
@@ -38,8 +37,8 @@ def process_urls(result):
 
 def main():
     connection = open_db_connection()
-    pages_urls = calculate_pages(connection, course_id=DEFAULT_COURSE_ID)
-    headers = ['all_attempts', 'correct_attempts']
+    pages_urls = calc_successful_problem_solving(connection, course_id=DEFAULT_COURSE_ID)
+    headers = ['problem_link', 'all_attempts', 'successful_attempts']
     save_output_to_file("tasks/successful_problem_solving.csv", pages_urls, headers)
     close_db_connection(connection)
 
