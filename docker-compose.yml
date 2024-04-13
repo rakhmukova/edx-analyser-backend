@@ -6,11 +6,21 @@ services:
     image: postgres:14.4
     container_name: "reports_db"
     networks:
-      - db_network
+      - reports_db_network
     volumes:
       - reports_db_volume:/var/lib/postgresql/data
     env_file:
       - .env.reports_db
+
+  logs_db:
+    image: postgres:14.4
+    container_name: "logs_db"
+    networks:
+      - logs_db_network
+    volumes:
+      - logs_db_volume:/var/lib/postgresql/data
+    env_file:
+      - .env.logs_db
 
   redis:
     image: "redis:alpine"
@@ -34,17 +44,30 @@ services:
       python3 manage.py runserver 0.0.0.0:8000"
     depends_on:
       - reports_db
+      - logs_db
       - redis
     volumes:
       - ./backend:/src
     networks:
-      - db_network
+      - nginx_network
+      - reports_db_network
+      - logs_db_network
       - redis_network
-    ports:
-      - "8000:8000"
     tty: true
     env_file:
       - .env
+
+  nginx:
+    image: nginx:1.21.3
+    container_name: "nginx"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+    networks:
+      - nginx_network
 
   celery:
     build: ./backend
@@ -59,14 +82,20 @@ services:
       - redis
     networks:
       - redis_network
-      - db_network
+      - reports_db_network
+      - logs_db_network
 
 networks:
-  db_network:
+  reports_db_network:
+    driver: bridge
+  logs_db_network:
     driver: bridge
   redis_network:
+    driver: bridge
+  nginx_network:
     driver: bridge
 
 volumes:
   reports_db_volume:
   redis_volume:
+  logs_db_volume:
