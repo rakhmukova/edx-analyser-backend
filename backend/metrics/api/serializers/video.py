@@ -11,7 +11,7 @@ class VideoPlayCountSerializer(serializers.ModelSerializer):
 class VideoInteractionSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoInteraction
-        fields = ['video_link', 'students_visits_count', 'viewing_percent_median']
+        fields = ['video_link', 'views_count', 'unique_students_count']
 
     # more effective way of passing data
     # def to_representation(self, instance):
