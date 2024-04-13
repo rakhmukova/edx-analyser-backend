@@ -40,7 +40,7 @@ def main():
     connection = open_db_connection()
     pages_urls = calculate_pages(connection, course_id=DEFAULT_COURSE_ID)
     headers = ['all_attempts', 'correct_attempts']
-    save_output_to_file("successful_problem_solving.csv", pages_urls, headers)
+    save_output_to_file("tasks/successful_problem_solving.csv", pages_urls, headers)
     close_db_connection(connection)
 
 

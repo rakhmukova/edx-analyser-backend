@@ -70,7 +70,7 @@ def analyze_attempts_data(input_file):
 def main():
     total_users_time_on_course = calc_course_metric(
         calculate_total_user_time_on_course,
-        "problems_summary.csv",
+        "tasks/problems_summary.csv",
         ['problem_id', 'attempt']
     )
     file_path = "../../../../metric_results/existing/tasks/problems_summary.csv"
