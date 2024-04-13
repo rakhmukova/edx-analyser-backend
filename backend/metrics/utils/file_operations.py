@@ -63,7 +63,7 @@ def csv_to_json(csv_file_path: str, column_types: dict[str, Type[ColumnType]]) -
 
 if __name__ == '__main__':
     print(csv_to_json(
-        '../../metric_results/existing/play_video_count_daily.csv',
+        '../../metric_results/existing/video/play_video_count_daily.csv',
         {
             'date': datetime,
             'count': int
