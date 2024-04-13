@@ -12,12 +12,12 @@ MetricFuncType = Callable[[psycopg2.extensions.connection, str], Any]
 UserMetricFuncType = Callable[[psycopg2.extensions.connection, str, str], Any]
 
 
-def calc_course_metric(metric: MetricFuncType, result_file: str, fields: list[str],
+def calc_course_metric(metric: MetricFuncType, result_file: str, headers: list[str],
                        course_id: str = DEFAULT_COURSE_ID):
     connection = open_db_connection()
     metric_result = metric(connection, course_id)
     close_db_connection(connection)
-    save_output_to_file(result_file, metric_result, fields)
+    save_output_to_file(result_file, metric_result, headers)
     return metric_result
 
 
