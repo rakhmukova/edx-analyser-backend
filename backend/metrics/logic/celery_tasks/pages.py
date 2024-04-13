@@ -1,13 +1,19 @@
-from metrics.models.pages import PagesPopularityChart
-from metrics.queries.postgres.pages.course_pages_popularity import calc_course_pages_popularity
-from metrics.utils.metric_operations import calc_course_metric
+from metrics.logic.celery_tasks.util import bulk_create_from_csv
+from metrics.models.pages import PagesPopularityChart, PagesPopularity
 
 
 def create_pages_popularity_chart(course_id: str) -> PagesPopularityChart:
-    pages_popularity_chart = PagesPopularityChart.objects.create()
-    result = calc_course_metric(
-        calc_course_pages_popularity,
-        "course_pages_popularity.csv",
-        ['page_link', 'visits_count']
+    # result = calc_course_metric(
+    #     calc_course_pages_popularity,
+    #     "course_pages_popularity.csv",
+    #     ['page_link', 'visits_count']
+    # )
+    return bulk_create_from_csv(
+        'metric_results/existing/problems_complexity.csv',
+        {
+            'page_link': str,
+            'visits_count': int,
+        },
+        PagesPopularity,
+        PagesPopularityChart
     )
-    return pages_popularity_chart
