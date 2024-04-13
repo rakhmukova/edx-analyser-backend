@@ -9,10 +9,9 @@ def calc_play_video_count_daily(connection, course_id):
 
 
 def main():
-    result_file = "video/play_video_count_daily.csv"
     calc_course_metric(
         calc_play_video_count_daily,
-        result_file,
+        "video/play_video_count_daily.csv",
         ['date', 'count']
     )
     # generate_line_figure(RESULT_PATH + result_file, ['date', 'count'])

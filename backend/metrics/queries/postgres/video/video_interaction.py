@@ -1,7 +1,6 @@
 from metrics.queries.postgres.sql_queries import SQL_QUERY_VIDEO_INTERACTION
-from metrics.utils.db_operations import execute_query_with_result, open_db_connection, close_db_connection
-from metrics.utils.file_operations import save_output_to_file
-from metrics.utils.metric_operations import DEFAULT_COURSE_ID
+from metrics.utils.db_operations import execute_query_with_result
+from metrics.utils.metric_operations import calc_course_metric
 from metrics.utils.url_operations import remove_parameters_from_url
 
 
@@ -31,11 +30,11 @@ def process_urls(result):
 
 
 def main():
-    connection = open_db_connection()
-    pages_urls = calc_video_popularity(connection, course_id=DEFAULT_COURSE_ID)
-    headers = ['video_link', 'page_link', 'visits_count']
-    save_output_to_file("video/video_popularity.csv", pages_urls, headers)
-    close_db_connection(connection)
+    calc_course_metric(
+        calc_video_popularity,
+        "video/video_popularity.csv",
+        ['video_link', 'page_link', 'visits_count']
+    )
 
 
 if __name__ == '__main__':
