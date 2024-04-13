@@ -9,7 +9,7 @@ def calculate_total_user_time_on_course(connection, course_id):
 def main():
     total_users_time_on_course = calc_course_metric(
         calculate_total_user_time_on_course,
-        "students_video_views.csv",
+        "students/video_views.csv",
         ['username', 'number of videos viewed']
     )
 
