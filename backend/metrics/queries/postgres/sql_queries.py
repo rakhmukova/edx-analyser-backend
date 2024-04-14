@@ -161,13 +161,19 @@ SQL_QUERY_VIDEO_INTERACTION = '''
 
 # PROBLEMS: SECTION BEGINS
 
-SQL_QUERY_PROBLEMS_SUMMARY = '''
-    SELECT 
-        log_line #>> '{event, problem_id}' AS problem_id,
-        MIN(log_line #>> '{event, attempts}') AS min_correct_attempt
-    FROM logs
-    WHERE log_line ->> 'event_type' = 'problem_check' AND log_line #>> '{event, success}' = 'correct'
-    group by problem_id, log_line ->> 'username'
+SQL_QUERY_TASKS_SUMMARY = '''
+SELECT 
+    tasks_summary.task_id AS task_id,
+    tasks_summary.min_correct_attempt AS attempt
+    FROM (
+        SELECT 
+            log_line #>> '{event, problem_id}' AS task_id,
+            log_line ->> 'username' AS username,
+            MIN(log_line #>> '{event, attempts}') AS min_correct_attempt
+        FROM logs
+        WHERE log_line ->> 'event_type' = 'problem_check' AND log_line #>> '{event, success}' = 'correct'
+        group by task_id, username
+    ) tasks_summary
 '''
 
 SQL_QUERY_CORRECTLY_SOLVED_PROBLEMS = '''
