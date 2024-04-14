@@ -1,4 +1,4 @@
-attempt_count,percent
-first_attempt,50.534759358288774
-second_attempt,42.513368983957214
-other_attempts,6.951871657754011
+attempt_count,percentage
+first,51
+second,43
+more,6
