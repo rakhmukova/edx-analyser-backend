@@ -27,12 +27,14 @@ def _create_common_section_report(course_id: str):
     section_activity_chart = create_section_activity_chart(course_id)
     weekly_activity_chart = create_weekly_activity_chart(course_id)
     students_count = 125
+    active_students_count = 120
     report = CommonSectionReport.objects.filter(
         course_id=course_id,
     ).first()
     report.section_activity_chart = section_activity_chart
     report.weekly_activity_chart = weekly_activity_chart
     report.students_count = students_count
+    report.active_students_count = active_students_count
     report.save()
 
 

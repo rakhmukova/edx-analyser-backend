@@ -74,6 +74,7 @@ class VideoSectionReport(SectionReport):
 
 class CommonSectionReport(SectionReport):
     students_count = models.PositiveIntegerField(null=True, default=None)
+    active_students_count = models.PositiveIntegerField(null=True, default=None)
     section_activity_chart = models.OneToOneField(SectionActivityChart, on_delete=models.CASCADE, null=True, default=None)
     weekly_activity_chart = models.OneToOneField(WeeklyActivityChart, on_delete=models.CASCADE, null=True, default=None)
 

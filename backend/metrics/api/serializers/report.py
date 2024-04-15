@@ -31,7 +31,8 @@ class CommonSectionReportSerializer(SectionReportSerializer):
 
     class Meta:
         model = CommonSectionReport
-        fields = SectionReportSerializer.Meta.fields + ['weekly_activity_chart', 'section_activity_chart', 'students_count']
+        fields = (SectionReportSerializer.Meta.fields
+                  + ['weekly_activity_chart', 'section_activity_chart', 'students_count', 'active_students_count'])
 
 class TextbookSectionReportSerializer(SectionReportSerializer):
     textbook_views_chart = TextbookViewsChartSerializer()
