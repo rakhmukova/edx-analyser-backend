@@ -2,8 +2,8 @@ from typing import Type
 from venv import logger
 
 from app.celery import app
-from metrics.logic.celery_tasks.common import create_completion_degree_chart, create_session_time_chart, \
-    create_section_activity_chart
+from metrics.logic.celery_tasks.common import \
+    create_section_activity_chart, create_weekly_activity_chart
 from metrics.logic.celery_tasks.forum import create_forum_question_chart
 from metrics.logic.celery_tasks.pages import create_pages_popularity_chart
 from metrics.logic.celery_tasks.tasks import create_task_complexity_chart, create_task_summary_chart
@@ -24,15 +24,15 @@ report_cls_by_section_type: dict[SectionType, Type[SectionReport]] = {
 
 
 def _create_common_section_report(course_id: str):
-    completion_degree_chart = create_completion_degree_chart(course_id)
-    session_time_chart = create_session_time_chart(course_id)
     section_activity_chart = create_section_activity_chart(course_id)
+    weekly_activity_chart = create_weekly_activity_chart(course_id)
+    students_count = 125
     report = CommonSectionReport.objects.filter(
         course_id=course_id,
     ).first()
-    report.completion_degree_chart = completion_degree_chart
-    report.session_time_chart = session_time_chart
     report.section_activity_chart = section_activity_chart
+    report.weekly_activity_chart = weekly_activity_chart
+    report.students_count = students_count
     report.save()
 
 

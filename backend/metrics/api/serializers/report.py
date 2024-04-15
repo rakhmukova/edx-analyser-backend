@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from metrics.api.serializers.common import CompletionDegreeChartSerializer, SessionTimeChartSerializer, \
-    SectionActivityChartSerializer
+from metrics.api.serializers.common import SectionActivityChartSerializer, WeeklyActivityChartSerializer
 from metrics.api.serializers.forum import ForumQuestionChartSerializer
 from metrics.api.serializers.pages import PagesPopularityChartSerializer
 from metrics.api.serializers.tasks import TaskComplexityChartSerializer, TaskSummaryChartSerializer
@@ -27,13 +26,12 @@ class VideoSectionReportSerializer(SectionReportSerializer):
         fields = SectionReportSerializer.Meta.fields + ['video_play_count_chart', 'video_interaction_chart']
 
 class CommonSectionReportSerializer(SectionReportSerializer):
-    completion_degree_chart = CompletionDegreeChartSerializer()
-    session_time_chart = SessionTimeChartSerializer()
+    weekly_activity_chart = WeeklyActivityChartSerializer()
     section_activity_chart = SectionActivityChartSerializer()
 
     class Meta:
         model = CommonSectionReport
-        fields = SectionReportSerializer.Meta.fields + ['completion_degree_chart', 'session_time_chart', 'section_activity_chart']
+        fields = SectionReportSerializer.Meta.fields + ['weekly_activity_chart', 'section_activity_chart', 'students_count']
 
 class TextbookSectionReportSerializer(SectionReportSerializer):
     textbook_views_chart = TextbookViewsChartSerializer()

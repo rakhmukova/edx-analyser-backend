@@ -7,7 +7,7 @@ class VideoPlayCountChart(models.Model):
 
 class VideoPlayCount(models.Model):
     date = models.DateField()
-    count = models.IntegerField()
+    count = models.PositiveIntegerField()
     chart = models.ForeignKey(VideoPlayCountChart, on_delete=models.CASCADE, related_name='items')
 
 
@@ -16,6 +16,6 @@ class VideoInteractionChart(models.Model):
 
 class VideoInteraction(models.Model):
     video_link = models.CharField(max_length=MAX_VIDEO_LINK_LENGTH)
-    views_count = models.IntegerField()
-    unique_students_count = models.IntegerField()
+    views_count = models.PositiveIntegerField()
+    unique_students_count = models.PositiveIntegerField()
     chart = models.ForeignKey(VideoInteractionChart, on_delete=models.CASCADE, related_name='items')

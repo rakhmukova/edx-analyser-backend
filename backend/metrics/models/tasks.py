@@ -27,7 +27,7 @@ class TaskSummaryChart(models.Model):
 
 class TaskSummary(models.Model):
     attempt_count = models.CharField(choices=AttemptCount.CHOICES)
-    percentage = models.IntegerField(
+    percentage = models.PositiveIntegerField(
         validators=[
             MinValueValidator(0),
             MaxValueValidator(100)

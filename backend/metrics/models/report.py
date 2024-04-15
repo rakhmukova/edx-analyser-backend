@@ -3,7 +3,7 @@ from typing import Any
 
 from django.db import models
 
-from metrics.models.common import CompletionDegreeChart, SessionTimeChart, SectionActivityChart
+from metrics.models.common import SectionActivityChart, WeeklyActivityChart
 from metrics.models.forum import ForumQuestionChart
 from metrics.models.pages import PagesPopularityChart
 from metrics.models.tasks import TaskComplexityChart, TaskSummaryChart
@@ -29,13 +29,22 @@ class ReportState:
         (FAILED, "Failed")
     ]
 
+class ErrorType:
+    DB_CONNECTION_ERROR = "db_connection_error"
+    INTEGRITY_ERROR = "integrity_error"
+
+    CHOICES = [
+        (DB_CONNECTION_ERROR, "db_connection_error"),
+        (INTEGRITY_ERROR, "integrity_error"),
+    ]
+
 
 class SectionReport(models.Model):
     course_id = models.CharField(primary_key=True, max_length=MAX_COURSE_ID_LENGTH, null=False, blank=False)
     last_time_accessed = models.DateTimeField(default=datetime.now)
     last_time_updated = models.DateTimeField(default=datetime.now)
     report_state = models.CharField(max_length=12, choices=ReportState.CHOICES, null=False, default=ReportState.NOT_STARTED)
-    error_reason = models.CharField(max_length=100, null=True, blank=False, default=None)
+    error_code = models.CharField(max_length=50, choices=ReportState.CHOICES, null=True, blank=False, default=None)
 
     def any_field_is_none(self, fields: list[str]):
         for field_name in fields:
@@ -64,12 +73,12 @@ class VideoSectionReport(SectionReport):
 
 
 class CommonSectionReport(SectionReport):
-    completion_degree_chart = models.OneToOneField(CompletionDegreeChart, on_delete=models.CASCADE, null=True, default=None)
-    session_time_chart = models.OneToOneField(SessionTimeChart, on_delete=models.CASCADE, null=True, default=None)
+    students_count = models.PositiveIntegerField(null=True, default=None)
     section_activity_chart = models.OneToOneField(SectionActivityChart, on_delete=models.CASCADE, null=True, default=None)
+    weekly_activity_chart = models.OneToOneField(WeeklyActivityChart, on_delete=models.CASCADE, null=True, default=None)
 
     def save(self, *args, **kwargs):
-        self.report_state = self.calc_report_state(['completion_degree_chart', 'session_time_chart', 'section_activity_chart'])
+        self.report_state = self.calc_report_state(['section_activity_chart', 'weekly_activity_chart'])
         super().save(*args, **kwargs)
 
 

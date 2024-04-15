@@ -7,12 +7,12 @@ SQL_QUERY_ALL_USERS_COUNT = '''
 '''
 
 SQL_QUERY_WEEKLY_ACTIVE_USERS = """
-        SELECT
-            DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')),
-            COUNT(DISTINCT log_line ->> 'username')
-        FROM logs
-        GROUP BY DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))    
-        ORDER BY DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))
+    SELECT
+        DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))::DATE,
+        COUNT(DISTINCT log_line ->> 'username')
+    FROM logs
+    GROUP BY DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))    
+    ORDER BY DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))::DATE
 """
 
 
@@ -457,3 +457,69 @@ SQL_QUERY_URLS_AND_NAMES_MAPPING = '''select urlsAndIDs.target_name as target_na
         order by target_name'''
 
 # UTILS: SECTION ENDS
+
+SQL_QUERY_STUDENTS_INFO = '''
+SELECT
+    COALESCE(td.username, vv.username, tv.username, af.username, st.username) AS username,
+    COALESCE(td.total_days_on_course, 0) AS total_days_on_course,
+    COALESCE(vv.event_id, 0) AS video_views,
+    COALESCE(tv.tutorial_book, 0) AS textbook_views,
+    COALESCE(st.solved_tasks, 0) AS solved_tasks,
+    COALESCE(af.forum_activity, 0) AS forum_activity
+FROM
+    (SELECT
+        log_line ->> 'username' AS username,
+        COUNT(DISTINCT (TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::DATE)) as total_days_on_course
+    FROM logs
+    WHERE
+        log_line ->> 'username' != 'null' AND
+        log_line ->> 'username' IS NOT NULL AND
+        log_line ->> 'username' != ''
+    GROUP BY username) AS td
+LEFT JOIN
+    (SELECT 
+        log_line ->> 'username' AS username,
+        COUNT(distinct ((log_line ->> 'event')::json ->> 'id')) AS event_id
+    FROM logs
+    WHERE 
+        log_line ->> 'event_type' = 'play_video' AND 
+        log_line ->> 'username' != 'null' AND 
+        log_line ->> 'username' IS NOT NULL AND 
+        log_line ->> 'username' != ''
+    GROUP BY username) AS vv ON td.username = vv.username
+LEFT JOIN
+    (SELECT 
+        log_line ->> 'username' AS username,
+        COUNT(distinct (url_decode(split_part(reverse(split_part(reverse((log_line ->> 'event')::json ->> 'chapter'), '/', 1)), '/', 1)))) as tutorial_book
+    FROM logs
+    WHERE 
+        log_line ->> 'event_type' LIKE  '%textbook%' and
+        (log_line ->> 'username' != 'null' AND 
+        log_line ->> 'username' IS NOT NULL AND 
+        log_line ->> 'username' != '')
+    GROUP BY username) AS tv ON td.username = tv.username
+LEFT JOIN
+    (SELECT 
+        log_line ->> 'username' AS username,
+        COUNT(DISTINCT (log_line #>> '{event, problem_id}')) AS solved_tasks
+    FROM logs
+    WHERE 
+        log_line ->> 'event_type' = 'problem_check' AND 
+        log_line #>> '{event, success}' = 'correct' AND 
+        log_line ->> 'username' != 'null' AND 
+        log_line ->> 'username' IS NOT NULL AND 
+        log_line ->> 'username' != ''
+    group by username) AS st ON td.username = st.username
+LEFT JOIN
+    (SELECT 
+        log_line ->> 'username' AS username,
+        count(distinct (log_line #>> '{event, id}')) as forum_activity
+    FROM logs
+    WHERE 
+        log_line ->> 'event_type' IN ('edx.forum.comment.created', 'edx.forum.response.created', 'edx.forum.thread.created') and
+        (log_line ->> 'username' != 'null' AND 
+        log_line ->> 'username' IS NOT NULL AND 
+        log_line ->> 'username' != '')
+    GROUP BY username) AS af ON td.username = af.username
+ORDER BY td.username;
+'''

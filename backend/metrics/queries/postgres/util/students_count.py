@@ -10,8 +10,8 @@ def calc_all_users_count(connection, course_id):
 def main():
     calc_course_metric(
         calc_all_users_count,
-        "util/all_users_count.csv",
-        ['all_users_count']
+        "util/students_count.csv",
+        ['students_count']
     )
 
 
