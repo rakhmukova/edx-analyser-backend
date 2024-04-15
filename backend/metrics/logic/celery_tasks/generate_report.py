@@ -113,5 +113,5 @@ def generate_report(course_id: str, section_type: SectionType):
         ).first()
         # handle error
         # value too long for type character varying(100)
-        report.error_reason = str(e)
+        # report.error_reason = str(e)
         report.save()
