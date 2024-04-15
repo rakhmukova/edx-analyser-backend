@@ -79,7 +79,7 @@ class CommonSectionReport(SectionReport):
     weekly_activity_chart = models.OneToOneField(WeeklyActivityChart, on_delete=models.CASCADE, null=True, default=None)
 
     def save(self, *args, **kwargs):
-        self.report_state = self.calc_report_state(['section_activity_chart', 'weekly_activity_chart'])
+        self.report_state = self.calc_report_state(['section_activity_chart', 'weekly_activity_chart', 'students_count', 'active_students_count'])
         super().save(*args, **kwargs)
 
 
