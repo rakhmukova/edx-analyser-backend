@@ -43,6 +43,7 @@ def analyze_attempts_data(attempts_count: dict[str, int]):
     total_tasks = first_attempt_count + second_attempt_count + other_attempt_count
     print(first_attempt_count, second_attempt_count, other_attempt_count)
     # Вычисляем процент задач для каждой категории попыток
+
     percent_first_attempt = round((first_attempt_count / total_tasks) * 100)
     percent_second_attempt = round((second_attempt_count / total_tasks) * 100)
     percent_other_attempts = 100 - percent_first_attempt - percent_second_attempt
