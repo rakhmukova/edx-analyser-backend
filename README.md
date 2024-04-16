@@ -11,7 +11,7 @@
    ```shell
    docker-compose up --build
    ```
-4) Теперь бэкенд запущен на [http://127.0.0.1:8000/](http://127.0.0.1:8080/api)
+4) Теперь бэкенд запущен на [http://127.0.0.1:8080/](http://127.0.0.1:8080/api)
 
 ### Информация
 [Подробнее о метриках](https://docs.google.com/document/d/10p5zKWXnF2LRT2V9M0zCFXjcEkOsdYNRg663pmJx4bI/edit?usp=sharing)
