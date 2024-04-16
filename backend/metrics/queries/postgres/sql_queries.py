@@ -1,13 +1,11 @@
 # COMMON : SECTION BEGINS
 
-SQL_QUERY_ALL_USERS_COUNT = '''
+SQL_QUERY_STUDENTS_COUNT = '''
         SELECT COUNT(DISTINCT log_line ->> 'username')
         FROM logs
         WHERE log_line ->> 'username' != 'null' AND log_line ->> 'username' IS NOT NULL AND log_line ->> 'username' != ''
 '''
 
-<<<<<<< HEAD
-=======
 SQL_QUERY_ACTIVE_STUDENTS_COUNT = '''
     SELECT 
         COUNT(DISTINCT(log_line ->> 'username')) AS username
@@ -24,7 +22,6 @@ SQL_QUERY_ACTIVE_STUDENTS_COUNT = '''
         log_line ->> 'username' != ''
 '''
 
->>>>>>> 068ec55 (A new metric has been added -- the number of active students)
 SQL_QUERY_WEEKLY_ACTIVE_USERS = """
     SELECT
         DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))::DATE,
