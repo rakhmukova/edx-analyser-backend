@@ -25,7 +25,7 @@ def calculate_average_attempts(data: list[tuple[str, int]]):
     return attempts_count
 
 
-def analyze_attempts_data(attempts_count: dict[str, int]):
+def analyze_attempts_data(attempts_count: defaultdict[str, int]):
     first_attempt_count = 0
     second_attempt_count = 0
     other_attempt_count = 0
@@ -48,7 +48,6 @@ def analyze_attempts_data(attempts_count: dict[str, int]):
     percent_second_attempt = round((second_attempt_count / total_tasks) * 100)
     percent_other_attempts = 100 - percent_first_attempt - percent_second_attempt
 
-    # Возвращаем результат в формате CSV
     return [
         ("first", percent_first_attempt),
         ("second", percent_second_attempt),
