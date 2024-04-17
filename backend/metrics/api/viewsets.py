@@ -1,6 +1,6 @@
-from rest_framework import viewsets
+from django.http import JsonResponse
+from rest_framework import viewsets, status
 from rest_framework.decorators import action
-from rest_framework.response import Response
 
 from metrics.api.serializers.report import VideoSectionReportSerializer, \
     CommonSectionReportSerializer, TextbookSectionReportSerializer, TaskSectionReportSerializer, \
@@ -10,38 +10,41 @@ from metrics.models.section_type import SectionType
 
 
 class SectionReportViewSet(viewsets.GenericViewSet):
-    @action(methods=['GET'], detail=False)
-    def get_common_section_report(self, request, course_id=None) -> Response:
-        report = get_report(course_id, SectionType.COMMON)
-        serializer = CommonSectionReportSerializer(report, many=False)
-        return Response(data=serializer.data)
+    # todo: check in db
+    valid_courses = [
+        'DATANTECH2035',
+        'DATSTBASE'
+    ]
+
+    url_to_serializer ={
+        'common': CommonSectionReportSerializer,
+        'video': VideoSectionReportSerializer,
+        'textbook': TextbookSectionReportSerializer,
+        'problems': TaskSectionReportSerializer,
+        'pages': PagesSectionReportSerializer,
+        'forum': ForumSectionReportSerializer,
+    }
+
+    url_to_section_type = {
+        'common': SectionType.COMMON,
+        'video': SectionType.VIDEO,
+        'textbook': SectionType.PDF,
+        'problems': SectionType.TASKS,
+        'pages': SectionType.PAGES,
+        'forum': SectionType.FORUM,
+    }
+
+    def _validate_course(self, course_id):
+        return course_id in self.valid_courses
 
     @action(methods=['GET'], detail=False)
-    def get_video_section_report(self, request, course_id=None) -> Response:
-        report = get_report(course_id, SectionType.VIDEO)
-        serializer = VideoSectionReportSerializer(report, many=False)
-        return Response(data=serializer.data)
+    def get_section_report(self, request, course_id=None, section_type=None):
+        if not self._validate_course(course_id):
+            return JsonResponse({'error': f'Invalid course_id: {course_id}'}, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(methods=['GET'], detail=False)
-    def get_textbook_section_report(self, request, course_id=None) -> Response:
-        report = get_report(course_id, SectionType.PDF)
-        serializer = TextbookSectionReportSerializer(report, many=False)
-        return Response(data=serializer.data)
+        if not self.url_to_serializer[section_type] or not self.url_to_section_type[section_type]:
+            return JsonResponse({'error': 'Invalid section type'}, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(methods=['GET'], detail=False)
-    def get_task_section_report(self, request, course_id=None) -> Response:
-        report = get_report(course_id, SectionType.TASKS)
-        serializer = TaskSectionReportSerializer(report, many=False)
-        return Response(data=serializer.data)
-
-    @action(methods=['GET'], detail=False)
-    def get_pages_section_report(self, request, course_id=None) -> Response:
-        report = get_report(course_id, SectionType.PAGES)
-        serializer = PagesSectionReportSerializer(report, many=False)
-        return Response(data=serializer.data)
-
-    @action(methods=['GET'], detail=False)
-    def get_forum_section_report(self, request, course_id=None) -> Response:
-        report = get_report(course_id, SectionType.FORUM)
-        serializer = ForumSectionReportSerializer(report, many=False)
-        return Response(data=serializer.data)
+        report = get_report(course_id, self.url_to_section_type[section_type])
+        serializer = self.url_to_serializer[section_type](report, many=False)
+        return JsonResponse(data=serializer.data)

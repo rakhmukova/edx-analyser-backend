@@ -5,8 +5,9 @@ from metrics.models.report import SectionReport
 from metrics.models.section_type import SectionType
 
 
-def get_report(course_id: str, section_type: SectionType, should_generate_report: bool = False) -> SectionReport:
-    if not should_generate_report:
+def get_report(course_id: str, section_type: SectionType, force_update: bool = False) -> SectionReport:
+    # todo: check course_id is in available courses
+    if not force_update:
         report = _get_existing_report(course_id, section_type)
         if report is not None:
             logger.info("Existing report found")
