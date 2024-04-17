@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
+from rest_framework.request import Request
 
 from metrics.api.serializers.report import VideoSectionReportSerializer, \
     CommonSectionReportSerializer, TextbookSectionReportSerializer, TaskSectionReportSerializer, \
@@ -38,13 +39,14 @@ class SectionReportViewSet(viewsets.GenericViewSet):
         return course_id in self.valid_courses
 
     @action(methods=['GET'], detail=False)
-    def get_section_report(self, request, course_id=None, section_type=None):
+    def get_section_report(self, request: Request, course_id=None, section_type=None):
+        force_update = request.query_params.get('force-update', False)
         if not self._validate_course(course_id):
             return JsonResponse({'error': f'Invalid course_id: {course_id}'}, status=status.HTTP_400_BAD_REQUEST)
 
         if not self.url_to_serializer[section_type] or not self.url_to_section_type[section_type]:
             return JsonResponse({'error': 'Invalid section type'}, status=status.HTTP_400_BAD_REQUEST)
 
-        report = get_report(course_id, self.url_to_section_type[section_type])
+        report = get_report(course_id, self.url_to_section_type[section_type], force_update)
         serializer = self.url_to_serializer[section_type](report, many=False)
         return JsonResponse(data=serializer.data)

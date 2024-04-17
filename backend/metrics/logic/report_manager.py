@@ -6,13 +6,15 @@ from metrics.models.section_type import SectionType
 
 
 def get_report(course_id: str, section_type: SectionType, force_update: bool = False) -> SectionReport:
-    # todo: check course_id is in available courses
-    if not force_update:
-        report = _get_existing_report(course_id, section_type)
-        if report is not None:
-            logger.info("Existing report found")
-            return report
+    report = _get_existing_report(course_id, section_type)
+    if report is not None:
+        logger.info(f"Existing report found {course_id} {section_type}")
+        if force_update:
+            logger.info(f"Updating report {course_id} {section_type}")
+            generate_report.delay(course_id, section_type)
+        return report
 
+    logger.info(f"Generating new report {course_id} {section_type}")
     report = _create_empty_report(course_id, section_type)
     generate_report.delay(course_id, section_type)
     return report
