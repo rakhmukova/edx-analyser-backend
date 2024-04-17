@@ -1,4 +1,4 @@
-username,time
+pdf_name,views_count,unique_students_count
 1._Введение_в_науку_о_данных.pdf,24604,365
 10._NoSQL_хранилища_2021.pdf,21,18
 13._Cassandra_2021.pdf,1,1

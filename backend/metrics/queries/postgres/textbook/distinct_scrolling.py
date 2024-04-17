@@ -9,7 +9,7 @@ def unique_views_of_available_pdf(connection, course_id):
 
 def main():
     result_file = "textbook/scrolling_time.csv"
-    fields = ['username', 'time']
+    fields = ['pdf_name', 'views_count', 'unique_students_count']
     calc_course_metric(
         unique_views_of_available_pdf,
         result_file,

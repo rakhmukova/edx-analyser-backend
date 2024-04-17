@@ -7,7 +7,7 @@ from metrics.logic.celery_tasks.common import \
 from metrics.logic.celery_tasks.forum import create_forum_question_chart
 from metrics.logic.celery_tasks.pages import create_pages_popularity_chart
 from metrics.logic.celery_tasks.tasks import create_task_complexity_chart, create_task_summary_chart
-from metrics.logic.celery_tasks.textbook import create_word_search_chart
+from metrics.logic.celery_tasks.textbook import create_word_search_chart, create_textbook_views_chart
 from metrics.logic.celery_tasks.video import create_video_interaction_chart, create_video_play_count_chart
 from metrics.models.report import VideoSectionReport, CommonSectionReport, SectionReport, PagesSectionReport, \
     TaskSectionReport, TextbookSectionReport, ForumSectionReport
@@ -59,12 +59,13 @@ def _create_page_section_report(course_id: str):
 
 
 def _create_textbook_section_report(course_id: str):
-    # textbook_views_chart = create_textbook_views_chart(course_id)
+    textbook_views_chart = create_textbook_views_chart(course_id)
     word_search_chart = create_word_search_chart(course_id)
     report = TextbookSectionReport.objects.filter(
         course_id=course_id,
     ).first()
     report.word_search_chart = word_search_chart
+    report.textbook_views_chart = textbook_views_chart
     report.save()
 
 
