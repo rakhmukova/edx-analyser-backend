@@ -4,7 +4,7 @@ from metrics.utils.metric_operations import calc_course_metric
 
 
 def calc_time_on_course(connection, course_id):
-    result = execute_query_with_result(connection, SQL_QUERY_TOTAL_USER_TIME_ON_COURSE, course_id)
+    result = execute_query_with_result(connection, SQL_QUERY_TOTAL_USER_TIME_ON_COURSE, (course_id,))
     return calculate_time_on_course(result)
 
 def calculate_time_on_course(user_sessions):

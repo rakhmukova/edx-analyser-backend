@@ -4,7 +4,7 @@ from metrics.utils.metric_operations import calc_course_metric
 import csv
 
 def unique_usernames(connection, course_id):
-    return execute_query_with_result(connection, SQL_QUERY_UNIQUE_USERNAMES, course_id)
+    return execute_query_with_result(connection, SQL_QUERY_UNIQUE_USERNAMES, (course_id,))
 
 
 def main():

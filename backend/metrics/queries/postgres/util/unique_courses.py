@@ -4,7 +4,7 @@ from metrics.utils.metric_operations import calc_course_metric
 
 
 def calc_unique_courses(connection, course_id):
-    return execute_query_with_result(connection, SQL_QUERY_UNIQUE_COURSES, course_id)
+    return execute_query_with_result(connection, SQL_QUERY_UNIQUE_COURSES)
 
 
 def main():

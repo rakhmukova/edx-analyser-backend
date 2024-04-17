@@ -5,7 +5,7 @@ from metrics.utils.metric_operations import calc_course_metric
 
 
 def calc_all_users_count(connection, course_id):
-    return execute_query_with_result(connection, SQL_QUERY_STUDENTS_COUNT, course_id)
+    return execute_query_with_result(connection, SQL_QUERY_STUDENTS_COUNT, (course_id,))
 
 def main():
     calc_course_metric(

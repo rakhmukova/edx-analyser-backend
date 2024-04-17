@@ -6,8 +6,8 @@ from venv import logger
 import pandas as pd
 import plotly.express as px
 
-DEFAULT_COURSE_ID = "course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1"
-DEFAULT_COURSE_DIR = "DATANTECH2035"
+DEFAULT_COURSE_ID = "course-v1:ITMOUniversity+DATSTBASE+spring_2024_ITMO_bac"#"course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1"
+DEFAULT_COURSE_DIR = "DATSTBASE"#"DATANTECH2035"
 
 RESULT_PATH = f'../../../../metric_results/{DEFAULT_COURSE_DIR}/'
 # RESULT_PATH = './metric_results/existing/'

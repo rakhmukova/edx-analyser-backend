@@ -4,8 +4,10 @@ from metrics.utils.file_operations import save_output_to_file
 from metrics.utils.metric_operations import DEFAULT_COURSE_ID
 from metrics.utils.url_operations import remove_parameters_from_url
 
+
 def calc_problems_complexity(connection, course_id):
-    return process_urls(execute_query_with_result(connection, SQL_QUERY_CORRECTLY_SOLVED_PROBLEMS, course_id))
+    return process_urls(
+        execute_query_with_result(connection, SQL_QUERY_CORRECTLY_SOLVED_PROBLEMS, (course_id, course_id, course_id,)))
 
 
 def process_urls(result):
@@ -31,8 +33,6 @@ def process_urls(result):
                 urls_with_counts[video_id] = [url, all_attempts, correct_attempts]
 
     return list(urls_with_counts.values())
-
-
 
 
 def main():

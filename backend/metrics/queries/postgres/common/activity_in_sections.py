@@ -5,7 +5,7 @@ from metrics.utils.metric_operations import calc_course_metric
 
 
 def calc_activity_in_sections(connection, course_id):
-    return execute_query_with_result(connection, SQL_QUERY_ACTIVITY_IN_SECTIONS, course_id)
+    return execute_query_with_result(connection, SQL_QUERY_ACTIVITY_IN_SECTIONS, (course_id,))
 
 def main():
     calc_course_metric(

@@ -5,7 +5,7 @@ from metrics.utils.metric_operations import calc_course_metric
 
 
 def calculate_total_user_time_on_course(connection, course_id):
-    data = execute_query_with_result(connection, SQL_QUERY_TASKS_SUMMARY, course_id)
+    data = execute_query_with_result(connection, SQL_QUERY_TASKS_SUMMARY, (course_id,))
     attempts_count = calculate_average_attempts(data)
     return analyze_attempts_data(attempts_count)
 

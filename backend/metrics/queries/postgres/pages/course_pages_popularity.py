@@ -5,7 +5,7 @@ from metrics.utils.url_operations import remove_parameters_from_url
 
 
 def calc_course_pages_popularity(connection, course_id):
-    return process_urls(execute_query_with_result(connection, SQL_QUERY_COURSE_PAGES_POPULARITY, course_id))
+    return process_urls(execute_query_with_result(connection, SQL_QUERY_COURSE_PAGES_POPULARITY, (course_id,)))
 
 
 def process_urls(result):

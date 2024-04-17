@@ -4,7 +4,7 @@ from metrics.utils.metric_operations import calc_course_metric
 
 
 def calc_search_pdf_terms(connection, course_id):
-    return execute_query_with_result(connection, SQL_QUERY_SEARCHED_PDF_TERMS, course_id)
+    return execute_query_with_result(connection, SQL_QUERY_SEARCHED_PDF_TERMS, (course_id,))
 
 
 def main():

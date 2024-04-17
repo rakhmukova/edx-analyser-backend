@@ -3,7 +3,7 @@
 SQL_QUERY_STUDENTS_COUNT = '''
         SELECT COUNT(DISTINCT log_line ->> 'username')
         FROM logs
-        WHERE log_line ->> 'username' != 'null' AND log_line ->> 'username' IS NOT NULL AND log_line ->> 'username' != ''
+        WHERE log_line #>> '{context, course_id}' = %s AND log_line ->> 'username' != 'null' AND log_line ->> 'username' IS NOT NULL AND log_line ->> 'username' != ''
 '''
 
 SQL_QUERY_ACTIVE_STUDENTS_COUNT = '''
@@ -11,15 +11,16 @@ SQL_QUERY_ACTIVE_STUDENTS_COUNT = '''
         COUNT(DISTINCT(log_line ->> 'username')) AS username
     FROM logs
     WHERE   
-        log_line ->> 'event_type' LIKE 'textbook.pdf%' OR
-        (log_line ->> 'event_type' LIKE 'edx.forum%') OR
-        (log_line ->> 'event_type' LIKE '%video%' AND
+        log_line #>> '{context, course_id}' = %s AND
+        (log_line ->> 'event_type' LIKE 'textbook.pdf%%' OR
+        (log_line ->> 'event_type' LIKE 'edx.forum%%') OR
+        (log_line ->> 'event_type' LIKE '%%video%%' AND
         log_line ->> 'event_type' NOT LIKE 'edx.video.bumper.dismissed') OR
         (log_line ->> 'event_type' LIKE 'problem_check') AND
-        log_line ->> 'event_type' NOT LIKE '%/%' AND
+        log_line ->> 'event_type' NOT LIKE '%%/%%' AND
         log_line ->> 'username' != 'null' AND 
         log_line ->> 'username' IS NOT NULL AND 
-        log_line ->> 'username' != ''
+        log_line ->> 'username' != '')
 '''
 
 SQL_QUERY_WEEKLY_ACTIVE_USERS = """
@@ -27,6 +28,7 @@ SQL_QUERY_WEEKLY_ACTIVE_USERS = """
         DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))::DATE,
         COUNT(DISTINCT log_line ->> 'username')
     FROM logs
+    WHERE log_line #>> '{context, course_id}' = %s
     GROUP BY DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))    
     ORDER BY DATE_TRUNC('week', TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS'))::DATE
 """
@@ -35,27 +37,28 @@ SQL_QUERY_WEEKLY_ACTIVE_USERS = """
 SQL_QUERY_ACTIVITY_IN_SECTIONS = '''
     SELECT  
         CASE 
-            WHEN log_line ->> 'event_type' LIKE 'textbook.pdf%' THEN 'textbook'
-            WHEN log_line ->> 'event_type' LIKE 'edx.forum%' THEN 'forum'
-            WHEN log_line ->> 'event_type' LIKE '%problem%' THEN 'problem'
-            WHEN log_line ->> 'event_type' LIKE '%video%' THEN 'video'
+            WHEN log_line ->> 'event_type' LIKE 'textbook.pdf%%' THEN 'textbook'
+            WHEN log_line ->> 'event_type' LIKE 'edx.forum%%' THEN 'forum'
+            WHEN log_line ->> 'event_type' LIKE '%%problem%%' THEN 'problem'
+            WHEN log_line ->> 'event_type' LIKE '%%video%%' THEN 'video'
             ELSE log_line ->> 'event_type' 
         END as event_type,
         COUNT(DISTINCT(log_line ->> 'username')) AS username
     FROM logs
     WHERE   
-        log_line ->> 'event_type' LIKE 'textbook.pdf%' OR
-        (log_line ->> 'event_type' LIKE 'edx.forum%') OR
-        (log_line ->> 'event_type' LIKE '%video%' AND
+        log_line #>> '{context, course_id}' = %s AND
+        (log_line ->> 'event_type' LIKE 'textbook.pdf%%' OR
+        (log_line ->> 'event_type' LIKE 'edx.forum%%') OR
+        (log_line ->> 'event_type' LIKE '%%video%%' AND
         log_line ->> 'event_type' NOT LIKE 'edx.video.bumper.dismissed') OR
         (log_line ->> 'event_type' LIKE 'problem_check') AND
-        (log_line ->> 'event_type' NOT LIKE '%/%')
+        (log_line ->> 'event_type' NOT LIKE '%%/%%'))
     GROUP BY 
         CASE 
-            WHEN log_line ->> 'event_type' LIKE 'textbook.pdf%' THEN 'textbook'
-            WHEN log_line ->> 'event_type' LIKE 'edx.forum%' THEN 'forum'
-            WHEN log_line ->> 'event_type' LIKE '%problem%' THEN 'problem'
-            WHEN log_line ->> 'event_type' LIKE '%video%' THEN 'video'
+            WHEN log_line ->> 'event_type' LIKE 'textbook.pdf%%' THEN 'textbook'
+            WHEN log_line ->> 'event_type' LIKE 'edx.forum%%' THEN 'forum'
+            WHEN log_line ->> 'event_type' LIKE '%%problem%%' THEN 'problem'
+            WHEN log_line ->> 'event_type' LIKE '%%video%%' THEN 'video'
             ELSE log_line ->> 'event_type' 
         END;
 '''
@@ -70,7 +73,7 @@ SQL_QUERY_COURSE_PAGES_POPULARITY = '''select
             log_line -> 'page' as section_name, 
             count(*) as interaction_count
         from logs
-        where log_line ->> 'page' != 'null'
+        where log_line #>> '{context, course_id}' = %s AND log_line ->> 'page' != 'null'
         group by section_name
         order by interaction_count desc'''
 
@@ -87,6 +90,7 @@ SQL_QUERY_SCROLLING_TIME = '''
         (TO_TIMESTAMP(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIMESTAMP) AS current_time
     FROM logs
     WHERE 
+        log_line #>> '{context, course_id}' = %s AND
         (log_line ->> 'event_type' = 'textbook.pdf.page.scrolled' OR 
         log_line ->> 'event_type' = 'textbook.pdf.page.navigated' OR
         log_line ->> 'event_type' = 'textbook.pdf.thumbnails.toggled' OR
@@ -105,8 +109,9 @@ SQL_QUERY_DISTINCT_SCROLLING = """
             COUNT(DISTINCT (log_line ->> 'username')) AS unique_users_count
         FROM logs
         WHERE 
-            log_line ->> 'event_type' LIKE '%textbook%'
-        GROUP BY tutorial_book;
+            log_line #>> '{context, course_id}' = %s AND log_line ->> 'event_type' LIKE '%%textbook%%'
+        GROUP BY tutorial_book
+        ORDER BY tutorial_book;
     """
 
 
@@ -115,7 +120,7 @@ SQL_QUERY_SEARCHED_PDF_TERMS = """
            trim((log_line ->> 'event')::json ->> 'query') as search_word,
            count(*) AS count_number
         FROM logs
-        WHERE log_line ->> 'event_type' = 'textbook.pdf.search.executed'
+        WHERE log_line #>> '{context, course_id}' = %s AND log_line ->> 'event_type' = 'textbook.pdf.search.executed'
         GROUP BY search_word
         ORDER BY count_number desc;
     """
@@ -131,7 +136,7 @@ SQL_QUERY_PLAY_VIDEO_COUNT_DAILY = '''
             TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS') as time_run, 
             count (*) as count_of_start
         from logs
-        where log_line ->> 'event_type' = 'play_video'
+        where log_line #>> '{context, course_id}' = %s AND log_line ->> 'event_type' = 'play_video'
         group by time_run
         order by time_run'''
 
@@ -143,8 +148,9 @@ SQL_QUERY_VIDEO_INTERACTION = '''
             COUNT(log_line ->> 'page') AS interaction_count
         FROM logs
         WHERE 
-            log_line ->> 'event_type' LIKE '%video%' AND 
-            (log_line ->> 'page' LIKE '%/%' OR log_line ->> 'page' LIKE '%xblock%')
+            log_line #>> '{context, course_id}' = %s AND
+            log_line ->> 'event_type' LIKE '%%video%%' AND 
+            (log_line ->> 'page' LIKE '%%/%%' OR log_line ->> 'page' LIKE '%%xblock%%')
         GROUP BY video_id, video_link
     ),
     unique_views AS (
@@ -153,8 +159,9 @@ SQL_QUERY_VIDEO_INTERACTION = '''
             COUNT(DISTINCT(log_line ->> 'username')) AS unique_views
         FROM logs
         WHERE 
-            log_line ->> 'event_type' LIKE '%video%' AND 
-            (log_line ->> 'page' LIKE '%/%' OR log_line ->> 'page' LIKE '%xblock%')
+            log_line #>> '{context, course_id}' = %s AND
+            log_line ->> 'event_type' LIKE '%%video%%' AND 
+            (log_line ->> 'page' LIKE '%%/%%' OR log_line ->> 'page' LIKE '%%xblock%%')
         GROUP BY video_id
     )
     SELECT
@@ -187,7 +194,7 @@ SELECT
             log_line ->> 'username' AS username,
             MIN(log_line #>> '{event, attempts}') AS min_correct_attempt
         FROM logs
-        WHERE log_line ->> 'event_type' = 'problem_check' AND log_line #>> '{event, success}' = 'correct'
+        WHERE log_line #>> '{context, course_id}' = %s AND log_line ->> 'event_type' = 'problem_check' AND log_line #>> '{event, success}' = 'correct'
         group by task_id, username
     ) tasks_summary
 '''
@@ -205,6 +212,7 @@ SQL_QUERY_CORRECTLY_SOLVED_PROBLEMS = '''
         FROM 
             logs
         WHERE 
+            log_line #>> '{context, course_id}' = %s AND
             log_line ->> 'event_type' = 'problem_check' AND log_line #>> '{event, problem_id}' != ''
         GROUP BY problem_id    
     ) problemsTable
@@ -214,7 +222,7 @@ SQL_QUERY_CORRECTLY_SOLVED_PROBLEMS = '''
             log_line #>> '{event, problem_id}' AS problem_id,
             COUNT(log_line ->> 'event') AS correct_attempts
         FROM logs
-        WHERE log_line ->> 'event_type' = 'problem_check' and log_line #>> '{event, success}' = 'correct'
+        WHERE log_line #>> '{context, course_id}' = %s AND log_line ->> 'event_type' = 'problem_check' and log_line #>> '{event, success}' = 'correct'
         GROUP BY problem_id  
     ) AS correctlySolvedProblems
     ON correctlySolvedProblems.problem_id = problemsTable.problem_id
@@ -224,7 +232,7 @@ SQL_QUERY_CORRECTLY_SOLVED_PROBLEMS = '''
             log_line #>> '{event, problem_id}' AS problem_id,
             log_line ->> 'referer' AS problem_link
         FROM logs
-        WHERE log_line ->> 'event_type' = 'problem_check' AND log_line ->> 'page' != ''
+        WHERE log_line #>> '{context, course_id}' = %s AND log_line ->> 'event_type' = 'problem_check' AND log_line ->> 'page' != ''
         GROUP BY problem_id, problem_link
     ) AS pages
     ON pages.problem_id = problemsTable.problem_id;
@@ -253,6 +261,7 @@ SQL_QUERY_TOP_THREADS = '''
                 FROM
                     logs
                 WHERE
+                    log_line #>> '{context, course_id}' = %s AND
                     log_line ->> 'event_type' = 'edx.forum.thread.created'
             ) threads
         LEFT JOIN
@@ -263,6 +272,7 @@ SQL_QUERY_TOP_THREADS = '''
                 FROM
                     logs
                 WHERE
+                    log_line #>> '{context, course_id}' = %s AND
                     log_line ->> 'event_type' IN ('edx.forum.comment.created', 'edx.forum.response.created')
                 GROUP BY
                     thread_id
@@ -275,6 +285,7 @@ SQL_QUERY_TOP_THREADS = '''
                 FROM
                     logs
                 WHERE
+                    log_line #>> '{context, course_id}' = %s AND
                     log_line ->> 'event_type' = 'edx.forum.thread.voted'
                 GROUP BY
                     thread_id
@@ -302,6 +313,7 @@ SQL_QUERY_TOP_RESPONSES = '''
                 FROM
                     logs
                 WHERE
+                    log_line #>> '{context, course_id}' = %s AND
                     log_line ->> 'event_type' = 'edx.forum.response.created'
             ) responses
         LEFT JOIN
@@ -312,6 +324,7 @@ SQL_QUERY_TOP_RESPONSES = '''
                 FROM
                     logs
                 WHERE
+                    log_line #>> '{context, course_id}' = %s AND
                     log_line ->> 'event_type' IN ('edx.forum.comment.created', 'edx.forum.response.created')
                 GROUP BY
                     response_id
@@ -324,6 +337,7 @@ SQL_QUERY_TOP_RESPONSES = '''
                 FROM
                     logs
                 WHERE
+                    log_line #>> '{context, course_id}' = %s AND
                     log_line ->> 'event_type' = 'edx.forum.response.voted'
                 GROUP BY
                     response_id
@@ -345,6 +359,7 @@ SQL_QUERY_VIDEO_VIEWS = '''
         count(distinct ((log_line ->> 'event')::json ->> 'id')) AS event_id
     FROM logs
     WHERE 
+        log_line #>> '{context, course_id}' = %s AND
         log_line ->> 'event_type' = 'play_video' AND 
         log_line ->> 'username' != 'null' AND 
         log_line ->> 'username' IS NOT NULL AND 
@@ -358,7 +373,8 @@ SQL_QUERY_TEXTBOOK_VIEWS = """
             COUNT(distinct (url_decode(split_part(reverse(split_part(reverse((log_line ->> 'event')::json ->> 'chapter'), '/', 1)), '/', 1)))) as tutorial_book
         FROM logs
         WHERE 
-            log_line ->> 'event_type' LIKE  '%textbook%' and
+            log_line #>> '{context, course_id}' = %s AND
+            log_line ->> 'event_type' LIKE  '%%textbook%%' AND
             (log_line ->> 'username' != 'null' AND 
             log_line ->> 'username' IS NOT NULL AND 
             log_line ->> 'username' != '')
@@ -371,9 +387,10 @@ SQL_QUERY_ACTIVITY_ON_FORUM = '''
             count(distinct (log_line #>> '{event, id}')) as event_id
         FROM logs
         WHERE 
-            log_line ->> 'event_type' = 'edx.forum.comment.created' or
+            log_line #>> '{context, course_id}' = %s AND
+            (log_line ->> 'event_type' = 'edx.forum.comment.created' or
             log_line ->> 'event_type' = 'edx.forum.response.created' or
-            log_line ->> 'event_type' = 'edx.forum.thread.created' and
+            log_line ->> 'event_type' = 'edx.forum.thread.created') and
             (log_line ->> 'username' != 'null' AND 
             log_line ->> 'username' IS NOT NULL AND 
             log_line ->> 'username' != '')
@@ -386,6 +403,7 @@ SQL_QUERY_SOLVED_TASKS = '''
             COUNT(DISTINCT (log_line #>> '{event, problem_id}')) AS problem_id
         FROM logs
         WHERE 
+            log_line #>> '{context, course_id}' = %s AND
             log_line ->> 'event_type' = 'problem_check' AND 
             log_line #>> '{event, success}' = 'correct' AND 
             log_line ->> 'username' != 'null' AND 
@@ -403,6 +421,7 @@ SQL_QUERY_TOTAL_USER_TIME_ON_COURSE = '''
                 MAX(TO_TIMESTAMP(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIMESTAMP) as max_session_time
             from logs
             where 
+                log_line #>> '{context, course_id}' = %s AND
                 log_line ->> 'session' != 'null' and 
                 log_line ->> 'session' != '' and 
                 log_line ->> 'username' != 'null' AND 
@@ -418,6 +437,7 @@ SQL_QUERY_TOTAL_DAYS_ON_COURSE = '''
                 COUNT(DISTINCT (TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::DATE)) as count_of_days
             from logs
             where 
+                log_line #>> '{context, course_id}' = %s AND
                 log_line ->> 'username' != 'null' AND 
                 log_line ->> 'username' IS NOT NULL AND 
                 log_line ->> 'username' != ''
@@ -436,7 +456,7 @@ SQL_QUERY_UNIQUE_USERNAMES = """
         SELECT
             DISTINCT log_line ->> 'username' AS username 
         FROM logs 
-        WHERE log_line ->> 'username' != 'null' AND log_line ->> 'username' != '' AND log_line ->> 'username' IS NOT NULL
+        WHERE log_line #>> '{context, course_id}' = %s AND log_line ->> 'username' != 'null' AND log_line ->> 'username' != '' AND log_line ->> 'username' IS NOT NULL
         GROUP BY username 
 """
 
@@ -494,6 +514,7 @@ FROM
         COUNT(DISTINCT (TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::DATE)) as total_days_on_course
     FROM logs
     WHERE
+        log_line #>> '{context, course_id}' = %s AND
         log_line ->> 'username' != 'null' AND
         log_line ->> 'username' IS NOT NULL AND
         log_line ->> 'username' != ''
@@ -504,6 +525,7 @@ LEFT JOIN
         COUNT(distinct ((log_line ->> 'event')::json ->> 'id')) AS event_id
     FROM logs
     WHERE 
+        log_line #>> '{context, course_id}' = %s AND
         log_line ->> 'event_type' = 'play_video' AND 
         log_line ->> 'username' != 'null' AND 
         log_line ->> 'username' IS NOT NULL AND 
@@ -515,7 +537,8 @@ LEFT JOIN
         COUNT(distinct (url_decode(split_part(reverse(split_part(reverse((log_line ->> 'event')::json ->> 'chapter'), '/', 1)), '/', 1)))) as tutorial_book
     FROM logs
     WHERE 
-        log_line ->> 'event_type' LIKE  '%textbook%' and
+        log_line #>> '{context, course_id}' = %s AND
+        log_line ->> 'event_type' LIKE  '%%textbook%%' and
         (log_line ->> 'username' != 'null' AND 
         log_line ->> 'username' IS NOT NULL AND 
         log_line ->> 'username' != '')
@@ -526,6 +549,7 @@ LEFT JOIN
         COUNT(DISTINCT (log_line #>> '{event, problem_id}')) AS solved_tasks
     FROM logs
     WHERE 
+        log_line #>> '{context, course_id}' = %s AND
         log_line ->> 'event_type' = 'problem_check' AND 
         log_line #>> '{event, success}' = 'correct' AND 
         log_line ->> 'username' != 'null' AND 
@@ -538,6 +562,7 @@ LEFT JOIN
         count(distinct (log_line #>> '{event, id}')) as forum_activity
     FROM logs
     WHERE 
+        log_line #>> '{context, course_id}' = %s AND
         log_line ->> 'event_type' IN ('edx.forum.comment.created', 'edx.forum.response.created', 'edx.forum.thread.created') and
         (log_line ->> 'username' != 'null' AND 
         log_line ->> 'username' IS NOT NULL AND 
