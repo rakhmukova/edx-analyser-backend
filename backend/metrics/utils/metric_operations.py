@@ -3,10 +3,7 @@ from typing import Callable, Any
 import psycopg2
 
 from metrics.utils.db_operations import close_db_connection, open_db_connection
-from metrics.utils.file_operations import save_output_to_file
-
-DEFAULT_COURSE_ID = "course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1"
-
+from metrics.utils.file_operations import save_output_to_file, DEFAULT_COURSE_ID
 
 MetricFuncType = Callable[[psycopg2.extensions.connection, str], Any]
 UserMetricFuncType = Callable[[psycopg2.extensions.connection, str, str], Any]

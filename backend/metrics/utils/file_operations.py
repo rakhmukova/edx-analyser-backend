@@ -6,7 +6,10 @@ from venv import logger
 import pandas as pd
 import plotly.express as px
 
-RESULT_PATH = '../../../../metric_results/existing/'
+DEFAULT_COURSE_ID = "course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1"
+DEFAULT_COURSE_DIR = "DATANTECH2035"
+
+RESULT_PATH = f'../../../../metric_results/{DEFAULT_COURSE_DIR}/'
 # RESULT_PATH = './metric_results/existing/'
 
 def save_output_to_file(result_file, result, field_names, result_path=RESULT_PATH):
@@ -64,7 +67,7 @@ def csv_to_json(csv_file_path: str, column_types: dict[str, Type[ColumnType]]) -
 
 if __name__ == '__main__':
     print(csv_to_json(
-        '../../metric_results/existing/video/play_video_count_daily.csv',
+        '../../metric_results/DATANTECH2035/video/play_video_count_daily.csv',
         {
             'date': datetime,
             'count': int

@@ -33,15 +33,15 @@ SQL_QUERY_WEEKLY_ACTIVE_USERS = """
 
 
 SQL_QUERY_ACTIVITY_IN_SECTIONS = '''
-    SELECT 
-        COUNT(DISTINCT(log_line ->> 'username')) AS username, 
+    SELECT  
         CASE 
             WHEN log_line ->> 'event_type' LIKE 'textbook.pdf%' THEN 'textbook'
             WHEN log_line ->> 'event_type' LIKE 'edx.forum%' THEN 'forum'
             WHEN log_line ->> 'event_type' LIKE '%problem%' THEN 'problem'
             WHEN log_line ->> 'event_type' LIKE '%video%' THEN 'video'
             ELSE log_line ->> 'event_type' 
-        END as event_type
+        END as event_type,
+        COUNT(DISTINCT(log_line ->> 'username')) AS username
     FROM logs
     WHERE   
         log_line ->> 'event_type' LIKE 'textbook.pdf%' OR

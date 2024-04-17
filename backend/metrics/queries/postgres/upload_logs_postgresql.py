@@ -1,7 +1,7 @@
 import os
 from venv import logger
 
-from log_files.decompress_zst import LOGS_DIR, LOGS_FILES_DIR
+from log_files.decompress_zst import COURSE_DIR, LOGS_FILES_DIR
 from metrics.utils.db_operations import close_db_connection, open_db_connection, execute_query
 
 
@@ -41,7 +41,7 @@ def insert_logs(connection, logs_file):
     logger.info('Количество загруженных записей: ', count)
 
 
-def upload_logs_postgres(database=os.environ.get("LOGS_DB_DATABASE"), logs_dir=LOGS_DIR):
+def upload_logs_postgres(database=os.environ.get("LOGS_DB_DATABASE"), logs_dir=COURSE_DIR):
     logger.info('Загрузка лог-файлов в базу данных')
     connection = open_db_connection(database=database)
     create_logs_table(connection)
@@ -55,4 +55,4 @@ def upload_logs_postgres(database=os.environ.get("LOGS_DB_DATABASE"), logs_dir=L
 
 
 if __name__ == '__main__':
-    upload_logs_postgres(logs_dir='../../../log_files/' + LOGS_DIR)
+    upload_logs_postgres(logs_dir='../../../log_files/' + COURSE_DIR)

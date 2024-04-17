@@ -6,7 +6,7 @@ from metrics.models.video import VideoInteractionChart, VideoInteraction, VideoP
 
 def create_video_interaction_chart(course_id: str) -> VideoInteractionChart:
     return bulk_create_from_csv(
-        'metric_results/existing/video/video_popularity.csv',
+        f'metric_results/{course_id}/video/video_popularity.csv',
         {
             'video_link': str,
             'views_count': int,
@@ -25,7 +25,7 @@ def create_video_play_count_chart(course_id: str) -> VideoPlayCountChart:
     # )
     # print(result)
     return bulk_create_from_csv(
-        'metric_results/existing/video/play_video_count_daily.csv',
+        f'metric_results/{course_id}/video/play_video_count_daily.csv',
         {
             'date': datetime,
             'count': int

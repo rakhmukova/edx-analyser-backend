@@ -11,7 +11,7 @@ def main():
     calc_course_metric(
         calc_activity_in_sections,
         "common/activity_in_sections.csv",
-        ['users_count', 'event_type']
+        ['section_type', 'students_count']
     )
 
 
