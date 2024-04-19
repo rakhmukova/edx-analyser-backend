@@ -11,7 +11,7 @@ from metrics.models.section_type import SectionType
 
 
 class SectionReportViewSet(viewsets.GenericViewSet):
-    # todo: check in db
+    # todo: check in db and also cache
     valid_courses = [
         'DATANTECH2035',
         'DATSTBASE',
@@ -40,10 +40,10 @@ class SectionReportViewSet(viewsets.GenericViewSet):
         return course_id in self.valid_courses
 
     @action(methods=['GET'], detail=False)
-    def get_section_report(self, request: Request, course_id=None, section_type=None):
+    def get_section_report(self, request: Request, course_id=None, section_type=None) -> JsonResponse:
         force_update = request.query_params.get('force-update', False)
         if not self._validate_course(course_id):
-            return JsonResponse({'error': f'Invalid course_id: {course_id}'}, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({'error': f'No course with such course id: {course_id}'}, status=status.HTTP_404_NOT_FOUND)
 
         if not self.url_to_serializer[section_type] or not self.url_to_section_type[section_type]:
             return JsonResponse({'error': 'Invalid section type'}, status=status.HTTP_400_BAD_REQUEST)
