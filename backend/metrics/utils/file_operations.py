@@ -6,8 +6,9 @@ from venv import logger
 import pandas as pd
 import plotly.express as px
 
-DEFAULT_COURSE_ID, DEFAULT_COURSE_DIR = "course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1", "DATANTECH2035"
+# DEFAULT_COURSE_ID, DEFAULT_COURSE_DIR = "course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1", "DATANTECH2035"
 # DEFAULT_COURSE_ID, DEFAULT_COURSE_DIR = "course-v1:ITMOUniversity+DATSTBASE+spring_2024_ITMO_bac", "DATSTBASE"
+DEFAULT_COURSE_ID, DEFAULT_COURSE_DIR = "course-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac", "DATSTPRO"
 
 RESULT_PATH = f'../../../../metric_results/{DEFAULT_COURSE_DIR}/'
 # RESULT_PATH = './metric_results/existing/'
@@ -64,11 +65,19 @@ def csv_to_json(csv_file_path: str, column_types: dict[str, Type[ColumnType]]) -
             json_data.append(json_row)
     return json_data
 
+def get_single_value_from_csv(csv_file_path: str) -> int:
+    with open(csv_file_path, 'r', encoding='utf-8') as file:
+        csv_reader = csv.reader(file)
+        next(csv_reader)
+        for row in csv_reader:
+            return int(row[0])
 
 if __name__ == '__main__':
-    print(csv_to_json(
-        '../../metric_results/DATANTECH2035/video/play_video_count_daily.csv',
-        {
-            'date': datetime,
-            'count': int
-        }))
+    # print(csv_to_json(
+    #     '../../metric_results/DATANTECH2035/video/play_video_count_daily.csv',
+    #     {
+    #         'date': datetime,
+    #         'count': int
+    #     }))
+
+    print(get_single_value_from_csv('../../metric_results/DATANTECH2035/common/students_count.csv'))

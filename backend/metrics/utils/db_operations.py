@@ -44,12 +44,10 @@ def execute_query(connection: psycopg2.extensions.connection, query: QueryType) 
 def execute_query_with_result(
         connection: psycopg2.extensions.connection,
         query: QueryType,
-        query_params: Any = None,
-        isolation_level: int = None
+        query_params: Any = None
 ) -> list[Any]:
     logger.info('Start query execution at ', datetime.now())
-    if isolation_level is not None:
-        connection.set_isolation_level(isolation_level)
+    connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cursor = connection.cursor()
     cursor.execute(query, query_params)
     query_result = cursor.fetchall()

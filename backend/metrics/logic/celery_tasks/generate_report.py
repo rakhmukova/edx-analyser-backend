@@ -12,6 +12,7 @@ from metrics.logic.celery_tasks.video import create_video_interaction_chart, cre
 from metrics.models.report import VideoSectionReport, CommonSectionReport, SectionReport, PagesSectionReport, \
     TaskSectionReport, TextbookSectionReport, ForumSectionReport
 from metrics.models.section_type import SectionType
+from metrics.utils.file_operations import get_single_value_from_csv
 
 report_cls_by_section_type: dict[SectionType, Type[SectionReport]] = {
     SectionType.VIDEO: VideoSectionReport,
@@ -26,8 +27,8 @@ report_cls_by_section_type: dict[SectionType, Type[SectionReport]] = {
 def _create_common_section_report(course_id: str):
     section_activity_chart = create_section_activity_chart(course_id)
     weekly_activity_chart = create_weekly_activity_chart(course_id)
-    students_count = 125
-    active_students_count = 120
+    students_count = get_single_value_from_csv(f'./metric_results/{course_id}/common/students_count.csv')
+    active_students_count = get_single_value_from_csv(f'./metric_results/{course_id}/common/active_students_count.csv')
     report = CommonSectionReport.objects.filter(
         course_id=course_id,
     ).first()

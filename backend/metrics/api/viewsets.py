@@ -14,7 +14,8 @@ class SectionReportViewSet(viewsets.GenericViewSet):
     # todo: check in db
     valid_courses = [
         'DATANTECH2035',
-        'DATSTBASE'
+        'DATSTBASE',
+        'DATSTPRO'
     ]
 
     url_to_serializer ={

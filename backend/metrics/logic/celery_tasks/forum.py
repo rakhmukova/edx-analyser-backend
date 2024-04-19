@@ -1,5 +1,5 @@
 from metrics.logic.celery_tasks.util import bulk_create_from_csv
-from metrics.models.forum import ForumQuestion, ForumQuestionChart, QuestionType
+from metrics.models.forum import ForumQuestion, ForumQuestionChart
 
 
 def create_forum_question_chart(course_id: str) -> ForumQuestionChart:

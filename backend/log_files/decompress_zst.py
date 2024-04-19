@@ -3,7 +3,7 @@ import pathlib
 
 import zstandard
 
-COURSE_DIR = 'DATSTBASE/'
+COURSE_DIR = 'DATSTPRO/'
 LOGS_ARCHIES_DIR = "log_archives/"
 LOGS_FILES_DIR = "log_decompressed/"
 
