@@ -3,15 +3,13 @@ from typing import Any
 
 from django.db import models
 
+from courses.models import Course, MAX_COURSE_ID_LENGTH
 from metrics.models.common import SectionActivityChart, WeeklyActivityChart
 from metrics.models.forum import ForumQuestionChart
 from metrics.models.pages import PagesPopularityChart
 from metrics.models.tasks import TaskComplexityChart, TaskSummaryChart
 from metrics.models.textbook import WordSearchChart, TextbookViewsChart
 from metrics.models.video import VideoInteractionChart, VideoPlayCountChart
-
-MAX_COURSE_ID_LENGTH = 150
-
 
 MetricDataType = list[dict[str, Any]]
 
@@ -40,7 +38,7 @@ class ErrorType:
 
 
 class SectionReport(models.Model):
-    course_id = models.CharField(primary_key=True, max_length=MAX_COURSE_ID_LENGTH, null=False, blank=False)
+    course = models.OneToOneField(Course, on_delete=models.CASCADE, primary_key=True)
     last_time_accessed = models.DateTimeField(default=datetime.now)
     last_time_updated = models.DateTimeField(default=datetime.now)
     report_state = models.CharField(max_length=12, choices=ReportState.CHOICES, null=False, default=ReportState.NOT_STARTED)

@@ -3,6 +3,7 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.request import Request
 
+from courses.models import Course
 from metrics.api.serializers.report import VideoSectionReportSerializer, \
     CommonSectionReportSerializer, TextbookSectionReportSerializer, TaskSectionReportSerializer, \
     PagesSectionReportSerializer, ForumSectionReportSerializer
@@ -11,12 +12,12 @@ from metrics.models.section_type import SectionType
 
 
 class SectionReportViewSet(viewsets.GenericViewSet):
-    # todo: check in db and also cache
-    valid_courses = [
-        'DATANTECH2035',
-        'DATSTBASE',
-        'DATSTPRO'
-    ]
+    # todo: remove
+    short_names_to_ids = {
+        'DATANTECH2035': 'course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1',
+        'DATSTBASE': 'course-v1:ITMOUniversity+DATSTBASE+spring_2024_ITMO_bac',
+        'DATSTPRO': 'course-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac'
+    }
 
     url_to_serializer ={
         'common': CommonSectionReportSerializer,
@@ -36,18 +37,22 @@ class SectionReportViewSet(viewsets.GenericViewSet):
         'forum': SectionType.FORUM,
     }
 
-    def _validate_course(self, course_id):
-        return course_id in self.valid_courses
+    def _validate_course(self, course_id: str):
+        course = Course.objects.filter(course_id=course_id).first()
+        return course is not None
 
     @action(methods=['GET'], detail=False)
     def get_section_report(self, request: Request, course_id=None, section_type=None) -> JsonResponse:
-        force_update = request.query_params.get('force-update', False)
+        if course_id in self.short_names_to_ids:
+            course_id = self.short_names_to_ids[course_id]
+
         if not self._validate_course(course_id):
             return JsonResponse({'error': f'No course with such course id: {course_id}'}, status=status.HTTP_404_NOT_FOUND)
 
         if not self.url_to_serializer[section_type] or not self.url_to_section_type[section_type]:
             return JsonResponse({'error': 'Invalid section type'}, status=status.HTTP_400_BAD_REQUEST)
 
+        force_update = request.query_params.get('force-update', False)
         report = get_report(course_id, self.url_to_section_type[section_type], force_update)
         serializer = self.url_to_serializer[section_type](report, many=False)
         return JsonResponse(data=serializer.data)

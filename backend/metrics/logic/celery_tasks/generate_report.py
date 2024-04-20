@@ -1,7 +1,8 @@
-from typing import Type
+from typing import Type, Callable
 from venv import logger
 
 from app.celery import app
+from courses.models import Course
 from metrics.logic.celery_tasks.common import \
     create_section_activity_chart, create_weekly_activity_chart
 from metrics.logic.celery_tasks.forum import create_forum_question_chart
@@ -24,11 +25,11 @@ report_cls_by_section_type: dict[SectionType, Type[SectionReport]] = {
 }
 
 
-def _create_common_section_report(course_id: str):
-    section_activity_chart = create_section_activity_chart(course_id)
-    weekly_activity_chart = create_weekly_activity_chart(course_id)
-    students_count = get_single_value_from_csv(f'./metric_results/{course_id}/common/students_count.csv')
-    active_students_count = get_single_value_from_csv(f'./metric_results/{course_id}/common/active_students_count.csv')
+def _create_common_section_report(course_id: str, short_name: str):
+    section_activity_chart = create_section_activity_chart(short_name)
+    weekly_activity_chart = create_weekly_activity_chart(short_name)
+    students_count = get_single_value_from_csv(f'./metric_results/{short_name}/common/students_count.csv')
+    active_students_count = get_single_value_from_csv(f'./metric_results/{short_name}/common/active_students_count.csv')
     report = CommonSectionReport.objects.filter(
         course_id=course_id,
     ).first()
@@ -39,9 +40,9 @@ def _create_common_section_report(course_id: str):
     report.save()
 
 
-def _create_video_section_report(course_id: str):
-    video_play_count_chart = create_video_play_count_chart(course_id)
-    video_interaction_chart = create_video_interaction_chart(course_id)
+def _create_video_section_report(course_id: str, short_name: str):
+    video_play_count_chart = create_video_play_count_chart(short_name)
+    video_interaction_chart = create_video_interaction_chart(short_name)
     report = VideoSectionReport.objects.filter(
         course_id=course_id,
     ).first()
@@ -50,8 +51,8 @@ def _create_video_section_report(course_id: str):
     report.save()
 
 
-def _create_page_section_report(course_id: str):
-    pages_popularity_chart = create_pages_popularity_chart(course_id)
+def _create_page_section_report(course_id: str, short_name: str):
+    pages_popularity_chart = create_pages_popularity_chart(short_name)
     report = PagesSectionReport.objects.filter(
         course_id=course_id,
     ).first()
@@ -59,9 +60,9 @@ def _create_page_section_report(course_id: str):
     report.save()
 
 
-def _create_textbook_section_report(course_id: str):
-    textbook_views_chart = create_textbook_views_chart(course_id)
-    word_search_chart = create_word_search_chart(course_id)
+def _create_textbook_section_report(course_id: str, short_name: str):
+    textbook_views_chart = create_textbook_views_chart(short_name)
+    word_search_chart = create_word_search_chart(short_name)
     report = TextbookSectionReport.objects.filter(
         course_id=course_id,
     ).first()
@@ -70,17 +71,18 @@ def _create_textbook_section_report(course_id: str):
     report.save()
 
 
-def _create_forum_section_report(course_id: str):
-    forum_question_chart = create_forum_question_chart(course_id)
+def _create_forum_section_report(course_id: str, short_name: str):
+    forum_question_chart = create_forum_question_chart(short_name)
     report = ForumSectionReport.objects.filter(
         course_id=course_id,
     ).first()
     report.forum_question_chart = forum_question_chart
     report.save()
 
-def _create_task_section_report(course_id: str):
-    task_complexity_chart = create_task_complexity_chart(course_id)
-    task_summary_chart = create_task_summary_chart(course_id)
+
+def _create_task_section_report(course_id: str, short_name: str):
+    task_complexity_chart = create_task_complexity_chart(short_name)
+    task_summary_chart = create_task_summary_chart(short_name)
     report = TaskSectionReport.objects.filter(
         course_id=course_id,
     ).first()
@@ -89,7 +91,7 @@ def _create_task_section_report(course_id: str):
     report.save()
 
 
-create_func_by_section_type = {
+create_func_by_section_type: dict[SectionType, Callable[[str, str], None]] = {
     SectionType.COMMON: _create_common_section_report,
     SectionType.VIDEO: _create_video_section_report,
     SectionType.PAGES: _create_page_section_report,
@@ -101,7 +103,8 @@ create_func_by_section_type = {
 
 # potentially long operation - need to calc metrics and save them
 def _create_report(course_id: str, section_type: SectionType) -> None:
-    create_func_by_section_type[section_type](course_id)
+    short_name = Course.objects.get(course_id=course_id).short_name
+    create_func_by_section_type[section_type](course_id, short_name)
 
 
 @app.task(name="generate_report")

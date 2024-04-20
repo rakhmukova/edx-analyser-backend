@@ -1,6 +1,6 @@
 from django.db import models
 
-from metrics.models.report import MAX_COURSE_ID_LENGTH
+MAX_COURSE_ID_LENGTH = 150
 
 
 class Course(models.Model):
