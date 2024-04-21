@@ -4,7 +4,7 @@
 ### Как запустить локально
 1) Склонируйте проект на свой компьютер
    ```shell
-   git clone https://github.com/rakhmukova/log-analyzer-backend
+   git clone https://github.com/rakhmukova/edx-analyser-backend
    ```
 2) Запустите докер на компьютере 
 3) Запустите бэкенд приложения
