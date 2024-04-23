@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Type, Callable
 from venv import logger
 
@@ -105,6 +106,12 @@ create_func_by_section_type: dict[SectionType, Callable[[str, str], None]] = {
 def _create_report(course_id: str, section_type: SectionType) -> None:
     short_name = Course.objects.get(course_id=course_id).short_name
     create_func_by_section_type[section_type](course_id, short_name)
+    report = report_cls_by_section_type[section_type].objects.filter(
+        course_id=course_id
+    ).first()
+    report.last_time_updated = datetime.now()
+    report.last_time_accessed = datetime.now()
+    report.save()
 
 
 @app.task(name="generate_report")
