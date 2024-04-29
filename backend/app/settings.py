@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -79,6 +79,15 @@ CELERY_TASK_ROUTES = {
     "metrics.logic.celery_tasks.generate_report": {
         "queue": "sections"
     },
+    "event_logs.tasks.unzip_logs_archive_task": {
+        "queue": "logs"
+    },
+    "event_logs.tasks.decompress_zst": {
+        "queue": "logs"
+    },
+    "event_logs.tasks.upload_logs": {
+        "queue": "logs"
+    }
 }
 
 # Redis
@@ -133,5 +142,13 @@ STATIC_ROOT = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', default='http://localhost:8080').split(" ")
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/media/'
+
+ZIP_LOG_ARCHIVES_FOLDER = 'private/log_files/archives'
+# Adding MEDIA_ROOT here is required because `zipfile` is not aware about Django media root folder
+ZST_LOGS_FOLDER = str(os.path.join(MEDIA_ROOT, 'private/log_files/zst'))
+PURE_LOGS_FOLDER = str(os.path.join(MEDIA_ROOT, 'private/log_files/logs'))
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 100

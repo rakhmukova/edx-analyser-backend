@@ -1,6 +1,6 @@
 from django.urls import path
-from event_logs.views import FileUploadView
+from event_logs.views import LogsUploadView
 
 urlpatterns = [
-    path('', FileUploadView.as_view(), name='file-upload'),
+    path('', LogsUploadView.as_view(), name='file-upload'),
 ]
