@@ -1,7 +1,7 @@
 from django.urls import path
 
-from courses.api import viewsets
+from courses.api import views
 
 urlpatterns = [
-    path('', viewsets.CourseViewSet.as_view({'get': 'get_courses'}))
+    path('', views.CourseView.as_view())
 ]
