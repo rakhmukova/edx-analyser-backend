@@ -12,6 +12,7 @@ dill==0.3.8
 Django==4.2.1
 django-cors-headers==4.3.1
 djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.1
 dnspython==2.6.1
 exceptiongroup==1.2.0
 iniconfig==2.0.0
@@ -29,6 +30,7 @@ pluggy==1.4.0
 prompt-toolkit==3.0.43
 psycopg2==2.9.9
 Pygments==2.2.0
+PyJWT==2.8.0
 pylint==3.1.0
 pymongo==4.6.2
 pytest==8.1.1
@@ -36,6 +38,7 @@ python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
 pytz==2023.3.post1
 redis==5.0.3
+rest-framework-simplejwt==0.0.2
 six==1.16.0
 sqlparse==0.4.4
 tabulate==0.9.0

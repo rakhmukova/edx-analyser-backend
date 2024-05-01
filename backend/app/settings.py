@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -24,7 +25,8 @@ INSTALLED_APPS = [
     'courses',
     'event_logs',
     'corsheaders',
-    'rest_framework'
+    'rest_framework',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -70,6 +72,21 @@ DATABASES = {
         'HOST': os.environ.get('REPORTS_DB_HOST', 'localhost'),
         'PORT': os.environ.get('REPORTS_DB_PORT'),
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ]
+}
+
+SIMPLE_JWT = {
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'UPDATE_LAST_LOGIN': True
 }
 
 # celery
