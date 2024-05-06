@@ -23,12 +23,23 @@ def process_search_pdf_terms_result(result):
             if key != word and word in key:
                 updated_counts[key] += count
                 del updated_counts[word]
+<<<<<<< HEAD
                 break
 
     df.apply(update_counts, axis=1)
 
     updated_list = [[word, count] for word, count in updated_counts.items()]
 
+=======
+                break  # прерываем цикл, чтобы избежать повторного сравнения
+
+    df.apply(update_counts, axis=1)
+
+    # Преобразуем словарь обратно в список списков
+    updated_list = [[word, count] for word, count in updated_counts.items()]
+
+    # Сортируем результаты по убыванию счетчика
+>>>>>>> 158de62 (Removed substrings from queries)
     updated_list.sort(key=lambda x: x[1], reverse=True)
     print(updated_list)
     return updated_list
