@@ -11,6 +11,8 @@ def calc_problems_complexity(connection, course_id):
 
 
 def process_urls(result):
+    result.sort(key=lambda item: 'xblock' in item[1])
+
     urls_with_counts = {}
     for item in result:
         video_id = item[0]
@@ -18,19 +20,19 @@ def process_urls(result):
         all_attempts = item[2]
         correct_attempts = item[3]
 
-        if 'xblock' in url:
-            # Ищем ссылку без параметров для той же video_id
-            for key, value in urls_with_counts.items():
-                if key == video_id and 'xblock' not in value[0]:
-                    urls_with_counts[key][1] = all_attempts
-                    urls_with_counts[key][2] = correct_attempts
-                    break
+        # if 'xblock' in url:
+        #     # Ищем ссылку без параметров для той же video_id
+        #     for key, value in urls_with_counts.items():
+        #         if key == video_id and 'xblock' not in value[0]:
+        #             urls_with_counts[key][1] = all_attempts
+        #             urls_with_counts[key][2] = correct_attempts
+        #             break
+        # else:
+        if video_id in urls_with_counts:
+            urls_with_counts[video_id][1] = all_attempts
+            urls_with_counts[video_id][2] = correct_attempts
         else:
-            if video_id in urls_with_counts:
-                urls_with_counts[video_id][1] = all_attempts
-                urls_with_counts[video_id][2] = correct_attempts
-            else:
-                urls_with_counts[video_id] = [url, all_attempts, correct_attempts]
+            urls_with_counts[video_id] = [url, all_attempts, correct_attempts]
 
     return list(urls_with_counts.values())
 
