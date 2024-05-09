@@ -4,9 +4,8 @@ from metrics.utils.metric_operations import calc_course_metric
 import pandas as pd
 
 def process_search_pdf_terms_result(result):
-    # Проверяем, есть ли результат
-    if not result or len(result) <= 1:  # Проверяем, что результат не пустой или содержит только заголовок
-        return [['word', 'search_count']]  # Возвращаем заголовок как пустой результат
+    if not result or len(result) <= 1:
+        return [['word', 'search_count']]
 
     df = pd.DataFrame(result, columns=['word', 'search_count'])
     df['search_count'] = pd.to_numeric(df['search_count'])
@@ -24,14 +23,12 @@ def process_search_pdf_terms_result(result):
             if key != word and word in key:
                 updated_counts[key] += count
                 del updated_counts[word]
-                break  # прерываем цикл, чтобы избежать повторного сравнения
+                break
 
     df.apply(update_counts, axis=1)
 
-    # Преобразуем словарь обратно в список списков
     updated_list = [[word, count] for word, count in updated_counts.items()]
 
-    # Сортируем результаты по убыванию счетчика
     updated_list.sort(key=lambda x: x[1], reverse=True)
     print(updated_list)
     return updated_list

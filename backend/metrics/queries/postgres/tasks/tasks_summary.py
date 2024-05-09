@@ -16,7 +16,6 @@ def calculate_average_attempts(data: list[tuple[str, int]]):
         attempt = int(attempt_str)
         attempts_count[task_id].append(attempt)
 
-    # Добавляем расчет среднего значения и округляем его до ближайшего целого
     for task_id, attempts in attempts_count.items():
         if attempts:
             average_attempt = round(sum(attempts) / len(attempts))
@@ -30,7 +29,6 @@ def analyze_attempts_data(attempts_count: defaultdict[str, int]):
     second_attempt_count = 0
     other_attempt_count = 0
 
-    # Считаем количество задач, решенных с первой, второй и последующими попытками
     for attempts in attempts_count.values():
 
         if attempts == 1:
@@ -42,7 +40,6 @@ def analyze_attempts_data(attempts_count: defaultdict[str, int]):
 
     total_tasks = first_attempt_count + second_attempt_count + other_attempt_count
     print(first_attempt_count, second_attempt_count, other_attempt_count)
-    # Вычисляем процент задач для каждой категории попыток
 
     percent_first_attempt = round((first_attempt_count / total_tasks) * 100)
     percent_second_attempt = round((second_attempt_count / total_tasks) * 100)

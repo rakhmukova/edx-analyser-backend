@@ -20,14 +20,6 @@ def process_urls(result):
         all_attempts = item[2]
         correct_attempts = item[3]
 
-        # if 'xblock' in url:
-        #     # Ищем ссылку без параметров для той же video_id
-        #     for key, value in urls_with_counts.items():
-        #         if key == video_id and 'xblock' not in value[0]:
-        #             urls_with_counts[key][1] = all_attempts
-        #             urls_with_counts[key][2] = correct_attempts
-        #             break
-        # else:
         if video_id in urls_with_counts:
             urls_with_counts[video_id][1] = all_attempts
             urls_with_counts[video_id][2] = correct_attempts
