@@ -9,7 +9,6 @@ def calc_video_popularity(connection, course_id):
 
 
 def process_urls(result):
-    # Сортировка result так, чтобы url с xblock были в конце
     result.sort(key=lambda item: 'xblock' in item[1])
 
     urls_with_counts = {}
