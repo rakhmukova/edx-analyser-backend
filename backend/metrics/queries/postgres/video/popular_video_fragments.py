@@ -28,6 +28,7 @@ def popular_video_fragments():
         elif event_type == 'pause_video':
             video_counts[video_id][event_time] -= 1
 
+
     # for video_id, counts in video_counts.items():
     #     print(f"Для видео {video_id}:")
     #     for event_time, count in counts.items():
