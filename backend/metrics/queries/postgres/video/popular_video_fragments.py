@@ -33,20 +33,6 @@ def popular_video_fragments():
     #     for event_time, count in counts.items():
     #         print(f"Время {event_time}: {count}")
 
-    for video_id, counts in video_counts.items():
-        times = list(counts.keys())
-        views = list(counts.values())
-
-        plt.figure(figsize=(10, 5))
-        plt.plot(times, views, marker='o', linestyle='-')
-        plt.title(f"График популярности видео {video_id}")
-        plt.xlabel("Время")
-        plt.ylabel("Количество просмотров")
-        plt.grid(True)
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        plt.show()
-
 
 def main():
     # calc_course_metric(
