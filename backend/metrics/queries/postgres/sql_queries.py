@@ -183,6 +183,69 @@ SQL_QUERY_VIDEO_INTERACTION = '''
         i.interaction_count DESC;
 '''
 
+SQL_QUERY_POPULAR_VIDEO_FRAGMENTS = """
+SELECT 
+    video_id,
+    event_type,
+    event_time
+FROM (
+    SELECT 
+        ((log_line ->> 'event')::json ->> 'id') AS video_id,
+        log_line ->> 'event_type' as event_type,
+        ROUND(
+    GREATEST(
+        LEAST(
+            ((log_line ->> 'event')::json ->> 'duration')::numeric, 
+            ((log_line ->> 'event')::json ->> 'currentTime')::numeric
+        ), 
+        0
+    )
+) as event_time
+    FROM logs
+    WHERE   log_line #>> '{context, course_id}' = %s AND 
+            (log_line ->> 'event_type' = 'play_video' OR
+             log_line ->> 'event_type' = 'pause_video')
+    
+    UNION ALL
+    
+    SELECT 
+        ((log_line ->> 'event')::json ->> 'id') AS video_id,
+        'play_video' AS event_type,
+        ROUND(
+        GREATEST(
+            LEAST(
+                ((log_line ->> 'event')::json ->> 'duration')::numeric, 
+                ((log_line ->> 'event')::json ->> 'new_time')::numeric
+            ), 
+            0
+        )
+    ) as event_time
+    FROM logs
+    WHERE log_line #>> '{context, course_id}' = %s 
+        AND log_line ->> 'event_type' = 'seek_video'
+    
+    UNION ALL
+    
+    SELECT 
+        ((log_line ->> 'event')::json ->> 'id') AS video_id,
+        'pause_video' AS event_type,
+        ROUND(
+    GREATEST(
+        LEAST(
+            ((log_line ->> 'event')::json ->> 'duration')::numeric, 
+            ((log_line ->> 'event')::json ->> 'old_time')::numeric
+        ), 
+        0
+    )
+) as event_time
+    FROM logs
+    WHERE log_line #>> '{context, course_id}' = %s 
+        AND log_line ->> 'event_type' = 'seek_video'
+) AS combined_events
+ORDER BY video_id, event_time;
+
+"""
+
 # VIDEOS: SECTION ENDS
 
 
