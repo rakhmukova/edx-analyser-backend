@@ -3,7 +3,7 @@ from typing import Any
 
 from django.db import models
 
-from courses.models import Course, MAX_COURSE_ID_LENGTH
+from courses.models import Course
 from metrics.models.common import SectionActivityChart, WeeklyActivityChart
 from metrics.models.forum import ForumQuestionChart
 from metrics.models.pages import PagesPopularityChart
@@ -27,6 +27,7 @@ class ReportState:
         (FAILED, "Failed")
     ]
 
+
 class ErrorType:
     DB_CONNECTION_ERROR = "db_connection_error"
     INTEGRITY_ERROR = "integrity_error"
@@ -41,7 +42,8 @@ class SectionReport(models.Model):
     course = models.OneToOneField(Course, on_delete=models.CASCADE, primary_key=True)
     last_time_accessed = models.DateTimeField(default=datetime.now)
     last_time_updated = models.DateTimeField(default=datetime.now)
-    report_state = models.CharField(max_length=12, choices=ReportState.CHOICES, null=False, default=ReportState.NOT_STARTED)
+    report_state = models.CharField(max_length=12, choices=ReportState.CHOICES, null=False,
+                                    default=ReportState.NOT_STARTED)
     error_code = models.CharField(max_length=50, choices=ReportState.CHOICES, null=True, blank=False, default=None)
 
     def any_field_is_none(self, fields: list[str]):
@@ -62,8 +64,10 @@ class SectionReport(models.Model):
 
 
 class VideoSectionReport(SectionReport):
-    video_play_count_chart = models.OneToOneField(VideoPlayCountChart, on_delete=models.CASCADE, null=True, default=None)
-    video_interaction_chart = models.OneToOneField(VideoInteractionChart, on_delete=models.CASCADE, null=True, default=None)
+    video_play_count_chart = models.OneToOneField(VideoPlayCountChart, on_delete=models.CASCADE, null=True,
+                                                  default=None)
+    video_interaction_chart = models.OneToOneField(VideoInteractionChart, on_delete=models.CASCADE, null=True,
+                                                   default=None)
 
     def save(self, *args, **kwargs):
         self.report_state = self.calc_report_state(['video_play_count_chart', 'video_interaction_chart'])
@@ -73,17 +77,20 @@ class VideoSectionReport(SectionReport):
 class CommonSectionReport(SectionReport):
     students_count = models.PositiveIntegerField(null=True, default=None)
     active_students_count = models.PositiveIntegerField(null=True, default=None)
-    section_activity_chart = models.OneToOneField(SectionActivityChart, on_delete=models.CASCADE, null=True, default=None)
+    section_activity_chart = models.OneToOneField(SectionActivityChart, on_delete=models.CASCADE, null=True,
+                                                  default=None)
     weekly_activity_chart = models.OneToOneField(WeeklyActivityChart, on_delete=models.CASCADE, null=True, default=None)
 
     def save(self, *args, **kwargs):
-        self.report_state = self.calc_report_state(['section_activity_chart', 'weekly_activity_chart', 'students_count', 'active_students_count'])
+        self.report_state = self.calc_report_state(
+            ['section_activity_chart', 'weekly_activity_chart', 'students_count', 'active_students_count'])
         super().save(*args, **kwargs)
 
 
 class TextbookSectionReport(SectionReport):
     textbook_views_chart = models.OneToOneField(TextbookViewsChart, on_delete=models.CASCADE, null=True, default=None)
     word_search_chart = models.OneToOneField(WordSearchChart, on_delete=models.CASCADE, null=True, default=None)
+
     def save(self, *args, **kwargs):
         self.report_state = self.calc_report_state(['textbook_views_chart', 'word_search_chart'])
         super().save(*args, **kwargs)
@@ -92,12 +99,16 @@ class TextbookSectionReport(SectionReport):
 class TaskSectionReport(SectionReport):
     task_complexity_chart = models.OneToOneField(TaskComplexityChart, on_delete=models.CASCADE, null=True, default=None)
     task_summary_chart = models.OneToOneField(TaskSummaryChart, on_delete=models.CASCADE, null=True, default=None)
+
     def save(self, *args, **kwargs):
         self.report_state = self.calc_report_state(['task_complexity_chart', 'task_summary_chart'])
         super().save(*args, **kwargs)
 
+
 class PagesSectionReport(SectionReport):
-    pages_popularity_chart = models.OneToOneField(PagesPopularityChart, on_delete=models.CASCADE, null=True, default=None)
+    pages_popularity_chart = models.OneToOneField(PagesPopularityChart, on_delete=models.CASCADE, null=True,
+                                                  default=None)
+
     def save(self, *args, **kwargs):
         self.report_state = self.calc_report_state(['pages_popularity_chart'])
         super().save(*args, **kwargs)
@@ -105,6 +116,7 @@ class PagesSectionReport(SectionReport):
 
 class ForumSectionReport(SectionReport):
     forum_question_chart = models.OneToOneField(ForumQuestionChart, on_delete=models.CASCADE, null=True, default=None)
+
     def save(self, *args, **kwargs):
         self.report_state = self.calc_report_state(['forum_question_chart'])
         super().save(*args, **kwargs)

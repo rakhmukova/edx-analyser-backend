@@ -8,6 +8,7 @@ class VideoPlayCountSerializer(serializers.ModelSerializer):
         model = VideoPlayCount
         fields = ['date', 'count']
 
+
 class VideoInteractionSerializer(serializers.ModelSerializer):
     class Meta:
         model = VideoInteraction
@@ -23,12 +24,15 @@ class VideoInteractionSerializer(serializers.ModelSerializer):
 
 class VideoPlayCountChartSerializer(serializers.ModelSerializer):
     items = VideoPlayCountSerializer(many=True)
+
     class Meta:
         model = VideoPlayCountChart
         fields = ['items']
 
+
 class VideoInteractionChartSerializer(serializers.ModelSerializer):
     items = VideoInteractionSerializer(many=True)
+
     class Meta:
         model = VideoInteractionChart
         fields = ['items']

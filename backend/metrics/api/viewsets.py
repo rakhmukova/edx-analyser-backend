@@ -19,7 +19,7 @@ class SectionReportViewSet(viewsets.GenericViewSet):
         'DATSTPRO': 'course-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac'
     }
 
-    url_to_serializer ={
+    url_to_serializer = {
         'common': CommonSectionReportSerializer,
         'video': VideoSectionReportSerializer,
         'textbook': TextbookSectionReportSerializer,
@@ -37,22 +37,24 @@ class SectionReportViewSet(viewsets.GenericViewSet):
         'forum': SectionType.FORUM,
     }
 
-    def _validate_course(self, course_id: str):
-        course = Course.objects.filter(course_id=course_id).first()
-        return course is not None
+    def _validate_course(self, course_id: str, user_id: int):
+        return Course.objects.available_courses(user_id).filter(course_id=course_id).exists()
 
     @action(methods=['GET'], detail=False)
     def get_section_report(self, request: Request, course_id=None, section_type=None) -> JsonResponse:
         if course_id in self.short_names_to_ids:
             course_id = self.short_names_to_ids[course_id]
 
-        if not self._validate_course(course_id):
-            return JsonResponse({'error': f'No course with such course id: {course_id}'}, status=status.HTTP_404_NOT_FOUND)
+        user_id = request.user.id
+
+        if not self._validate_course(course_id, user_id):
+            return JsonResponse({'error': f'No course with such course id: {course_id}'},
+                                status=status.HTTP_404_NOT_FOUND)
 
         if not self.url_to_serializer[section_type] or not self.url_to_section_type[section_type]:
             return JsonResponse({'error': 'Invalid section type'}, status=status.HTTP_400_BAD_REQUEST)
 
         force_update = request.query_params.get('force-update', False)
-        report = get_report(course_id, self.url_to_section_type[section_type], force_update)
+        report = get_report(course_id, user_id, self.url_to_section_type[section_type], force_update)
         serializer = self.url_to_serializer[section_type](report, many=False)
         return JsonResponse(data=serializer.data)

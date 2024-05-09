@@ -22,6 +22,7 @@ class WordSearchChartSerializer(serializers.ModelSerializer):
         model = WordSearchChart
         fields = ['items']
 
+
 class TextbookViewsChartSerializer(serializers.ModelSerializer):
     items = TextbookViewsSerializer(many=True)
 

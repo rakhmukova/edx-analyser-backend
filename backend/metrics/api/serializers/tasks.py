@@ -8,6 +8,7 @@ class TaskComplexitySerializer(serializers.ModelSerializer):
         model = TaskComplexity
         fields = ['problem_link', 'all_attempts', 'successful_attempts']
 
+
 class TaskSummarySerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskSummary
@@ -20,6 +21,7 @@ class TaskComplexityChartSerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskComplexityChart
         fields = ['items']
+
 
 class TaskSummaryChartSerializer(serializers.ModelSerializer):
     items = TaskSummarySerializer(many=True)

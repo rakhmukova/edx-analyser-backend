@@ -11,11 +11,11 @@ from metrics.models.report import SectionReport, VideoSectionReport, CommonSecti
 
 
 class SectionReportSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = SectionReport
         abstract = True
         fields = ['course_id', 'last_time_accessed', 'last_time_updated', 'report_state']
+
 
 class VideoSectionReportSerializer(SectionReportSerializer):
     video_play_count_chart = VideoPlayCountChartSerializer()
@@ -25,6 +25,7 @@ class VideoSectionReportSerializer(SectionReportSerializer):
         model = VideoSectionReport
         fields = SectionReportSerializer.Meta.fields + ['video_play_count_chart', 'video_interaction_chart']
 
+
 class CommonSectionReportSerializer(SectionReportSerializer):
     weekly_activity_chart = WeeklyActivityChartSerializer()
     section_activity_chart = SectionActivityChartSerializer()
@@ -33,6 +34,7 @@ class CommonSectionReportSerializer(SectionReportSerializer):
         model = CommonSectionReport
         fields = (SectionReportSerializer.Meta.fields
                   + ['weekly_activity_chart', 'section_activity_chart', 'students_count', 'active_students_count'])
+
 
 class TextbookSectionReportSerializer(SectionReportSerializer):
     textbook_views_chart = TextbookViewsChartSerializer()

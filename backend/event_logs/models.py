@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.deconstruct import deconstructible
 
 from app import settings
+from courses.models import Course
 
 
 class LogProcessingStatus:
@@ -49,3 +50,8 @@ class LogsArchive(models.Model):
     @property
     def logs_folder_path(self) -> str:
         return os.path.join(settings.PURE_LOGS_FOLDER, self.archive_name)
+
+
+class LogLine(models.Model):
+    json_field = models.JSONField(null=False, blank=False)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="logs")
