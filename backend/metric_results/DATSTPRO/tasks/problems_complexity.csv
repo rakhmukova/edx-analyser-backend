@@ -1,1 +1,287 @@
-problem_link,all_attempts,successful_attempts
+problem_link,all_attempts,successful_attempts,question
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@7bc22ee2ad0c4f9f9f857a84a31976c7,106,54,Чем становится сущность при отображении в табличную модель?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@35fe28f2699440508f792932c6a408a4,89,58,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@4de6f7e51819493b853fb8e79437532b,18,7,"Укажите структуры данных, существующие в REDIS:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@183162e06cf84a27bfe5e59499f70db0,543,167,Выберите верные высказывания про настройки доступа Google-таблиц:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@706d9b00ef104fbd8bce84ea8d3fad04,17,7,"Укажите команды, которые предназначены для работы с множествами:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@373f5d18b2394f93a63c57ec1e5e77a1,11,8,"Введите команду, которая выводит эти числа упорядоченными по возрастанию:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@825f49017d0b4f3bb2b06240544d6b76,8,5,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@5eb5372a23ca42b4b452b840ec56e986,5,3,"К упомянутому выше определению базы (т.е. к оператору CREATE) добавьте фрагмент, указывающий на то, что Dan также является диктором курса Bi"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@825f49017d0b4f3bb2b06240544d6b76,7,5,"Напишите команду, которая из коллекции NEURONET  для страховой компании  ""Пари"" (""insurer.name"")
+      выведет все номера полисов (reference"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@98d1502e35214c8b9d1757c157a87857,174,104," Введите коэффициент детерминации для линейного тренда: ,  Введите коэффициент детерминации для логарифмического тренда: "
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@f234e948b18d492b8af000a9cc4c9555,54,27,"Укажите  запрос (или запросы), который найдет пересечение идентификаторов студентов, получавших и 2, и 5. Каждый идентификатор из пересечени"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@4f308da2d7e84a2887a1271f5fd4378e,7,5,"Напишите, как можно задать JSON документ с ключами и значениями, указанными в таблице.  Например: {""высота"":5, ""долгота"":8, ""широта"":12}
+   "
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@a49641a5efcb467e99ed074b42688d13,809,197,Выберите все возможные варианты.
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@f8317981ffed466bab92d3f8d9f3d51a,524,180,Какие программные средства относятся к электронным таблицам:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@81e0bcd914fa495b8afabd25efb73c38,75,34,"Выведите количество отметок, которое получил студент с идентификатором (номером зачетки) 345576. Какие варианты запросов верны?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@32a54762fc124d209358cc5d1c8336bb,44,38,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@321b7c8f71f14486a4b92833c7d890cf,109,48,К ограничениям целостности таблицы относятся:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@706d9b00ef104fbd8bce84ea8d3fad04,27,8,Какой результат выдаст последняя команда?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@d0013d08e20e4ddbadce148f33b12e4d,60,53,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@341991fc425349329b5ad85f8e04f64c,49,34,"Выведите  названия курсов, в которых встречается слово processing.
+Какие варианты запросов верны?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,2,2,"Сколько просмотров мультфильмов соответствует режиссеру, для которого идентификатор (поле director_id) равен 11."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@32a54762fc124d209358cc5d1c8336bb,19,17,Какая функция используется для преобразования типов данных?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@67038e1c0217434cb9e111288d9363ef,154,61,"Введите через запятую идентификаторы трех лучших клубов, например G89,BХ123,1H5 (в порядке убывания значений целевой функции):, Введите чере"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3f932434130b4629ac03768f0ceae4fe,83,41,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@2e8f27f2074c426a90244ed399043229,147,98,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3afc25753cbd46e58155eb2c7992d7ff,106,48,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,1,1,"Ключам friends:Elena и friends:Boris соответствуют множества, содержащие сведения о друзьях Елены и Бориса. Напишите запрос, который сформир"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,2,,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@7a862b1cc7c446ada82743889086540e,237,96,"Сколько было сделано прививок, в которых одновременно присутствовали вакцины от парвовирусного энтерита и парагриппа (P,Pi)?, Сколько было с"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9174759210534e8982cc6246f5c43d32,7,3,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@0b7e50d81dc44cb7ad92bbb1d217608f,24,16,Триггеры могут использоваться для:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6449360d0e604349b0b42d9c74ffb2ff,35,8,", Введите долготу (longitude):, Введите идентификатор направления движения остановки Марии:, Введите идентификатор направления движения оста"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@4643965bf2f844c98f611c5cd9acb52f,326,128," Введите выборочную дисперсию ,  Введите медиану ,  Введите моду ,  Введите размах ,  Введите среднее значение ,  Введите стандартное отклон"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@825f49017d0b4f3bb2b06240544d6b76,15,13,"Напишите команду, которая для коллекции NEURONET выведет все номера полисов (reference)  для страховой компании  ""Пари"" (""insurer.name""). Кр"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@527605c734f94bb3a8b2b36b317b10cb,137,128,Сглаживание данных применяется для:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@d001e0b33e9241f0b91a88df725f1763,117,50,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,4,2,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@32a54762fc124d209358cc5d1c8336bb,44,35,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,7,6,Как расшифровывется термин NoSQL? Ответ вводите прописными буквами. Слова отделяйте друг от друга ровно одним пробелом.
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@217dc126b87e4574950bb7be1f45b972,12,7,Какие утверждения верны?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@321b7c8f71f14486a4b92833c7d890cf,107,50,Выберите правильные утверждения относительно ограничения целостности PRIMARY KEY:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ef20bb4077ab4914810e792b3e30c9c9,88,67,Что означает аббревиатура SQL?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@a0e034278b214c608be30d8a15c8456e,220,158,"Тип визуализации, в которой цвет выступает в качестве дополнительного измерения, называют:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@7a862b1cc7c446ada82743889086540e,204,170,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9ca9b1d80dcd41598cf5f443a98eafa2,40,34,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,6,4,Какое из приведенных ниже определений подходит для определения понятия вертикального масштабирования:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6bca613253564b6d8f813b4fd85c8587,226,195,"Какой шкале соответствуют значения переменной: Пекин, Москва, Ханой, Париж, Лондон?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@32a54762fc124d209358cc5d1c8336bb,48,42,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,2,2,"Укажите свойства, которые принято называть BASE-свойствами для NoSQL -систем:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,3,3,"Ключу user_list соответствует список посетителей сайта. Каждый новый посетитель добавлялся командой RPUSH. Напишите запрос, который выведет "
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,1,1,"Сколько просмотров мультфильмов соответствует режиссеру, для которого идентификатор (поле director_id) равен 5."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@35fe28f2699440508f792932c6a408a4,71,59,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@4643965bf2f844c98f611c5cd9acb52f,172,147,"Какие значения являются экстремальными выбросами в следующем наборе данных:
+    \[
+     (5,35, 4, 6,2,1,1,-20, 5,2,5,9,7)
+      \]"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@7bc22ee2ad0c4f9f9f857a84a31976c7,79,55,Сущность Человек и сущность Банковский счет. Какое минимальное количество таблиц необходимо для реализации этих сущностей и связей между ним
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@f234e948b18d492b8af000a9cc4c9555,48,42,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@5eb5372a23ca42b4b452b840ec56e986,9,3,Выберите правильные утверждения:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@89e8e62d5c904961a37907d8e59d0719,112,48,В таблицу последовательно добавляются следующие записи:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,1,1,"Как называется мультфильм, для которого идентификатор (поле cartoon_id) равен 19."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@321b7c8f71f14486a4b92833c7d890cf,94,87,"Напишите команду SQL, которая создает такую таблицу, соблюдая указанный порядок и описание полей. Ограничения целостности вводите сразу посл"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@183162e06cf84a27bfe5e59499f70db0,251,168,Выберите верные высказывания про контроль версий Google-таблиц:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@96fc41f52b1b4c8da9d4f6a37824ff5b,105,73,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@de536a3bbdf94e3caaaeeda180f74a1c,423,67,"Основываясь на всех имеющихcя данных, спрогнозируйте значения на один следующий период методом Хольта-Винтерса (тройного экспоненциального с"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,1,1,"Как называется мультфильм, для которого идентификатор (поле cartoon_id) равен 17."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,4,2,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@341991fc425349329b5ad85f8e04f64c,54,51,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@1ed0edd23a3548b4b60a2ef4fbaecf7f,5,4,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@4de6f7e51819493b853fb8e79437532b,11,8,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@d250086885964645b09d1ce723d9a760,24,7,Какие утверждения характерны для NoSQL систем?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@cef8af419ec04e788e48ceac3f49d517,110,72,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@81e0bcd914fa495b8afabd25efb73c38,45,42,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@67038e1c0217434cb9e111288d9363ef,134,90,"Введите значение \(R^2\):, Определите коэффициент \(a\) линейного тренда, задаваемого уравнением вида \(y = ax + b\):"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@527605c734f94bb3a8b2b36b317b10cb,275,107,Введите ответ:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3c719d606ff6450bb416cb597d852b1c,14,8,Какой результат выдаст последняя команда?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@89e8e62d5c904961a37907d8e59d0719,90,55,В таблицу последовательно добавляются следующие записи:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,5,5,"Укажите определение свойства, которое принято называть Basic Availability для NoSQL -систем:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@4f308da2d7e84a2887a1271f5fd4378e,7,4,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9ca9b1d80dcd41598cf5f443a98eafa2,77,25,"Укажите  запрос (или запросы), который найдет названия курсов,  даты экзаменов  и аудитории, запланированные для сдачи экзаменов по соответс"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@a75bfe885db44f219de5ef6d64bc01e0,460,184,"1.1 Определите среднюю цену за $Q1_date в $Q1_time. , 2.1 Определите оборот за $Q2_date в $Q2_time., 2.2 Вычислите суммарный оборот по совер"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@462e1576d6a149dd99e4b4ab72658bbf,118,37,Какие варианты запросов верны?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@cef8af419ec04e788e48ceac3f49d517,148,69,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,2,2,"Ключу city_name_list соответствует множество, составленное из названий городов. Напишите запрос, который добавит к этому множеству новый эле"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3c719d606ff6450bb416cb597d852b1c,7,7,Какой результат выдаст последняя команда?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@f234e948b18d492b8af000a9cc4c9555,45,42,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@35fe28f2699440508f792932c6a408a4,68,57,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@d4e9f3e418f544b88cccddfdd32bf164,257,203,Выберите верный ответ:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3afc25753cbd46e58155eb2c7992d7ff,167,43,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,1,1,"Сколько в базе мульфильмов, для которых выполнено условие country = 'USA'?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@7bc22ee2ad0c4f9f9f857a84a31976c7,104,55,"Студенты (имя, номер зачетки, телефон и т.п.) изучают факультативные курсы (название, количество зачетных единиц и т.п.), за которые получаю"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@f234e948b18d492b8af000a9cc4c9555,47,32,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9174759210534e8982cc6246f5c43d32,5,3,Выберите правильные утверждения:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@d7b090d638a34fbbad23e4639b6df807,211,68,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@8aa870f48d374d86ba5b80d1a89b6d34,10,6,Как называется язык запросов в СУБД Cassandra? Введите полное название.
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,2,1,"Ключам friends:Elena и friends:Boris соответствуют множества, содержащие сведения о друзьях Елены и Бориса. Напишите запрос, который сформир"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@462e1576d6a149dd99e4b4ab72658bbf,82,37,Какие варианты запросов верны?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@67038e1c0217434cb9e111288d9363ef,132,98,Определите общее количество случаев заболевания для Европы за весь период.
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,2,2,"Как называется формат, в котором задан следующий документ:
+
+{
+  ""CartoonName"": ""The Lion King"",
+  ""Year"": 1994,
+  ""Country"": ""USA"",
+  ""Durat"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@4f308da2d7e84a2887a1271f5fd4378e,7,5,"Напишите, как можно задать JSON документ с ключами и значениями, указанными в таблице.
+    Ответ вводить в фигурных скобках. Пары ключ-значе"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@1ed0edd23a3548b4b60a2ef4fbaecf7f,7,4,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,2,1,"Сколько просмотров мультфильмов соответствует режиссеру, для которого идентификатор (поле director_id) равен 3."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9ca9b1d80dcd41598cf5f443a98eafa2,51,42,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,1,1,"Сколько просмотров мультфильмов соответствует режиссеру, для которого идентификатор (поле director_id) равен 12."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ccb1d70b556f4be9ac11c4fcdab19c43,4,3,"Что выполняет следующая команда MongoDB: db.UNDERGROUND.createIndex({""Name"" : 1}, {""unique"" : true})"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@43e608b1f0394928b287d23cb5e5707a,47,17,"Администраторам часто нужно найти телефон сотрудника, чтобы с ним связаться. Сотрудников в предприятии очень много. Иногда администраторы ищ"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,1,1,"Как называется мультфильм, для которого идентификатор (поле cartoon_id) равен 12."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@43e608b1f0394928b287d23cb5e5707a,30,15,Введите число индексов:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@15233c544f024ba495868a2d4c3021cf,214,124,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,2,2,"Сколько в базе мульфильмов, для которых выполнено условие country = 'USSR'?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ed121d68ec9a44d5b738be3b76b6d8e2,33,29,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@369d6c4704f5487696f6df024cabda04,53,53,Сколько столбцов будет создано в таблице?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@462e1576d6a149dd99e4b4ab72658bbf,54,40,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c93bd75222cf4ad6a515001e4578d61b,318,142,"Выберите преобразования, которые целесообразно применить для визуализации данных с большим разбросом положительных значений:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@a0dfb345e3fa418287d6be07d8f36b5a,7,6,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@67038e1c0217434cb9e111288d9363ef,124,106,"Определите, для какой страны построен приведенный ниже график "
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@369d6c4704f5487696f6df024cabda04,93,55,Что делает команда DELETE FROM Table T1?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3f932434130b4629ac03768f0ceae4fe,131,55,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@2e8f27f2074c426a90244ed399043229,107,82,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ed121d68ec9a44d5b738be3b76b6d8e2,34,26,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@250556c3278b4ed1964bcd6a7263517b,150,123,Что означает аббревиатура: MSE?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@81e0bcd914fa495b8afabd25efb73c38,43,39,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,2,2,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@373f5d18b2394f93a63c57ec1e5e77a1,16,7,"Укажите команды, которые предназначены для задания или снятия ограничений по времени существования ключа:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@825f49017d0b4f3bb2b06240544d6b76,21,19,"Напишите команду, которая из коллекции NEURONET  для страховой компании  ""Пари"" (""insurer.name"")
+выведет номера полисов (reference), и весь "
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@4f308da2d7e84a2887a1271f5fd4378e,8,6,"Напишите, как можно задать JSON документ с ключами и значениями, указанными в таблице.  Например: {""Место"":""Everest"", ""долгота"":8, ""широта"":"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@7a862b1cc7c446ada82743889086540e,254,171,Что такое оптимизация?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@825f49017d0b4f3bb2b06240544d6b76,9,7,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@706d9b00ef104fbd8bce84ea8d3fad04,10,7,Какой результат выдаст последняя команда?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@825f49017d0b4f3bb2b06240544d6b76,10,8,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@d7b090d638a34fbbad23e4639b6df807,235,71,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ae2e721c731444198a3b05dc101a35a3,63,51,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6bca613253564b6d8f813b4fd85c8587,632,196,"Можно ли интерпретировать следующие данные как порядковые? Если – да, то в каком порядке их следует расположить (по степени счастья)?
+  "
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ae2e721c731444198a3b05dc101a35a3,55,28,"Укажите  запрос (или запросы), который выведет имена преподавателей, даты экзамена и номер аудитории."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@fba08fd7eed14228ade228ef91426e2e,9,6,"Какой оператор в CQL используется для выборки данных из базы?, Какой оператор в CQL используется для добавления данных в базу?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ed121d68ec9a44d5b738be3b76b6d8e2,82,18,"Выделите элементы, которые могут входить в состав выражения:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,5,3,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@1ed0edd23a3548b4b60a2ef4fbaecf7f,4,4,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@35fe28f2699440508f792932c6a408a4,97,58,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@5caa0f96b8ce4aad95bd78211b44facd,98,87,Укажите кардинальное число отношения S:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9520b1dc32a244698581cc05dba4ea25,70,38,"Найденных животных отправляют на карантин на 3 месяца, если в момент поступления в приют у них нет чипа.  Какое количество животных без чипа"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@81e0bcd914fa495b8afabd25efb73c38,43,38,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,2,2,"Как называется формат, в котором задан следующий документ:
+
+&lt;Cartoon&gt;
+    &lt;CartoonName&gt;The Lion King&lt;/CartoonName&gt;
+    &lt"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,1,1,"Ключу user_list соответствует список, составленный из посетителей сайта. Напишите запрос, который определит количество посетителей сайта."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@e7d00b8058a44abfb572caa7fb342d64,154,59,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@250556c3278b4ed1964bcd6a7263517b,177,121,Что означает аббревиатура: MAPE?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,1,1,"Как называется мультфильм, для которого идентификатор (поле cartoon_id) равен 4."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@404bf1b4d7e0449ba04ef9211b13a5d3,16,7,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9520b1dc32a244698581cc05dba4ea25,71,34,"Сколько дней осталось до окончания срока действия вакцинации от бешенства (код бешенства - R) у животного с чипом $x1, которого нашли $y1?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@de536a3bbdf94e3caaaeeda180f74a1c,311,145,"Определите коэффициент \(a\) линейного тренда, задаваемого уравнением вида \(y = ax + b\):, Определите коэффициент детерминации \(R^2\) для "
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@a0dfb345e3fa418287d6be07d8f36b5a,6,4,"Какой запрос выполняет следующая команда MongoDB: db.UNDERGROUND.distinct(""Line"")?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@369d6c4704f5487696f6df024cabda04,117,54,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@341991fc425349329b5ad85f8e04f64c,56,51,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@d2bc7804e23f42a6988df469c519565b,372,83,"Введите количество оставшихся к рассмотрению газонокосилок:, Введите медиану по существующим в исходном датасете значениям в диапазоне от 30"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@4de6f7e51819493b853fb8e79437532b,12,10,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@db4247c867e0485abbf659484ba6cc09,190,157,"Нормированная диаграмма нужна для того, чтобы:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@250556c3278b4ed1964bcd6a7263517b,156,125,Что означает аббревиатура: MAE?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@341991fc425349329b5ad85f8e04f64c,46,44,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@fba08fd7eed14228ade228ef91426e2e,36,7,"В каком из следующих запросов можно будет увидеть сведения о курсе с идентификатором 5, который был выпущен в 2020 году?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9520b1dc32a244698581cc05dba4ea25,65,35,Какое количество животных с чипами терялось $x1 $str1?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,5,1,"Укажите ключевые технологии NoSQL систем, ориентированные на организацию распределенной работы с данными:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6622b434df254adca8c49a6e0052fc5d,15,11,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@341991fc425349329b5ad85f8e04f64c,49,46,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,3,2,"Сколько в базе мульфильмов, для которых выполнено условие country = 'USA/UK'?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,1,1,"Укажите определение свойства, которое принято называть Soft State для NoSQL -систем:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,2,2,"Укажите определение свойства, которое принято называть Eventual Consistency для NoSQL -систем:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@d0013d08e20e4ddbadce148f33b12e4d,69,53,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@32a54762fc124d209358cc5d1c8336bb,35,30,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@81e0bcd914fa495b8afabd25efb73c38,88,34,"Выведите номера зачеток (идентификаторы студентов) и средние баллы, которые получили студенты за все экзамены. Какие варианты запросов верны"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@2e8f27f2074c426a90244ed399043229,480,118,"Укажите идентификаторы трех лучших вариантов Анны через запятую и без пробелов, например: 3,10,7, Укажите идентификаторы трех лучших вариант"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@e7d00b8058a44abfb572caa7fb342d64,163,63,Выберите основные элементы ER-модели.
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@7bc22ee2ad0c4f9f9f857a84a31976c7,107,57,Чем становится экземпляр сущности при отображении в табличную модель?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@35fe28f2699440508f792932c6a408a4,231,59,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@47e06a7809a247869d737776e7e7e8c4,196,170,"Инструмент обработки данных электронных таблиц, служащий для обобщения и агрегирования данных, называется:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@98d1502e35214c8b9d1757c157a87857,125,121,"\(f(x) = a \log_b x + c\), \(f(x) = a + b_1 x + b_2 x^2 + \ldots + b_k x^k\), \(f(x) = a + bx\), \(f(x) = ce^{a+bx}\)"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@462e1576d6a149dd99e4b4ab72658bbf,95,41,Какие варианты запросов верны?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@341991fc425349329b5ad85f8e04f64c,59,55,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@861645c42c3b48f8a02512224df1671b,642,168,Фильтрация данных позволяет:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@1135383a234b4c0d8bc5a1f083304099,371,180,"Какая из диаграмм в файле соответствует построенной? Введите номер рисунка:, Какая из круговых диаграмм в файле соответствует построенной? В"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@0b7e50d81dc44cb7ad92bbb1d217608f,34,26,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@f43b5ad12c024157a7612906df7ce065,397,196,&nbsp
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@1135383a234b4c0d8bc5a1f083304099,236,175,Какой из рисунков в файле соответствует построенной диаграмме? Введите номер рисунка:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@1ed0edd23a3548b4b60a2ef4fbaecf7f,4,4,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,1,1,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ef20bb4077ab4914810e792b3e30c9c9,115,68,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9520b1dc32a244698581cc05dba4ea25,44,43,"Укажите цвет животного  с чипом $x1. Ответ введите точно так, как он представлен в базе."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3f932434130b4629ac03768f0ceae4fe,135,58,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@5caa0f96b8ce4aad95bd78211b44facd,104,85,"Какое минимальное количество строк нужно убрать из указанного набора, чтобы оставшиеся строки могли образовать отношение?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ed121d68ec9a44d5b738be3b76b6d8e2,49,42,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,4,2,В каком году впервые был использован термин NoSQL?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,3,1,Какие из упомянутых фраз имеют отношение к репликации:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@341991fc425349329b5ad85f8e04f64c,76,33,"Выведите идентификатор курса с названием  Machine Learning.
+Какие варианты запросов верны?"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@825f49017d0b4f3bb2b06240544d6b76,10,8,"Напишите команду, которая выведет все документы из коллекции student, в которых значение по ключу ""name"" равно ""Anna"", а значение ключа ""age"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,5,3,"Как называется формат, в котором задан следующий документ:
+
+{
+  ""CartoonName"": ""The Lion King"",
+  ""Year"": 1994,
+  ""Country"": ""USA"",
+  ""Durat"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@81a76457d02648ebbf9142fd8dc702b0,357,203,Какие данные можно агрегировать в представленной таблице?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3fcba290dece4fe7b808abafd0f12d0b,210,68,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9ca9b1d80dcd41598cf5f443a98eafa2,51,36,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@527605c734f94bb3a8b2b36b317b10cb,210,107,Введите ответ:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9174759210534e8982cc6246f5c43d32,16,12,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3fcba290dece4fe7b808abafd0f12d0b,176,69,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6fee8b0a9b394140a533d2bd728dce72,1,1,"Как называется мультфильм, для которого идентификатор (поле cartoon_id) равен 11."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9ca9b1d80dcd41598cf5f443a98eafa2,34,25,"Укажите запрос (или запросы), который найдет имена студентов и полученные отметки на экзаменах."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,2,1,"Ключу user_list соответствует множество, составленное из посетителей сайта. Напишите запрос, который определит количество посетителей сайта."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@888d3101b79747288719e6d2f5153c18,138,44,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@81e0bcd914fa495b8afabd25efb73c38,52,46,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@404bf1b4d7e0449ba04ef9211b13a5d3,9,7,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@a87dd142a5ee490289cfb7f3007bbfa4,10,4,"2. Сколько в фильмотеке Николая фильмов этого режиссера?, 3. Введите английское название (ключ 'nameEn') самого последнего фильма (году выпу"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@91ae544bac134385ab75dc42866bd15b,17,7,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@8aa870f48d374d86ba5b80d1a89b6d34,27,6,"Для CASSANDRA допустимо:, Для ORACLE допустимо:, Для PostgreSQL допустимо:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@462e1576d6a149dd99e4b4ab72658bbf,79,62,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9520b1dc32a244698581cc05dba4ea25,51,42,Когда животному с чипом $x1 сделали первую прививку от паровирусного энтерита (код парвовируснго энтерита - P)? Введите ответ в виде даты в 
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@8347d1e62e3c42788e1e16beb9d84e89,355,161,К примерам визуализации данных можно отнести:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@96fc41f52b1b4c8da9d4f6a37824ff5b,100,70,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9ca9b1d80dcd41598cf5f443a98eafa2,37,32,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3f932434130b4629ac03768f0ceae4fe,136,54,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,2,2,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9520b1dc32a244698581cc05dba4ea25,81,41,Когда животному с чипом $x1 сделали последнюю прививку от бешенства (код бешенства - R)? Введите ответ в виде даты в формате: YYYY-MM-DD.
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@825f49017d0b4f3bb2b06240544d6b76,10,8,"Напишите команду, которая выведет все документы из коллекции student, в которых в значениях по ключу surname встречается вхождение подстроки"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@3c719d606ff6450bb416cb597d852b1c,25,7,"Укажите команды, предназначенные для работы с хеш-структурами:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,2,,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@a0dfb345e3fa418287d6be07d8f36b5a,8,6,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,2,2,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@35fe28f2699440508f792932c6a408a4,165,56,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@0b7e50d81dc44cb7ad92bbb1d217608f,40,16,Выберите правильные утверждения про представления.
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@373f5d18b2394f93a63c57ec1e5e77a1,12,10,"Введите команду, которая выводит эти числа упорядоченными по убыванию:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@5caa0f96b8ce4aad95bd78211b44facd,94,82,Укажите степень отношения S:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,2,2,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@a0dfb345e3fa418287d6be07d8f36b5a,6,5,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@a0e034278b214c608be30d8a15c8456e,220,155,Линейный график подходит:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ae2e721c731444198a3b05dc101a35a3,47,29,"Укажите запрос (или запросы), который выведет имена студентов-отличников (средний балл – 5)."
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ef0db220e1f54ff3be28a0e89b089159,514,167,С помощью регулярных выражений можно:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@4643965bf2f844c98f611c5cd9acb52f,242,150,Выберите верные высказывания:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@d001e0b33e9241f0b91a88df725f1763,62,50,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@462e1576d6a149dd99e4b4ab72658bbf,55,40,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@81e0bcd914fa495b8afabd25efb73c38,57,41,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@f234e948b18d492b8af000a9cc4c9555,34,27,"Укажите  запрос (или запросы), который найдет объединение идентификаторов студентов, у которых есть хоть одна двойка и/или хоть одна пятерка"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,4,2,"Ключам friends:Elena и friends:Boris соответствуют множества, содержащие сведения о друзьях Елены и Бориса. Напишите запрос, который сформир"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@db4247c867e0485abbf659484ba6cc09,315,167,"Какой вид диаграмм лучше подойдет для визуализации данных, которые отличаются на порядок:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@0b7e50d81dc44cb7ad92bbb1d217608f,31,22,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,2,2,Для решения каких задач используется технология MapReduce:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@f43b5ad12c024157a7612906df7ce065,218,206,Что больше: выборка или генеральная совокупность?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@6622b434df254adca8c49a6e0052fc5d,12,6,Какой фрагмент в предложении CREATE TABLE явно указывает на возможную сортировку по указанному полю?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@9520b1dc32a244698581cc05dba4ea25,48,43,Сколько раз вакцинировали животное с чипом $x1?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c93bd75222cf4ad6a515001e4578d61b,171,136,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ed121d68ec9a44d5b738be3b76b6d8e2,33,30,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@89e8e62d5c904961a37907d8e59d0719,143,44,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@81e0bcd914fa495b8afabd25efb73c38,65,51,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@35fe28f2699440508f792932c6a408a4,91,57,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@f234e948b18d492b8af000a9cc4c9555,50,46,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,3,3,"Как называется формат, в котором задан следующий документ:
+
+&lt;Cartoon&gt;
+    &lt;CartoonName&gt;The Lion King&lt;/CartoonName&gt;
+    &lt"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@67038e1c0217434cb9e111288d9363ef,215,105,"Дисперсия:, Медиана:"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@5eb5372a23ca42b4b452b840ec56e986,4,3,Как зовут диктора курса с названием Statistics?
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@15233c544f024ba495868a2d4c3021cf,150,140,Укажите основные назначения нормировки
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@404bf1b4d7e0449ba04ef9211b13a5d3,7,7,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@c17a9b98628e4c8c9d4eb755ef781770,7,5,Какое из приведенных ниже определений подходит для определения понятия горизонтального масштабирования:
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@bbcfd7539404426fbdacc05deae9afc4,2,2,"Ключам friends:Elena и friends:Boris соответствуют множества, содержащие сведения сведения о друзьях Елены и Бориса. Напишите запрос, которы"
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@ae2e721c731444198a3b05dc101a35a3,56,48,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@e7d00b8058a44abfb572caa7fb342d64,125,60,
+https://courses.openedu.ru/xblock/block-v1:ITMOUniversity+DATSTPRO+spring_2024_ITMO_bac+type@vertical+block@93e3013d7a274f2e84d9cb2543403241,10,5,"Выведите список студентов, записавшихся на курс $Q2., Сколько студентов записались (отношение :learn) на изучение курса $Q1?"

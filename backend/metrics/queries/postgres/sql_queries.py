@@ -69,13 +69,14 @@ SQL_QUERY_ACTIVITY_IN_SECTIONS = '''
 
 # PAGES: SECTION BEGINS
 
-SQL_QUERY_COURSE_PAGES_POPULARITY = '''select  
-            log_line -> 'page' as section_name, 
-            count(*) as interaction_count
-        from logs
-        where log_line #>> '{context, course_id}' = %s AND log_line ->> 'page' != 'null'
-        group by section_name
-        order by interaction_count desc'''
+SQL_QUERY_COURSE_PAGES_POPULARITY = '''
+        SELECT  
+            log_line -> 'page' AS section_name, 
+            COUNT(*) AS interaction_count
+        FROM logs
+        WHERE log_line #>> '{context, course_id}' = %s AND log_line ->> 'page' != 'null'
+        GROUP BY section_name
+        ORDER BY interaction_count DESC'''
 
 #PAGES: SECTION ENDS
 
@@ -102,7 +103,7 @@ SQL_QUERY_SCROLLING_TIME = '''
 '''
 
 
-SQL_QUERY_DISTINCT_SCROLLING = """
+SQL_QUERY_TEXTBOOK_POPULARITY = """
         SELECT 
             url_decode(split_part(reverse(split_part(reverse((log_line ->> 'event')::json ->> 'chapter'), '/', 1)), '/', 1)) AS tutorial_book,
             COUNT(url_decode(split_part(reverse(split_part(reverse((log_line ->> 'event')::json ->> 'chapter'), '/', 1)), '/', 1))) AS interaction_count,
@@ -117,10 +118,13 @@ SQL_QUERY_DISTINCT_SCROLLING = """
 
 SQL_QUERY_SEARCHED_PDF_TERMS = """
         SELECT 
-           trim((log_line ->> 'event')::json ->> 'query') as search_word,
-           count(*) AS count_number
+           LEFT(TRIM((log_line ->> 'event')::json ->> 'query'), 100) as search_word,
+           COUNT(*) AS count_number
         FROM logs
-        WHERE log_line #>> '{context, course_id}' = %s AND log_line ->> 'event_type' = 'textbook.pdf.search.executed'
+        WHERE log_line #>> '{context, course_id}' = %s AND 
+              log_line ->> 'event_type' = 'textbook.pdf.search.executed' AND
+              TRIM((log_line ->> 'event')::json ->> 'query') != '' AND
+              LENGTH(TRIM((log_line ->> 'event')::json ->> 'query')) > 2  
         GROUP BY search_word
         ORDER BY count_number desc;
     """
@@ -178,6 +182,69 @@ SQL_QUERY_VIDEO_INTERACTION = '''
     ORDER BY
         i.interaction_count DESC;
 '''
+
+SQL_QUERY_POPULAR_VIDEO_FRAGMENTS = """
+SELECT 
+    video_id,
+    event_type,
+    event_time
+FROM (
+    SELECT 
+        ((log_line ->> 'event')::json ->> 'id') AS video_id,
+        log_line ->> 'event_type' as event_type,
+        ROUND(
+    GREATEST(
+        LEAST(
+            ((log_line ->> 'event')::json ->> 'duration')::numeric, 
+            ((log_line ->> 'event')::json ->> 'currentTime')::numeric
+        ), 
+        0
+    )
+) as event_time
+    FROM logs
+    WHERE   log_line #>> '{context, course_id}' = %s AND 
+            (log_line ->> 'event_type' = 'play_video' OR
+             log_line ->> 'event_type' = 'pause_video')
+    
+    UNION ALL
+    
+    SELECT 
+        ((log_line ->> 'event')::json ->> 'id') AS video_id,
+        'play_video' AS event_type,
+        ROUND(
+        GREATEST(
+            LEAST(
+                ((log_line ->> 'event')::json ->> 'duration')::numeric, 
+                ((log_line ->> 'event')::json ->> 'new_time')::numeric
+            ), 
+            0
+        )
+    ) as event_time
+    FROM logs
+    WHERE log_line #>> '{context, course_id}' = %s 
+        AND log_line ->> 'event_type' = 'seek_video'
+    
+    UNION ALL
+    
+    SELECT 
+        ((log_line ->> 'event')::json ->> 'id') AS video_id,
+        'pause_video' AS event_type,
+        ROUND(
+    GREATEST(
+        LEAST(
+            ((log_line ->> 'event')::json ->> 'duration')::numeric, 
+            ((log_line ->> 'event')::json ->> 'old_time')::numeric
+        ), 
+        0
+    )
+) as event_time
+    FROM logs
+    WHERE log_line #>> '{context, course_id}' = %s 
+        AND log_line ->> 'event_type' = 'seek_video'
+) AS combined_events
+ORDER BY video_id, event_time;
+
+"""
 
 # VIDEOS: SECTION ENDS
 
