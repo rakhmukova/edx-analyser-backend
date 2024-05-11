@@ -6,7 +6,7 @@ from rest_framework.request import Request
 from courses.models import Course
 from metrics.api.serializers.report import VideoSectionReportSerializer, \
     CommonSectionReportSerializer, TextbookSectionReportSerializer, TaskSectionReportSerializer, \
-    PagesSectionReportSerializer, ForumSectionReportSerializer
+    PagesSectionReportSerializer, ForumSectionReportSerializer, StudentsSectionReportSerializer
 from metrics.logic.report_manager import get_report
 from metrics.models.section_type import SectionType
 
@@ -26,6 +26,7 @@ class SectionReportViewSet(viewsets.GenericViewSet):
         'problems': TaskSectionReportSerializer,
         'pages': PagesSectionReportSerializer,
         'forum': ForumSectionReportSerializer,
+        'students': StudentsSectionReportSerializer
     }
 
     url_to_section_type = {
@@ -35,6 +36,7 @@ class SectionReportViewSet(viewsets.GenericViewSet):
         'problems': SectionType.TASKS,
         'pages': SectionType.PAGES,
         'forum': SectionType.FORUM,
+        'students': SectionType.STUDENTS
     }
 
     def _validate_course(self, course_id: str, user_id: int):

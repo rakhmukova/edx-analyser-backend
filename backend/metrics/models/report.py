@@ -7,6 +7,7 @@ from courses.models import Course
 from metrics.models.common import SectionActivityChart, WeeklyActivityChart
 from metrics.models.forum import ForumQuestionChart
 from metrics.models.pages import PagesPopularityChart
+from metrics.models.students import StudentsChart
 from metrics.models.tasks import TaskComplexityChart, TaskSummaryChart
 from metrics.models.textbook import WordSearchChart, TextbookViewsChart
 from metrics.models.video import VideoInteractionChart, VideoPlayCountChart
@@ -120,3 +121,7 @@ class ForumSectionReport(SectionReport):
     def save(self, *args, **kwargs):
         self.report_state = self.calc_report_state(['forum_question_chart'])
         super().save(*args, **kwargs)
+
+
+class StudentsSectionReport(SectionReport):
+    students_chart = models.OneToOneField(StudentsChart, on_delete=models.CASCADE, null=True, default=None)

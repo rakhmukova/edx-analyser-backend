@@ -29,6 +29,7 @@ class CompletionType:
 class SectionActivityChart(models.Model):
     pass
 
+
 class SectionActivity(models.Model):
     section_type = models.CharField(max_length=10, choices=SectionType.CHOICES)
     students_count = models.PositiveIntegerField(default=0)
@@ -37,6 +38,7 @@ class SectionActivity(models.Model):
 
 class WeeklyActivityChart(models.Model):
     pass
+
 
 class WeeklyActivityCount(models.Model):
     date = models.DateField()

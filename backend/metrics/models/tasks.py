@@ -16,14 +16,18 @@ class AttemptCount:
 class TaskComplexityChart(models.Model):
     pass
 
+
 class TaskComplexity(models.Model):
+    # question = models.CharField(max_length=150, default='', null=False)
     problem_link = models.CharField(max_length=250)
     all_attempts = models.IntegerField()
     successful_attempts = models.IntegerField()
     chart = models.ForeignKey(TaskComplexityChart, on_delete=models.CASCADE, related_name='items')
 
+
 class TaskSummaryChart(models.Model):
     pass
+
 
 class TaskSummary(models.Model):
     attempt_count = models.CharField(choices=AttemptCount.CHOICES)

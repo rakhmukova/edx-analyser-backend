@@ -3,11 +3,12 @@ from rest_framework import serializers
 from metrics.api.serializers.common import SectionActivityChartSerializer, WeeklyActivityChartSerializer
 from metrics.api.serializers.forum import ForumQuestionChartSerializer
 from metrics.api.serializers.pages import PagesPopularityChartSerializer
+from metrics.api.serializers.students import StudentChartSerializer
 from metrics.api.serializers.tasks import TaskComplexityChartSerializer, TaskSummaryChartSerializer
 from metrics.api.serializers.textbook import WordSearchChartSerializer, TextbookViewsChartSerializer
 from metrics.api.serializers.video import VideoPlayCountChartSerializer, VideoInteractionChartSerializer
 from metrics.models.report import SectionReport, VideoSectionReport, CommonSectionReport, ForumSectionReport, \
-    PagesSectionReport, TaskSectionReport, TextbookSectionReport
+    PagesSectionReport, TaskSectionReport, TextbookSectionReport, StudentsSectionReport
 
 
 class SectionReportSerializer(serializers.ModelSerializer):
@@ -68,3 +69,11 @@ class ForumSectionReportSerializer(SectionReportSerializer):
     class Meta:
         model = ForumSectionReport
         fields = SectionReportSerializer.Meta.fields + ['forum_question_chart']
+
+
+class StudentsSectionReportSerializer(SectionReportSerializer):
+    students_chart = StudentChartSerializer()
+
+    class Meta:
+        model = StudentsSectionReport
+        fields = SectionReportSerializer.Meta.fields + ['students_chart']

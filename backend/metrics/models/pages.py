@@ -1,7 +1,9 @@
 from django.db import models
 
+
 class PagesPopularityChart(models.Model):
     pass
+
 
 class PagesPopularity(models.Model):
     # todo: many bytes

@@ -8,22 +8,14 @@ from metrics.logic.celery_tasks.common import \
     create_section_activity_chart, create_weekly_activity_chart
 from metrics.logic.celery_tasks.forum import create_forum_question_chart
 from metrics.logic.celery_tasks.pages import create_pages_popularity_chart
+from metrics.logic.celery_tasks.students import create_students_chart
 from metrics.logic.celery_tasks.tasks import create_task_complexity_chart, create_task_summary_chart
 from metrics.logic.celery_tasks.textbook import create_word_search_chart, create_textbook_views_chart
 from metrics.logic.celery_tasks.video import create_video_interaction_chart, create_video_play_count_chart
 from metrics.models.report import VideoSectionReport, CommonSectionReport, SectionReport, PagesSectionReport, \
-    TaskSectionReport, TextbookSectionReport, ForumSectionReport
+    TaskSectionReport, TextbookSectionReport, ForumSectionReport, StudentsSectionReport
 from metrics.models.section_type import SectionType
 from metrics.utils.file_operations import get_single_value_from_csv
-
-report_cls_by_section_type: dict[SectionType, Type[SectionReport]] = {
-    SectionType.VIDEO: VideoSectionReport,
-    SectionType.COMMON: CommonSectionReport,
-    SectionType.PAGES: PagesSectionReport,
-    SectionType.TASKS: TaskSectionReport,
-    SectionType.PDF: TextbookSectionReport,
-    SectionType.FORUM: ForumSectionReport
-}
 
 
 def _create_common_section_report(course: Course):
@@ -97,19 +89,40 @@ def _create_task_section_report(course: Course):
     report.save()
 
 
+def _create_student_section_report(course: Course):
+    short_name = course.short_name
+    students_chart = create_students_chart(short_name)
+    report = StudentsSectionReport.objects.filter(
+        course=course,
+    ).first()
+    report.students_chart = students_chart
+    report.save()
+
+
+report_cls_by_section_type: dict[SectionType, Type[SectionReport]] = {
+    SectionType.VIDEO: VideoSectionReport,
+    SectionType.COMMON: CommonSectionReport,
+    SectionType.PAGES: PagesSectionReport,
+    SectionType.TASKS: TaskSectionReport,
+    SectionType.PDF: TextbookSectionReport,
+    SectionType.FORUM: ForumSectionReport,
+    SectionType.STUDENTS: StudentsSectionReport,
+}
+
 create_func_by_section_type: dict[SectionType, Callable[[Course], None]] = {
     SectionType.COMMON: _create_common_section_report,
     SectionType.VIDEO: _create_video_section_report,
     SectionType.PAGES: _create_page_section_report,
     SectionType.PDF: _create_textbook_section_report,
     SectionType.TASKS: _create_task_section_report,
-    SectionType.FORUM: _create_forum_section_report
+    SectionType.FORUM: _create_forum_section_report,
+    SectionType.STUDENTS: _create_student_section_report
 }
 
 
 # potentially long operation - need to calc metrics and save them
 def _create_report(course_id: str, user_id: int, section_type: SectionType) -> None:
-    course = Course.objects.get(course_id=course_id, owner=user_id)
+    course = Course.objects.available_courses(user_id).filter(course_id=course_id).first()
     create_func_by_section_type[section_type](course)
     report = report_cls_by_section_type[section_type].objects.filter(
         course=course
@@ -127,7 +140,7 @@ def generate_report(course_id: str, user_id: int, section_type: SectionType):
     except Exception as e:
         # can have this error as well
         logger.error("Ошибка при создании отчета:", e)
-        course = Course.objects.get(course_id=course_id, owner=user_id)
+        course = Course.objects.available_courses(user_id).filter(course_id=course_id).first()
         report = report_cls_by_section_type[section_type].objects.filter(
             course=course
         ).first()

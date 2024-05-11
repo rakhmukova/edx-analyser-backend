@@ -12,7 +12,7 @@ def main():
     calc_course_metric(
         calculate_total_user_time_on_course,
         "students/students.csv",
-        ['username', 'total_days_on_course', 'video_views', 'textbook_views', 'solved_tasks', 'forum_activity']
+        ['username', 'total_days', 'video_views', 'textbook_views', 'solved_tasks', 'forum_activity']
     )
 
 

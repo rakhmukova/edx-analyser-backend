@@ -5,6 +5,7 @@ class SectionType:
     FORUM = "forum"
     PAGES = "pages"
     TASKS = "tasks"
+    STUDENTS = "students"
 
     CHOICES = [
         (COMMON, "common"),
@@ -12,5 +13,6 @@ class SectionType:
         (PDF, "pdf"),
         (FORUM, "forum"),
         (PAGES, "pages"),
-        (TASKS, "tasks")
+        (TASKS, "tasks"),
+        (STUDENTS, "students")
     ]
