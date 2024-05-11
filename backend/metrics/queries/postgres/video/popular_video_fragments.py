@@ -28,18 +28,12 @@ def popular_video_fragments():
         elif event_type == 'pause_video':
             video_counts[video_id][event_time] -= 1
 
-    # for video_id, counts in video_counts.items():
-    #     print(f"Для видео {video_id}:")
-    #     for event_time, count in counts.items():
-    #         print(f"Время {event_time}: {count}")
-
-
 def main():
-    # calc_course_metric(
-    #     calc_play_video_count_daily,
-    #     "video/popular_video_fragments.csv",
-    #     ['video_id', 'event_type', 'event_time']
-    # )
+    calc_course_metric(
+        calc_play_video_count_daily,
+        "video/popular_video_fragments.csv",
+        ['video_id', 'event_type', 'event_time']
+    )
     popular_video_fragments()
 
 
