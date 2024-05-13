@@ -18,7 +18,7 @@ class TaskComplexityChart(models.Model):
 
 
 class TaskComplexity(models.Model):
-    # question = models.CharField(max_length=150, default='', null=False)
+    question = models.CharField(max_length=150, default='', null=False)
     problem_link = models.CharField(max_length=250)
     all_attempts = models.IntegerField()
     successful_attempts = models.IntegerField()

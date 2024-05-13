@@ -10,7 +10,8 @@ def create_video_interaction_chart(course_id: str) -> VideoInteractionChart:
         {
             'video_link': str,
             'views_count': int,
-            'unique_students_count': int
+            'unique_students_count': int,
+            'popular_fragments': str
         },
         VideoInteraction,
         VideoInteractionChart

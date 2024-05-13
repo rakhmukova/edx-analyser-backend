@@ -6,7 +6,7 @@ from metrics.models.tasks import TaskComplexityChart, TaskSummaryChart, TaskComp
 class TaskComplexitySerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskComplexity
-        fields = ['problem_link', 'all_attempts', 'successful_attempts']
+        fields = ['problem_link', 'all_attempts', 'successful_attempts', 'question']
 
 
 class TaskSummarySerializer(serializers.ModelSerializer):
