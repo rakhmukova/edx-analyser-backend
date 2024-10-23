@@ -91,8 +91,6 @@ services:
       - logs_db_network
 
 networks:
-  reports_db_network:
-    driver: bridge
   logs_db_network:
     driver: bridge
   redis_network:
@@ -101,7 +99,6 @@ networks:
     driver: bridge
 
 volumes:
-  reports_db_volume:
   redis_volume:
   logs_db_volume:
   static_volume:
